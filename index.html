@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MyPlanner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Menbere:wght@100..700&display=swap" rel="stylesheet">
+</head>
+<style>
+::-webkit-scrollbar {
+  width: 0px;
+}
+.fa-plus {
+  position: relative;
+  left: -2px;
+  font-size: 12px;
+  font-weight: 900;
+}
+.fa-sort {
+  position: relative;
+  left: 2px;
+  font-size: 14px;
+}
+.fa-address-card {
+  margin: 0 6px 0 6px;
+  font-size: 14px;
+}
+.fa-stopwatch {
+  margin: 0 6px 0 6px;
+}
+* {
+  box-sizing: border-box;
+}
+html, body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: "Menbere", sans-serif;
+  font-weight: 100;
+  color: #333;
+}
+#app {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 100vw;
+  max-width: 500px;
+  height: 100vh;
+  background-color: #e1e1e1;
+  padding: 20px;
+}
+#header_A .status {
+  display: inline-block;
+  margin: 12px;
+}
+#header_A .status span {
+  margin-left: 6px;
+  font-weight: 900;
+}
+#status_filter,
+#status_sort{
+  float: right;
+}
+#body_A {
+  width: 100%;
+  height: -webkit-fill-available;
+  background-color: transparent;
+  margin: 10px 0px 20px 0px;
+  padding: 5px;
+  overflow: scroll;
+}
+.task {
+  width: 100%;
+  height: 100px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: #ccc 0 6px 12px 0;
+  margin-bottom: 20px;
+  padding: 14px 20px;
+}
+.task .title {
+  font-size: 17px;
+  font-weight: 600;
+}
+#footer_A {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+#footer_A #add {
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 50%;
+  background-color: #333;
+  color: white;
+  font-size: 30px;
+}
+.task.todo {
+  border-bottom: 10px solid green;
+}
+.task.miss {
+  border-bottom: 10px solid red;
+}
+.task.done {
+  border-bottom: 10px solid #aaa;
+  opacity: .6;
+}
+</style>
+<body>
+  <div id="app">
+    <div id="header_A">
+      <div id="status_all" class="status"><i class="fa-solid fa-circle-check"></i><span id="number_all">6</span></div>
+      <div id="status_todo" class="status"><i class="fa-solid fa-circle-half-stroke"></i><span id="number_todo">2</span></div>
+      <div id="status_miss" class="status"><i class="fa-solid fa-circle-exclamation"></i><span id="number_miss">1</span></div>
+      <div id="status_sort" class="status"><i class="fa-solid fa-hourglass-start"></i><i class="fa-solid fa-sort"></i></div>
+      <div id="status_filter" class="status"><i class="fa-solid fa-filter"></i><i class="fa-solid fa-plus"></i></div>
+    </div>
+    <div id="body_A">
+      <div class="task todo">
+        <div style="float: right;font-weight:600"><i class="fa-solid fa-stopwatch"></i>2 nap</div>
+        <span class="title">Feladat amire sok idő van</span>
+        <br><span class="subtitle"><i class="fa-solid fa-address-card"></i>Szabó János</span>
+      </div>
+      <div class="task miss">
+        <div style="float: right;font-weight:600"><i class="fa-solid fa-stopwatch"></i>1 óra </div>
+        <span class="title">Feladat amire kevés idő van</span>
+        <br><span class="subtitle"><i class="fa-solid fa-address-card"></i>Szabó János</span>
+      </div>
+      <div class="task done">
+        <div style="float: right;font-weight:600"><i class="fa-solid fa-circle-check"></i></div>
+        <span class="title">Elvégzett feladat</span>
+        <br><span class="subtitle"><i class="fa-solid fa-address-card"></i>Szabó János</span>
+      </div>
+      <div class="task done">
+        <div style="float: right;font-weight:600"><i class="fa-solid fa-circle-check"></i></div>
+        <span class="title">Elvégzett feladat</span>
+        <br><span class="subtitle"><i class="fa-solid fa-address-card"></i>Szabó János</span>
+      </div>
+      <div class="task done">
+        <div style="float: right;font-weight:600"><i class="fa-solid fa-circle-check"></i></div>
+        <span class="title">Elvégzett feladat</span>
+        <br><span class="subtitle"><i class="fa-solid fa-address-card"></i>Szabó János</span>
+      </div>
+      <div class="task done">
+        <div style="float: right;font-weight:600"><i class="fa-solid fa-circle-check"></i></div>
+        <span class="title">Elvégzett feladat</span>
+        <br><span class="subtitle"><i class="fa-solid fa-address-card"></i>Szabó János</span>
+      </div>
+      <div class="task done">
+        <div style="float: right;font-weight:600"><i class="fa-solid fa-circle-check"></i></div>
+        <span class="title">Elvégzett feladat</span>
+        <br><span class="subtitle"><i class="fa-solid fa-address-card"></i>Szabó János</span>
+      </div>
+      <div class="task done">
+        <div style="float: right;font-weight:600"><i class="fa-solid fa-circle-check"></i></div>
+        <span class="title">Elvégzett feladat</span>
+        <br><span class="subtitle"><i class="fa-solid fa-address-card"></i>Szabó János</span>
+      </div>
+      <div class="taksspacer"></div>
+    </div>
+    <div id="footer_A">
+      <button id="add">+</button>
+    </div>
+  </div>
+</body>
+
+</html>
