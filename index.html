@@ -496,7 +496,17 @@ async function submitBooking(e){
   if(!trainingTypeId||!date||!time||!name||!email){toast("Kérjük, töltsd ki a kötelező mezőket.");return}
   const left=capacityLeft(trainingTypeId,date,time);
   if(left<=0){toast("Sajnos betelt. Válassz másik időpontot.");return}
-  const reservation={id=crypto.randomUUID?crypto.randomUUID():String(Date.now()),trainingTypeId,date,time,name,email,phone,note,createdAt:new Date().toISOString()};
+  const reservation = {
+  	id = crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
+  	trainingTypeId,
+  	date,
+  	time,
+  	name,
+  	email,
+  	phone,
+  	note,
+  	createdAt: new Date().toISOString()
+  };
   const list=[...state.reservations,reservation];
   try{await api.put(BIN_RES,list);state.reservations=list;toast("Foglalás sikeres!");updateCapPreview();renderCalendar(currentMonth)}catch(err){toast("Hiba történt a foglalás mentésekor.");}
 }
