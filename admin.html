@@ -2,258 +2,302 @@
 <html lang="hu">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b0d10">
-<title>Admin • Kick-box Edző</title>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pilates Admin</title>
+<link rel="preconnect" href="https://api.jsonbin.io">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0b0d10;--panel:#10141b;--line:#1a2231;--muted:#9aa6bd;--text:#e9eef9;--accent:#e11d2e;--warn:#f59e0b;--danger:#ef4444}
+:root{--bg:#0b0f14;--card:#121821;--muted:#8aa0b2;--text:#e9f0f6;--acc:#7be0b8;--acc2:#ff6b6b;--ring:rgba(123,224,184,.45)}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif}
-.container{max-width:1080px;margin:0 auto;padding:0 16px}
-.header{position:sticky;top:0;z-index:20;background:#0b0d10cc;backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
-.header-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-.brand{display:flex;align-items:center;gap:10px}
-.logo{width:34px;height:34px;border-radius:10px;background:#121722;display:grid;place-items:center;border:1px solid var(--line)}
-.logo span{font-family:Oswald,sans-serif;color:#d4af37;font-weight:700}
-.tabs{display:flex;gap:8px;flex-wrap:wrap}
-.tab{padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:#0e131b;color:#dfe6f7;cursor:pointer}
-.tab.active{background:var(--accent);border-color:transparent}
+body{margin:0;background:linear-gradient(180deg,#0b0f14,#0b1118);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
+.container{max-width:1100px;margin:0 auto;padding:16px}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.08);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;margin-top:16px}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:12px}
+h2{margin:0 0 10px;font-size:22px}
+.grid{display:grid;gap:12px}
+.cols-2{grid-template-columns:1fr 1fr}
+.cols-3{grid-template-columns:1fr 1fr 1fr}
 .section{padding:20px 0}
-.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px}
-.panel h3{margin:0 0 8px;font-family:Oswald,sans-serif}
-.grid{display:grid;grid-template-columns:1fr;gap:12px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.btn{padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));color:var(--text);cursor:pointer}
+.btn.primary{background:linear-gradient(180deg,rgba(123,224,184,.25),rgba(123,224,184,.12));border-color:rgba(123,224,184,.5)}
+.btn.danger{background:linear-gradient(180deg,rgba(255,107,107,.22),rgba(255,107,107,.08));border-color:rgba(255,107,107,.5)}
 .input{display:grid;gap:6px}
-.input input,.input select,.input textarea{width:100%;padding:12px;background:#0b0f16;border:1px solid var(--line);border-radius:10px;color:#eef3ff}
-.btn{display:inline-flex;align-items:center;justify-content:center;border:none;background:var(--accent);color:#fff;padding:10px 12px;border-radius:10px;font-weight:700;cursor:pointer}
-.btn.alt{background:#141a24;border:1px solid var(--line);color:#cfd7ea}
-.btn.warn{background:var(--warn)}
-.btn.danger{background:var(--danger)}
-.list{display:grid;gap:10px}
-.item{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;border:1px solid var(--line);background:#0f141c;border-radius:12px;padding:10px}
-.item small{color:var(--muted)}
-.badge{display:inline-block;padding:3px 8px;border-radius:999px;border:1px solid var(--line);background:#141a24;color:#dfe6fb;font-size:12px}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;background:#0e131b;border:1px solid var(--line);color:#e9efff;padding:10px 14px;border-radius:10px;display:none;z-index:120}
-@media(min-width:760px){.grid{grid-template-columns:1fr 1fr}}
+.input input,.input select,.input textarea{width:100%;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);outline:none}
+.input input:focus,.input select:focus,.input textarea:focus{border-color:var(--acc);box-shadow:0 0 0 4px var(--ring)}
+.table{width:100%;border-collapse:separate;border-spacing:0 8px}
+.table th,.table td{padding:10px 12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+.table th:first-child,.table td:first-child{border-radius:12px 0 0 12px}
+.table th:last-child,.table td:last-child{border-radius:0 12px 12px 0}
+.small{font-size:12px;color:var(--muted)}
+.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#0d131a;border:1px solid rgba(255,255,255,.12);padding:12px 14px;border-radius:12px;display:none}
 </style>
 </head>
 <body>
-<header class="header">
-<div class="container header-inner">
-<div class="brand">
-<div class="logo"><span>KB</span></div>
-<div style="font-family:Oswald,sans-serif">Admin</div>
-</div>
-<nav class="tabs">
-<button class="tab active" data-tab="ann">Közlemények</button>
-<button class="tab" data-tab="news">Hírek</button>
-<button class="tab" data-tab="cal">Naptár</button>
-<button class="tab" data-tab="res">Foglalások</button>
-</nav>
-</div>
-</header>
+<div class="container">
+  <div class="card nav">
+    <div class="row">
+      <div class="tag">Admin felület</div>
+      <a class="tag" href="index.html">Vissza a weboldalra</a>
+    </div>
+    <div class="small">JSONBin kezelő</div>
+  </div>
 
-<main class="container section">
-<section id="tab-ann" class="panel">
-<h3>Közlemények</h3>
-<div class="grid">
-<div class="panel">
-<form id="annForm" class="grid">
-<div class="input"><label>Cím</label><input type="text" id="annTitle" required></div>
-<div class="input"><label>Szöveg</label><textarea id="annContent" rows="3" required></textarea></div>
-<div class="row">
-<div class="input"><label>Típus</label><select id="annType"><option value="info">Info</option><option value="warning">Figyelmeztetés</option><option value="danger">Fontos</option></select></div>
-<div class="input"><label>Lejárat (opcionális)</label><input type="date" id="annExp"></div>
-</div>
-<div class="row">
-<div class="input"><label>Aktív</label><select id="annActive"><option value="true">Igen</option><option value="false">Nem</option></select></div>
-<div class="input"><label>Azonosító</label><input type="text" id="annId" readonly></div>
-</div>
-<div>
-<button class="btn" type="submit">Mentés</button>
-<button class="btn alt" type="button" id="annReset">Űrlap törlése</button>
-</div>
-</form>
-</div>
-<div class="panel">
-<div class="list" id="annList"></div>
-</div>
-</div>
-</section>
+  <div class="section">
+    <div class="grid cols-3">
+      <div class="card" style="padding:14px;">
+        <h2>Bejelentések</h2>
+        <form id="annForm" class="grid">
+          <div class="input"><label>Cím</label><input id="annTitle" type="text"></div>
+          <div class="input"><label>Típus</label><select id="annType"><option value="info">Info</option><option value="success">Success</option><option value="danger">Danger</option></select></div>
+          <div class="input"><label>Leírás</label><textarea id="annContent" rows="3"></textarea></div>
+          <div class="input"><label>Lejárat</label><input id="annExp" type="date"></div>
+          <div class="row"><button type="submit" class="btn primary">Hozzáadás</button></div>
+        </form>
+        <table class="table" style="margin-top:12px;">
+          <thead><tr><th>Cím</th><th>Típus</th><th>Lejár</th><th>Aktív</th><th>Művelet</th></tr></thead>
+          <tbody id="annTbl"></tbody>
+        </table>
+      </div>
 
-<section id="tab-news" class="panel" style="display:none">
-<h3>Hírek</h3>
-<div class="grid">
-<div class="panel">
-<form id="newsForm" class="grid">
-<div class="input"><label>Cím</label><input type="text" id="newsTitle" required></div>
-<div class="input"><label>Kép URL</label><input type="url" id="newsImage" placeholder="https://..."></div>
-<div class="input"><label>Tartalom</label><textarea id="newsContent" rows="4" required></textarea></div>
-<div class="row">
-<div class="input"><label>Dátum</label><input type="date" id="newsDate"></div>
-<div class="input"><label>Azonosító</label><input type="text" id="newsId" readonly></div>
-</div>
-<div>
-<button class="btn" type="submit">Mentés</button>
-<button class="btn alt" type="button" id="newsReset">Űrlap törlése</button>
-</div>
-</form>
-</div>
-<div class="panel">
-<div class="list" id="newsList"></div>
-</div>
-</div>
-</section>
+      <div class="card" style="padding:14px;">
+        <h2>Hírek</h2>
+        <form id="newsForm" class="grid">
+          <div class="input"><label>Cím</label><input id="newsTitle" type="text"></div>
+          <div class="input"><label>Dátum</label><input id="newsDate" type="date"></div>
+          <div class="input"><label>Tartalom</label><textarea id="newsContent" rows="3"></textarea></div>
+          <div class="row"><button type="submit" class="btn primary">Hozzáadás</button></div>
+        </form>
+        <table class="table" style="margin-top:12px;">
+          <thead><tr><th>Cím</th><th>Dátum</th><th>Művelet</th></tr></thead>
+          <tbody id="newsTbl"></tbody>
+        </table>
+      </div>
 
-<section id="tab-cal" class="panel" style="display:none">
-<h3>Naptár • Képzéstípusok és visszatérő edzések</h3>
-<div class="grid">
-<div class="panel">
-<h4 style="margin:0 0 8px">Képzéstípus</h4>
-<form id="typeForm" class="grid">
-<div class="input"><label>Név</label><input id="typeName" required></div>
-<div class="input"><label>Szint</label><select id="typeLevel"><option>Kezdő</option><option>Nyílt</option><option>Haladó</option></select></div>
-<div class="input"><label>Leírás</label><textarea id="typeDesc" rows="3"></textarea></div>
-<div class="row">
-<div class="input"><label>Alap helyszín</label><input id="typeLoc"></div>
-<div class="input"><label>Szín</label><input id="typeColor" type="color" value="#e11d2e"></div>
-</div>
-<div class="row">
-<div class="input"><label>Kapacitás</label><input id="typeCap" type="number" min="1" value="12" required></div>
-<div class="input"><label>Időtartam (perc)</label><input id="typeDur" type="number" min="15" value="60" required></div>
-</div>
-<div class="row">
-<div class="input"><label>Azonosító</label><input id="typeId" readonly></div>
-</div>
-<div>
-<button class="btn" type="submit">Mentés</button>
-<button class="btn alt" type="button" id="typeReset">Űrlap törlése</button>
-</div>
-</form>
-</div>
-<div class="panel">
-<h4 style="margin:0 0 8px">Visszatérő edzés</h4>
-<form id="recForm" class="grid">
-<div class="row">
-<div class="input"><label>Képzéstípus</label><select id="recType"></select></div>
-<div class="input"><label>Hét napja</label><select id="recWeekday"><option value="1">Hétfő</option><option value="2">Kedd</option><option value="3">Szerda</option><option value="4">Csütörtök</option><option value="5">Péntek</option><option value="6">Szombat</option><option value="0">Vasárnap</option></select></div>
-</div>
-<div class="row">
-<div class="input"><label>Időpont</label><input type="time" id="recTime" required></div>
-<div class="input"><label>Helyszín (opcionális)</label><input id="recLoc"></div>
-</div>
-<div class="row">
-<div class="input"><label>Kapacitás felülírás (opcionális)</label><input id="recCap" type="number" min="1"></div>
-<div class="input"><label>Azonosító</label><input id="recId" readonly></div>
-</div>
-<div>
-<button class="btn" type="submit">Mentés</button>
-<button class="btn alt" type="button" id="recReset">Űrlap törlése</button>
-</div>
-</form>
-</div>
-</div>
-<div class="panel">
-<h4 style="margin:0 0 8px">Jelenlegi beállítások</h4>
-<div class="grid">
-<div>
-<div style="margin-bottom:6px;font-weight:700">Képzéstípusok</div>
-<div id="typesList" class="list"></div>
-</div>
-<div>
-<div style="margin-bottom:6px;font-weight:700">Visszatérő edzések</div>
-<div id="recsList" class="list"></div>
-</div>
-</div>
-</div>
-<div class="panel">
-<h4 style="margin:0 0 8px">Előnézet (következő 4 hét)</h4>
-<div id="previewList" class="list"></div>
-</div>
-</section>
+      <div class="card" style="padding:14px;">
+        <h2>Foglalások</h2>
+        <div class="small">Felvétel kézzel vagy törlés</div>
+        <form id="resForm" class="grid">
+          <div class="input"><label>Típus</label><select id="resType"></select></div>
+          <div class="grid cols-2">
+            <div class="input"><label>Dátum</label><input id="resDate" type="date"></div>
+            <div class="input"><label>Idő</label><input id="resTime" type="time"></div>
+          </div>
+          <div class="grid cols-2">
+            <div class="input"><label>Név</label><input id="resName" type="text"></div>
+            <div class="input"><label>E-mail</label><input id="resEmail" type="email"></div>
+          </div>
+          <div class="input"><label>Telefon</label><input id="resPhone" type="tel"></div>
+          <div class="input"><label>Megjegyzés</label><input id="resNote" type="text"></div>
+          <div class="row"><button type="submit" class="btn primary">Hozzáadás</button></div>
+        </form>
+        <table class="table" style="margin-top:12px;">
+          <thead><tr><th>Dátum</th><th>Idő</th><th>Típus</th><th>Név</th><th>Művelet</th></tr></thead>
+          <tbody id="resTbl"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-<section id="tab-res" class="panel" style="display:none">
-<h3>Foglalások</h3>
-<div class="grid">
-<div class="panel">
-<form id="resForm" class="grid">
-<div class="row">
-<div class="input"><label>Dátum</label><input type="date" id="resDate" required></div>
-<div class="input"><label>Idő</label><input type="time" id="resTime" required></div>
+  <div class="section">
+    <div class="card" style="padding:14px;">
+      <h2>Óratípusok és ismétlődő beosztás</h2>
+      <div class="grid cols-2">
+        <div>
+          <div class="row" style="justify-content:space-between;align-items:center;"><div class="tag">Edzéstípusok</div><button id="addTypeBtn" class="btn">Új típus</button></div>
+          <table class="table" style="margin-top:8px;">
+            <thead><tr><th>Név</th><th>Szint</th><th>Férőhely</th><th>Szín</th><th>Művelet</th></tr></thead>
+            <tbody id="typeTbl"></tbody>
+          </table>
+        </div>
+        <div>
+          <div class="row" style="justify-content:space-between;align-items:center;"><div class="tag">Ismétlődések</div><button id="addRecBtn" class="btn">Új ismétlődés</button></div>
+          <table class="table" style="margin-top:8px;">
+            <thead><tr><th>Nap</th><th>Idő</th><th>Típus</th><th>Művelet</th></tr></thead>
+            <tbody id="recTbl"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="row">
-<div class="input"><label>Képzéstípus</label><select id="resType"></select></div>
-<div class="input"><label>Teljes név</label><input id="resName" required></div>
-</div>
-<div class="row">
-<div class="input"><label>E-mail</label><input id="resEmail" type="email" required></div>
-<div class="input"><label>Telefon</label><input id="resPhone" required></div>
-</div>
-<div class="input"><label>Megjegyzés</label><input id="resNote"></div>
-<div>
-<button class="btn" type="submit">Foglalás hozzáadása</button>
-</div>
-</form>
-</div>
-<div class="panel">
-<div style="display:flex;gap:8px;align-items:center;margin-bottom:10px">
-<div class="badge" id="resCount">0 foglalás</div>
-<button class="btn alt" id="resReload">Frissítés</button>
-</div>
-<div id="resList" class="list"></div>
-</div>
-</div>
-</section>
-</main>
 
-<div class="toast" id="toast"></div>
+<div id="toast" class="toast"></div>
 
 <script>
 const JSONBIN_KEY="$2a$10$9sO/ja29sMebpWNvsWmp5.dJ6lv7CPeLBMRFaA/cAEwz42ii6qlCS";
-const BINS={ann:"68b5536243b1c97be932d1ed",res:"68b5535343b1c97be932d1e1",news:"68b5531fd0ea881f406dbd52",cal:"68b55123d0ea881f406dbb52"};
-let data={announcements:[],news:[],calendar:{trainingTypes:[],recurring:[]},reservations:[]};
-function toast(m){const t=document.getElementById("toast");t.textContent=m;t.style.display="block";setTimeout(()=>t.style.display="none",2200)}
-function uid(){if(crypto&&crypto.randomUUID){return crypto.randomUUID()}return "id-"+Date.now()+"-"+Math.floor(Math.random()*1e6)}
-function validStr(s){return typeof s==="string"&&s.trim()!==""&&s.trim().toLowerCase()!=="undefined"&&s.trim().toLowerCase()!=="null"}
-function ymdLocal(d){const y=d.getFullYear();const m=String(d.getMonth()+1).padStart(2,"0");const da=String(d.getDate()).padStart(2,"0");return y+"-"+m+"-"+da}
-async function getBin(id){try{const r=await fetch("https://api.jsonbin.io/v3/b/"+id+"/latest",{headers:{"X-Master-Key":JSONBIN_KEY}});if(!r.ok)throw new Error("get "+id);const j=await r.json();return j.record}catch(e){return null}}
-async function putBin(id,rec){const r=await fetch("https://api.jsonbin.io/v3/b/"+id,{method:"PUT",headers:{"Content-Type":"application/json","X-Master-Key":JSONBIN_KEY},body:JSON.stringify(rec)});if(!r.ok)throw new Error("put "+id)}
-async function loadAll(){const [ann,news,cal,res]=await Promise.all([getBin(BINS.ann),getBin(BINS.news),getBin(BINS.cal),getBin(BINS.res)]);const anns=Array.isArray(ann)?ann:[];const newsArr=Array.isArray(news)?news:[];const resArr=Array.isArray(res)?res:[];data.announcements=anns.filter(a=>a&&validStr(a.title)&&validStr(a.content));data.news=newsArr.filter(n=>n&&validStr(n.title)&&validStr(n.content));data.calendar=cal&&cal.trainingTypes?cal:{trainingTypes:[],recurring:[]};data.reservations=resArr.filter(r=>r&&validStr(r.trainingTypeId)&&validStr(r.date)&&validStr(r.time)&&validStr(r.name));renderAll()}
-function renderAll(){renderAnn();renderNews();renderCal();renderRes();fillTypeSelects()}
-function setActiveTab(id){document.querySelectorAll(".tab").forEach(t=>{t.classList.toggle("active",t.dataset.tab===id)});document.querySelectorAll("main section.panel").forEach(s=>{s.style.display=s.id==="tab-"+id?"block":"none"})}
-document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>setActiveTab(b.dataset.tab)));
-function renderAnn(){const list=document.getElementById("annList");list.innerHTML="";if(data.announcements.length===0){list.innerHTML='<div class="item"><div>Nincs közlemény</div></div>';return}const arr=[...data.announcements].sort((a,b)=>((b.active?1:0)-(a.active?1:0))||String(a.expiresAt||"").localeCompare(String(b.expiresAt||"")));arr.forEach(a=>{const it=document.createElement("div");it.className="item";it.innerHTML='<div><div><strong>'+a.title+'</strong> '+(a.type==="warning"?"• Figyelmeztetés":a.type==="danger"?"• Fontos":"• Info")+'</div><small>'+(a.content||"")+'</small><div>'+((a.active!==false)?'<span class="badge">Aktív</span>':'<span class="badge">Inaktív</span>')+(a.expiresAt?(' <small> • lejár: '+a.expiresAt+"</small>"):"")+'</div></div><div style="display:flex;gap:6px"><button class="btn alt" data-edit="'+a.id+'">Szerkeszt</button><button class="btn danger" data-del="'+a.id+'">Töröl</button></div>';list.appendChild(it)});list.querySelectorAll("button[data-edit]").forEach(b=>b.addEventListener("click",()=>loadAnnToForm(b.getAttribute("data-edit"))));list.querySelectorAll("button[data-del]").forEach(b=>b.addEventListener("click",()=>deleteAnn(b.getAttribute("data-del"))))}
-function loadAnnToForm(id){const a=data.announcements.find(x=>x.id===id);if(!a)return;document.getElementById("annTitle").value=a.title||"";document.getElementById("annContent").value=a.content||"";document.getElementById("annType").value=a.type||"info";document.getElementById("annExp").value=a.expiresAt?String(a.expiresAt).slice(0,10):"";document.getElementById("annActive").value=String(a.active!==false);document.getElementById("annId").value=a.id}
-async function deleteAnn(id){data.announcements=data.announcements.filter(x=>x.id!==id);await putBin(BINS.ann,data.announcements);renderAnn();toast("Közlemény törölve")}
-document.getElementById("annForm").addEventListener("submit",async e=>{e.preventDefault();const item={id:document.getElementById("annId").value||uid(),title:document.getElementById("annTitle").value.trim(),content:document.getElementById("annContent").value.trim(),type:document.getElementById("annType").value,expiresAt:document.getElementById("annExp").value||null,active:document.getElementById("annActive").value==="true"};if(!validStr(item.title)||!validStr(item.content)){toast("Hiányzó mezők");return}const idx=data.announcements.findIndex(x=>x.id===item.id);if(idx>=0){data.announcements[idx]=item}else{data.announcements.push(item)}await putBin(BINS.ann,data.announcements);renderAnn();document.getElementById("annId").value=item.id;toast("Közlemény mentve")});
-document.getElementById("annReset").addEventListener("click",()=>{document.getElementById("annForm").reset();document.getElementById("annId").value=""});
-function renderNews(){const list=document.getElementById("newsList");list.innerHTML="";if(data.news.length===0){list.innerHTML='<div class="item"><div>Nincs hír</div></div>';return}const arr=[...data.news].sort((a,b)=>new Date(b.date)-new Date(a.date));arr.forEach(n=>{const it=document.createElement("div");it.className="item";it.innerHTML='<div><div><strong>'+n.title+'</strong></div><small>'+new Date(n.date||Date.now()).toLocaleDateString("hu-HU")+'</small><div>'+n.content+'</div></div><div style="display:flex;gap:6px"><button class="btn alt" data-edit="'+n.id+'">Szerkeszt</button><button class="btn danger" data-del="'+n.id+'">Töröl</button></div>';list.appendChild(it)});list.querySelectorAll("button[data-edit]").forEach(b=>b.addEventListener("click",()=>loadNewsToForm(b.getAttribute("data-edit"))));list.querySelectorAll("button[data-del]").forEach(b=>b.addEventListener("click",()=>deleteNews(b.getAttribute("data-del"))))}
-function loadNewsToForm(id){const n=data.news.find(x=>x.id===id);if(!n)return;document.getElementById("newsTitle").value=n.title||"";document.getElementById("newsImage").value=n.image||"";document.getElementById("newsContent").value=n.content||"";document.getElementById("newsDate").value=n.date?String(n.date).slice(0,10):"";document.getElementById("newsId").value=n.id}
-async function deleteNews(id){data.news=data.news.filter(x=>x.id!==id);await putBin(BINS.news,data.news);renderNews();toast("Hír törölve")}
-document.getElementById("newsForm").addEventListener("submit",async e=>{e.preventDefault();const item={id:document.getElementById("newsId").value||uid(),title:document.getElementById("newsTitle").value.trim(),image:document.getElementById("newsImage").value.trim()||null,content:document.getElementById("newsContent").value.trim(),date:document.getElementById("newsDate").value||new Date().toISOString().slice(0,10)};if(!validStr(item.title)||!validStr(item.content)){toast("Hiányzó mezők");return}const idx=data.news.findIndex(x=>x.id===item.id);if(idx>=0){data.news[idx]=item}else{data.news.push(item)}await putBin(BINS.news,data.news);renderNews();document.getElementById("newsId").value=item.id;toast("Hír mentve")});
-document.getElementById("newsReset").addEventListener("click",()=>{document.getElementById("newsForm").reset();document.getElementById("newsId").value=""});
-function renderCal(){renderTypes();renderRecs();renderPreview()}
-function renderTypes(){const list=document.getElementById("typesList");list.innerHTML="";if(data.calendar.trainingTypes.length===0){list.innerHTML='<div class="item"><div>Nincs típus</div></div>';return}data.calendar.trainingTypes.forEach(t=>{const it=document.createElement("div");it.className="item";it.innerHTML='<div><div><strong>'+t.name+'</strong> • '+(t.level||"")+'</div><small>'+(t.description||"")+'</small><div><span class="badge" style="background:'+(t.color||"#e11d2e")+';border-color:transparent;color:#000">szín</span> <span class="badge">'+(t.location||"")+'</span> <span class="badge">kapacitás: '+(t.capacity||"-")+'</span> <span class="badge">'+(t.duration||"-")+' perc</span> <small>id: '+t.id+'</small></div></div><div style="display:flex;gap:6px"><button class="btn alt" data-edit="'+t.id+'">Szerkeszt</button><button class="btn danger" data-del="'+t.id+'">Töröl</button></div>';list.appendChild(it)});list.querySelectorAll("button[data-edit]").forEach(b=>b.addEventListener("click",()=>loadTypeToForm(b.getAttribute("data-edit"))));list.querySelectorAll("button[data-del]").forEach(b=>b.addEventListener("click",()=>deleteType(b.getAttribute("data-del"))))}
-function loadTypeToForm(id){const t=data.calendar.trainingTypes.find(x=>x.id===id);if(!t)return;document.getElementById("typeId").value=t.id;document.getElementById("typeName").value=t.name||"";document.getElementById("typeLevel").value=t.level||"Nyílt";document.getElementById("typeDesc").value=t.description||"";document.getElementById("typeLoc").value=t.location||"";document.getElementById("typeColor").value=t.color||"#e11d2e";document.getElementById("typeCap").value=t.capacity||12;document.getElementById("typeDur").value=t.duration||60}
-async function deleteType(id){const used=data.calendar.recurring.some(r=>r.trainingTypeId===id);if(used){toast("A típus használatban van a visszatérő edzéseknél");return}data.calendar.trainingTypes=data.calendar.trainingTypes.filter(t=>t.id!==id);await putBin(BINS.cal,data.calendar);renderCal();toast("Típus törölve")}
-document.getElementById("typeForm").addEventListener("submit",async e=>{e.preventDefault();const t={id:document.getElementById("typeId").value||uid(),name:document.getElementById("typeName").value.trim(),level:document.getElementById("typeLevel").value,description:document.getElementById("typeDesc").value.trim(),location:document.getElementById("typeLoc").value.trim(),color:document.getElementById("typeColor").value,capacity:parseInt(document.getElementById("typeCap").value,10)||12,duration:parseInt(document.getElementById("typeDur").value,10)||60};if(!validStr(t.name)){toast("Hiányzó mezők");return}const idx=data.calendar.trainingTypes.findIndex(x=>x.id===t.id);if(idx>=0){data.calendar.trainingTypes[idx]=t}else{data.calendar.trainingTypes.push(t)}await putBin(BINS.cal,data.calendar);renderCal();document.getElementById("typeId").value=t.id;fillTypeSelects();toast("Típus mentve")});
-document.getElementById("typeReset").addEventListener("click",()=>{document.getElementById("typeForm").reset();document.getElementById("typeId").value=""});
-function renderRecs(){const list=document.getElementById("recsList");list.innerHTML="";if(data.calendar.recurring.length===0){list.innerHTML='<div class="item"><div>Nincs visszatérő edzés</div></div>';return}const dayName=["Vasárnap","Hétfő","Kedd","Szerda","Csütörtök","Péntek","Szombat"];const arr=[...data.calendar.recurring].sort((a,b)=>(a.weekday-b.weekday)||a.time.localeCompare(b.time));arr.forEach(r=>{const t=data.calendar.trainingTypes.find(x=>x.id===r.trainingTypeId);const it=document.createElement("div");it.className="item";it.innerHTML='<div><div><strong>'+(t?t.name:"?")+'</strong> • '+dayName[r.weekday]+' • '+r.time+'</div><div><span class="badge">'+(r.location||t?.location||"")+'</span> '+(r.capacity?('<span class="badge">kapacitás: '+r.capacity+'</span>'):"")+' <small>id: '+r.id+'</small></div></div><div style="display:flex;gap:6px"><button class="btn alt" data-edit="'+r.id+'">Szerkeszt</button><button class="btn danger" data-del="'+r.id+'">Töröl</button></div>';list.appendChild(it)});list.querySelectorAll("button[data-edit]").forEach(b=>b.addEventListener("click",()=>loadRecToForm(b.getAttribute("data-edit"))));list.querySelectorAll("button[data-del]").forEach(b=>b.addEventListener("click",()=>deleteRec(b.getAttribute("data-del"))))}
-function loadRecToForm(id){const r=data.calendar.recurring.find(x=>x.id===id);if(!r)return;document.getElementById("recId").value=r.id;document.getElementById("recType").value=r.trainingTypeId;document.getElementById("recWeekday").value=String(r.weekday);document.getElementById("recTime").value=r.time;document.getElementById("recLoc").value=r.location||"";document.getElementById("recCap").value=r.capacity||""}
-async function deleteRec(id){data.calendar.recurring=data.calendar.recurring.filter(x=>x.id!==id);await putBin(BINS.cal,data.calendar);renderCal();toast("Visszatérő edzés törölve")}
-document.getElementById("recForm").addEventListener("submit",async e=>{e.preventDefault();if(data.calendar.trainingTypes.length===0){toast("Előbb hozz létre képzéstípust");return}const r={id:document.getElementById("recId").value||uid(),trainingTypeId:document.getElementById("recType").value,weekday:parseInt(document.getElementById("recWeekday").value,10),time:document.getElementById("recTime").value,location:document.getElementById("recLoc").value.trim()||null,capacity:document.getElementById("recCap").value?parseInt(document.getElementById("recCap").value,10):null};if(!validStr(r.trainingTypeId)||!validStr(r.time)){toast("Hiányzó mezők");return}const idx=data.calendar.recurring.findIndex(x=>x.id===r.id);if(idx>=0){data.calendar.recurring[idx]=r}else{data.calendar.recurring.push(r)}await putBin(BINS.cal,data.calendar);renderCal();document.getElementById("recId").value=r.id;toast("Visszatérő edzés mentve")});
-document.getElementById("recReset").addEventListener("click",()=>{document.getElementById("recForm").reset();document.getElementById("recId").value=""});
-function fillTypeSelects(){const opts=data.calendar.trainingTypes.map(t=>'<option value="'+t.id+'">'+t.name+'</option>').join("");["recType","resType"].forEach(id=>{const el=document.getElementById(id);if(el){el.innerHTML=opts}})}
-function genSessions(days=28){const from=new Date();from.setHours(0,0,0,0);const to=new Date(from);to.setDate(to.getDate()+days);const out=[];for(const r of data.calendar.recurring){let cur=new Date(from);cur.setHours(0,0,0,0);while(cur<=to){if(cur.getDay()===r.weekday){out.push({id:"s-"+r.id+"-"+ymdLocal(cur),trainingTypeId:r.trainingTypeId,date:ymdLocal(cur),time:r.time,location:r.location||null,capacity:r.capacity||null});cur.setDate(cur.getDate()+7)}else{cur.setDate(cur.getDate()+1)}}}out.sort((a,b)=>new Date(a.date+"T"+a.time)-new Date(b.date+"T"+b.time));return out}
-function renderPreview(){const list=document.getElementById("previewList");list.innerHTML="";const s=genSessions(28);if(s.length===0){list.innerHTML='<div class="item"><div>Nincs előnézeti időpont</div></div>';return}s.forEach(x=>{const t=data.calendar.trainingTypes.find(k=>k.id===x.trainingTypeId);const cap=x.capacity||t?.capacity||"";const occ=data.reservations.filter(r=>r.trainingTypeId===x.trainingTypeId&&r.date===x.date&&r.time===x.time).length;const free=cap?Math.max(0,cap-occ):"";const it=document.createElement("div");it.className="item";it.innerHTML='<div><div><strong>'+x.date+' '+x.time+'</strong> • '+(t?t.name:"?")+'</div><small>'+(x.location||t?.location||"")+'</small></div><div><span class="badge">'+occ+'/'+(cap||"-")+' foglalt</span> '+(cap?('<span class="badge">'+(free>0?('Szabad: '+free):'Betelt')+'</span>'):"")+'</div>';list.appendChild(it)})}
-function renderRes(){document.getElementById("resCount").textContent=String(data.reservations.length)+" foglalás";const list=document.getElementById("resList");list.innerHTML="";if(data.reservations.length===0){list.innerHTML='<div class="item"><div>Nincs foglalás</div></div>';return}const sorted=[...data.reservations].sort((a,b)=>new Date(b.createdAt||b.date)-new Date(a.createdAt||a.date));sorted.forEach(r=>{const t=data.calendar.trainingTypes.find(k=>k.id===r.trainingTypeId);const it=document.createElement("div");it.className="item";it.innerHTML='<div><div><strong>'+r.name+'</strong> • '+(r.email||"")+' • '+(r.phone||"")+'</div><small>'+r.date+' '+r.time+' • '+(t?t.name:"?")+'</small><div><small>ID: '+r.id+'</small></div></div><div style="display:flex;gap:6px"><button class="btn danger" data-del="'+r.id+'">Töröl</button></div>';list.appendChild(it)});list.querySelectorAll("button[data-del]").forEach(b=>b.addEventListener("click",()=>deleteRes(b.getAttribute("data-del"))))}
-async function deleteRes(id){data.reservations=data.reservations.filter(x=>x.id!==id);await putBin(BINS.res,data.reservations);renderRes();renderPreview();toast("Foglalás törölve")}
-document.getElementById("resReload").addEventListener("click",async()=>{const latest=await getBin(BINS.res);const arr=Array.isArray(latest)?latest:[];const cleaned=arr.filter(r=>r&&validStr(r.trainingTypeId)&&validStr(r.date)&&validStr(r.time)&&validStr(r.name));if(cleaned.length!==arr.length){try{await putBin(BINS.res,cleaned)}catch(e){}}data.reservations=cleaned;renderRes();renderPreview();toast("Foglalások frissítve")});
-document.getElementById("resForm").addEventListener("submit",async e=>{e.preventDefault();const rec={id:uid(),trainingTypeId:document.getElementById("resType").value,date:document.getElementById("resDate").value,time:document.getElementById("resTime").value,name:document.getElementById("resName").value.trim(),email:document.getElementById("resEmail").value.trim(),phone:document.getElementById("resPhone").value.trim(),note:document.getElementById("resNote").value.trim(),createdAt:new Date().toISOString()};if(!validStr(rec.trainingTypeId)||!validStr(rec.date)||!validStr(rec.time)||!validStr(rec.name)){toast("Hiányzó mezők");return}const t=data.calendar.trainingTypes.find(k=>k.id===rec.trainingTypeId);const rmatch=data.calendar.recurring.find(r=>r.trainingTypeId===rec.trainingTypeId&&r.time===rec.time&&new Date(rec.date).getDay()===r.weekday);const cap=rmatch?.capacity||t?.capacity||null;if(cap){const count=data.reservations.filter(x=>x.trainingTypeId===rec.trainingTypeId&&x.date===rec.date&&x.time===rec.time).length;if(count>=cap){toast("Ez az időpont betelt");return}}const latest=await getBin(BINS.res);const current=Array.isArray(latest)?latest:[];const updated=current.concat([rec]);await putBin(BINS.res,updated);data.reservations=updated;renderRes();renderPreview();toast("Foglalás hozzáadva")});
-function setup(){setActiveTab("ann");loadAll()}
-setup();
+const BIN_ANN="68b5536243b1c97be932d1ed";
+const BIN_RES="68b5535343b1c97be932d1e1";
+const BIN_NEWS="68b5531fd0ea881f406dbd52";
+const BIN_CAL="68b55123d0ea881f406dbb52";
+
+const api={get:async(id)=>{const r=await fetch("https://api.jsonbin.io/v3/b/"+id,{headers:{"X-Master-Key":JSONBIN_KEY}});if(!r.ok)throw new Error("Hiba letöltéskor");const j=await r.json();return j.record},put:async(id,data)=>{const r=await fetch("https://api.jsonbin.io/v3/b/"+id,{method:"PUT",headers:{"Content-Type":"application/json","X-Master-Key":JSONBIN_KEY},body:JSON.stringify(data)});if(!r.ok)throw new Error("Hiba mentéskor");return r.json()}};
+const toast=(m)=>{const t=document.querySelector("#toast");t.textContent=m;t.style.display="block";setTimeout(()=>t.style.display="none",2200)};
+
+const state={ann:[],news:[],res:[],cal:{trainingTypes:[],recurring:[]}};
+
+async function loadAll(){
+  const [ann,news,res,cal]=await Promise.all([api.get(BIN_ANN),api.get(BIN_NEWS),api.get(BIN_RES),api.get(BIN_CAL)]);
+  state.ann=ann;state.news=news;state.res=res;state.cal=cal;
+  renderAnn();renderNews();renderTypes();renderRecurring();renderRes();fillTypeSelects();
+}
+
+function renderAnn(){
+  const tbody=document.querySelector("#annTbl");tbody.innerHTML="";
+  state.ann.sort((a,b)=>((b.active?1:0)- (a.active?1:0))||String(b.expiresAt||"").localeCompare(String(a.expiresAt||""))).forEach(a=>{
+    const tr=document.createElement("tr");
+    tr.innerHTML='<td>'+a.title+'</td><td>'+a.type+'</td><td>'+(a.expiresAt||"")+'</td><td>'+(a.active!==false?"Igen":"Nem")+'</td><td><div class="row"><button class="btn" data-act="toggle">Aktív vált</button><button class="btn" data-act="del">Törlés</button></div></td>';
+    tr.querySelector('[data-act="toggle"]').onclick=()=>{a.active=a.active===false?true:false;saveAnn();};
+    tr.querySelector('[data-act="del"]').onclick=()=>{state.ann=state.ann.filter(x=>x.id!==a.id);saveAnn();};
+    tbody.appendChild(tr);
+  });
+}
+
+function renderNews(){
+  const tbody=document.querySelector("#newsTbl");tbody.innerHTML="";
+  state.news.sort((a,b)=>b.date.localeCompare(a.date)).forEach(n=>{
+    const tr=document.createElement("tr");
+    tr.innerHTML='<td>'+n.title+'</td><td>'+n.date+'</td><td><div class="row"><button class="btn" data-act="edit">Szerk.</button><button class="btn" data-act="del">Törlés</button></div></td>';
+    tr.querySelector('[data-act="del"]').onclick=()=>{state.news=state.news.filter(x=>x.id!==n.id);saveNews();};
+    tr.querySelector('[data-act="edit"]').onclick=()=>{document.querySelector("#newsTitle").value=n.title;document.querySelector("#newsDate").value=n.date;document.querySelector("#newsContent").value=n.content;editing.news=n.id;};
+    tbody.appendChild(tr);
+  });
+}
+
+function renderTypes(){
+  const tbody=document.querySelector("#typeTbl");tbody.innerHTML="";
+  state.cal.trainingTypes.forEach(t=>{
+    const tr=document.createElement("tr");
+    tr.innerHTML='<td>'+t.name+'</td><td>'+t.level+'</td><td>'+t.capacity+'</td><td><span class="tag" style="background:'+t.color+'">'+t.color+'</span></td><td><div class="row"><button class="btn" data-act="edit">Szerk.</button><button class="btn" data-act="del">Törlés</button></div></td>';
+    tr.querySelector('[data-act="del"]').onclick=()=>{state.cal.trainingTypes=state.cal.trainingTypes.filter(x=>x.id!==t.id);state.cal.recurring=state.cal.recurring.filter(r=>r.trainingTypeId!==t.id);saveCal();};
+    tr.querySelector('[data-act="edit"]').onclick=()=>{openTypeEditor(t)};
+    tbody.appendChild(tr);
+  });
+}
+
+function renderRecurring(){
+  const tbody=document.querySelector("#recTbl");tbody.innerHTML="";
+  const name=(id)=>state.cal.trainingTypes.find(t=>t.id===id)?.name||"";
+  const days=["V","H","K","Sze","Cs","P","Szo"];
+  state.cal.recurring.forEach(r=>{
+    const tr=document.createElement("tr");
+    tr.innerHTML='<td>'+days[r.weekday]+'</td><td>'+r.time+'</td><td>'+name(r.trainingTypeId)+'</td><td><div class="row"><button class="btn" data-act="edit">Szerk.</button><button class="btn" data-act="del">Törlés</button></div></td>';
+    tr.querySelector('[data-act="del"]').onclick=()=>{state.cal.recurring=state.cal.recurring.filter(x=>x.id!==r.id);saveCal();};
+    tr.querySelector('[data-act="edit"]').onclick=()=>{openRecEditor(r)};
+    tbody.appendChild(tr);
+  });
+}
+
+function renderRes(){
+  const tbody=document.querySelector("#resTbl");tbody.innerHTML="";
+  const name=(id)=>state.cal.trainingTypes.find(t=>t.id===id)?.name||"";
+  state.res.sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time)).forEach(x=>{
+    const tr=document.createElement("tr");
+    tr.innerHTML='<td>'+x.date+'</td><td>'+x.time+'</td><td>'+name(x.trainingTypeId)+'</td><td>'+x.name+'</td><td><div class="row"><button class="btn" data-act="del">Törlés</button></div></td>';
+    tr.querySelector('[data-act="del"]').onclick=()=>{state.res=state.res.filter(r=>r.id!==x.id);saveRes();};
+    tbody.appendChild(tr);
+  });
+}
+
+async function saveAnn(){await api.put(BIN_ANN,state.ann);renderAnn();toast("Bejelentések mentve")}
+async function saveNews(){await api.put(BIN_NEWS,state.news);renderNews();toast("Hírek mentve")}
+async function saveCal(){await api.put(BIN_CAL,state.cal);renderTypes();renderRecurring();fillTypeSelects();toast("Órarend mentve")}
+async function saveRes(){await api.put(BIN_RES,state.res);renderRes();toast("Foglalások mentve")}
+
+const editing={news:null,type:null,rec:null};
+
+document.querySelector("#annForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const title=document.querySelector("#annTitle").value.trim();
+  const type=document.querySelector("#annType").value;
+  const content=document.querySelector("#annContent").value.trim();
+  const expiresAt=document.querySelector("#annExp").value||null;
+  if(!title||!content){toast("Hiányzó adatok");return}
+  state.ann=[...state.ann,{id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),title,content,type,expiresAt,active:true}];
+  document.querySelector("#annForm").reset();
+  saveAnn();
+});
+
+document.querySelector("#newsForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const title=document.querySelector("#newsTitle").value.trim();
+  const date=document.querySelector("#newsDate").value||new Date().toISOString().slice(0,10);
+  const content=document.querySelector("#newsContent").value.trim();
+  if(!title||!content){toast("Hiányzó adatok");return}
+  if(editing.news){
+    state.news=state.news.map(n=>n.id===editing.news?{...n,title,date,content}:n);
+    editing.news=null;
+  }else{
+    state.news=[...state.news,{id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),title,image:null,content,date}];
+  }
+  document.querySelector("#newsForm").reset();
+  saveNews();
+});
+
+document.querySelector("#resForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const trainingTypeId=document.querySelector("#resType").value;
+  const date=document.querySelector("#resDate").value;
+  const time=document.querySelector("#resTime").value;
+  const name=document.querySelector("#resName").value.trim();
+  const email=document.querySelector("#resEmail").value.trim();
+  const phone=document.querySelector("#resPhone").value.trim();
+  const note=document.querySelector("#resNote").value.trim();
+  if(!trainingTypeId||!date||!time||!name){toast("Hiányzó adatok");return}
+  state.res=[...state.res,{id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),trainingTypeId,date,time,name,email,phone,note,createdAt:new Date().toISOString()}];
+  document.querySelector("#resForm").reset();
+  saveRes();
+});
+
+function fillTypeSelects(){
+  const sel=document.querySelector("#resType");sel.innerHTML="";
+  state.cal.trainingTypes.forEach(t=>{const o=document.createElement("option");o.value=t.id;o.textContent=t.name;sel.appendChild(o)});
+}
+
+function openTypeEditor(t){
+  editing.type=t.id;
+  const name=prompt("Név:",t.name);if(name===null)return;
+  const level=prompt("Szint:",t.level||"");if(level===null)return;
+  const desc=prompt("Leírás:",t.description||"");if(desc===null)return;
+  const loc=prompt("Helyszín:",t.location||"");if(loc===null)return;
+  const color=prompt("Szín (#hex):",t.color||"#7be0b8");if(color===null)return;
+  const cap=Number(prompt("Férőhely:",t.capacity||12)||t.capacity||12);
+  const dur=Number(prompt("Időtartam perc:",t.duration||60)||t.duration||60);
+  state.cal.trainingTypes=state.cal.trainingTypes.map(x=>x.id===t.id?{...x,name,level,description:desc,location:loc,color,capacity:cap,duration:dur}:x);
+  saveCal();
+}
+
+document.querySelector("#addTypeBtn").onclick=()=>{
+  const name=prompt("Név:");if(!name)return;
+  const level=prompt("Szint:","Kezdő")||"";
+  const desc=prompt("Leírás:","")||"";
+  const loc=prompt("Helyszín:","Moson")||"";
+  const color=prompt("Szín (#hex):","#3ee21d")||"#3ee21d";
+  const cap=Number(prompt("Férőhely:","12")||12);
+  const dur=Number(prompt("Időtartam perc:","60")||60);
+  state.cal.trainingTypes=[...state.cal.trainingTypes,{id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),name,level,description:desc,location:loc,color,capacity:cap,duration:dur}];
+  saveCal();
+};
+
+function openRecEditor(r){
+  const day=Number(prompt("Hét napja (0=V,1=H,...,6=Szo):",r.weekday));if(Number.isNaN(day))return;
+  const time=prompt("Idő (HH:MM):",r.time)||r.time;
+  const type=prompt("Típus ID:",r.trainingTypeId)||r.trainingTypeId;
+  state.cal.recurring=state.cal.recurring.map(x=>x.id===r.id?{...x,weekday:day,time,trainingTypeId:type}:x);
+  saveCal();
+}
+
+document.querySelector("#addRecBtn").onclick=()=>{
+  const day=Number(prompt("Hét napja (0=V,1=H,...,6=Szo):","1"));if(Number.isNaN(day))return;
+  const time=prompt("Idő (HH:MM):","18:00");if(!time)return;
+  const list=state.cal.trainingTypes.map(t=>t.id+" • "+t.name).join("\n");
+  const type=prompt("Típus ID az alábbi listából:\n"+list,state.cal.trainingTypes[0]?.id||"");if(!type)return;
+  state.cal.recurring=[...state.cal.recurring,{id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),trainingTypeId:type,weekday:day,time,location:null,capacity:null}];
+  saveCal();
+};
+
+loadAll().catch(()=>toast("Hálózati hiba"));
 </script>
 </body>
 </html>
