@@ -2,544 +2,395 @@
 <html lang="hu">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pilates Mosonmagyaróvár</title>
-<meta name="description" content="Pilates edzések Mosonmagyaróváron. Foglalj időpontot, nézd meg az órarendet, árakat, híreket és különleges csomagokat.">
-<link rel="preconnect" href="https://api.jsonbin.io">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0d10">
+<title>Világbajnok Kick-box Edző | Mosonmagyaróvár</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0b0f14;--card:#121821;--muted:#8aa0b2;--text:#e9f0f6;--acc:#7be0b8;--acc2:#ff6b6b;--acc3:#7cb7ff;--ring:rgba(123,224,184,.45)}
+:root{--bg:#0b0d10;--bg2:#101319;--card:#141924;--muted:#8b93a7;--text:#e6ebf5;--accent:#e11d2e;--accent2:#d4af37;--ok:#22c55e;--warn:#f59e0b;--danger:#ef4444}
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b0f14 0%,#0b1118 60%,#0a0e14 100%);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-img{max-width:100%;display:block}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;line-height:1.5}
 a{color:inherit;text-decoration:none}
-button{font:inherit}
-.container{max-width:1100px;margin:0 auto;padding:16px}
-.section{padding:28px 0}
-.card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.08);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
-.hero{position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:-40% -10% auto -10%;height:80vh;background:radial-gradient(800px 400px at 50% 0,rgba(123,224,184,.18),transparent 60%),radial-gradient(600px 300px at 10% 20%,rgba(124,183,255,.18),transparent 60%);filter:blur(30px);pointer-events:none}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;border-radius:14px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px}
-.brand-dot{width:12px;height:12px;border-radius:50%;background:linear-gradient(45deg,var(--acc),#57cda1)}
-.nav a{opacity:.9}
-.nav a:hover{opacity:1}
-.announcements{display:flex;gap:10px;overflow:auto;padding:10px 6px}
-.badge{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:8px;white-space:nowrap}
-.badge.danger{background:rgba(255,107,107,.1);border-color:rgba(255,107,107,.3)}
-.badge.info{background:rgba(124,183,255,.1);border-color:rgba(124,183,255,.3)}
-.badge.success{background:rgba(123,224,184,.12);border-color:rgba(123,224,184,.35)}
-.hero-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:16px}
-.hero-cta{padding:22px}
-.h1{font-size:34px;line-height:1.1;margin:0 0 8px}
-.p{color:var(--muted);margin:0 0 16px}
-.actions{display:flex;gap:10px;flex-wrap:wrap}
-.btn{padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));color:var(--text)}
-.btn.primary{background:linear-gradient(180deg,rgba(123,224,184,.25),rgba(123,224,184,.12));border-color:rgba(123,224,184,.5)}
-.btn.danger{background:linear-gradient(180deg,rgba(255,107,107,.22),rgba(255,107,107,.08));border-color:rgba(255,107,107,.5)}
-.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.kpi{padding:16px;text-align:center}
-.kpi strong{display:block;font-size:22px}
-.section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.section-title h2{font-size:22px;margin:0}
-.grid{display:grid;gap:12px}
-.grid.cols-2{grid-template-columns:1fr 1fr}
-.grid.cols-3{grid-template-columns:1fr 1fr 1fr}
-@media (min-width:760px){
-.hero-grid{grid-template-columns:1.3fr .7fr}
-.grid.cols-3{grid-template-columns:repeat(3,1fr)}
-}
-.card-title{font-weight:700;margin:0 0 6px}
-.muted{color:var(--muted)}
-.tag{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:12px}
-.flex{display:flex;gap:8px;align-items:center}
-.row{display:flex;gap:8px;flex-wrap:wrap}
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.gallery img{border-radius:10px;height:100%;object-fit:cover;aspect-ratio:1/1}
-.price-card{padding:16px}
-.price{font-size:26px;font-weight:800}
-.list{display:grid;gap:8px;margin:10px 0}
-.list .li{display:flex;gap:10px;align-items:flex-start}
-.separator{height:1px;background:rgba(255,255,255,.08);margin:12px 0}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-.tab{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.08);cursor:pointer;background:rgba(255,255,255,.04)}
-.tab.active{border-color:rgba(123,224,184,.5);background:rgba(123,224,184,.12)}
-.calendar{display:grid;gap:10px}
-.cal-nav{display:flex;align-items:center;justify-content:space-between}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
-.cal-cell{padding:10px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);min-height:88px;display:flex;flex-direction:column;gap:6px}
-.cal-cell .date{font-size:12px;color:var(--muted)}
-.event{border-radius:8px;padding:6px 8px;font-size:12px;color:#00120b}
-.event .cap{font-weight:700}
-.legend{display:flex;gap:8px;flex-wrap:wrap}
-.legend .item{display:flex;align-items:center;gap:6px}
-.dot{width:10px;height:10px;border-radius:50%}
-.list-view{display:grid;gap:8px}
-.list-item{display:flex;justify-content:space-between;gap:10px;padding:10px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+img{max-width:100%;display:block}
+.container{width:100%;max-width:1100px;margin:0 auto;padding:0 16px}
+.section{padding:56px 0}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px}
+.section h2{font-family:Oswald,Inter,sans-serif;letter-spacing:.5px;font-size:28px;margin:0 0 8px}
+.section p.lead{color:var(--muted);margin:0 0 14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:none;background:var(--accent);color:#fff;padding:12px 16px;border-radius:10px;font-weight:700;letter-spacing:.3px;transition:.2s;cursor:pointer}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.07)}
+.btn.alt{background:transparent;border:1px solid #2a3140}
+.btn.ghost{background:#1a212f;border:1px solid #283144}
+.badge{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:700;background:rgba(226,29,46,.12);color:var(--accent);border:1px solid rgba(226,29,46,.25)}
+.header{position:sticky;top:0;z-index:80;background:linear-gradient(180deg,rgba(11,13,16,.9),rgba(11,13,16,.6) 60%,transparent);backdrop-filter:saturate(120%) blur(10px)}
+.topbar{width:100%;overflow:auto;white-space:nowrap;background:linear-gradient(90deg,#141924,#0b0d10);border-bottom:1px solid #1d2331}
+.ann-strip{display:flex;gap:12px;padding:8px 12px;align-items:center}
+.ann-pill{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;border:1px solid #2b3242;background:#121724;color:#dfe6f5}
+.ann-pill.warn{border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.08);color:#ffd386}
+.ann-pill.danger{border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.08);color:#ffc1c1}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .logo{height:38px;width:38px;border-radius:10px;display:grid;place-items:center;background:radial-gradient(120px 120px at 30% 20%,#2b3245 0%,#151a24 65%,#0b0d10 100%);box-shadow:inset 0 0 0 1px #2a3043,0 12px 30px rgba(0,0,0,.35)}
+.brand .logo span{font-family:Oswald,sans-serif;font-weight:700;color:var(--accent2);font-size:18px}
+.brand .name{font-family:Oswald,sans-serif;font-size:18px;letter-spacing:.8px}
+.navlinks{display:none;gap:14px}
+.navlinks a{padding:8px 10px;border-radius:8px;color:#d2d8e5}
+.burger{display:inline-flex;background:#151a22;border:1px solid #272e3f;padding:8px;border-radius:10px}
+#mobileMenu{display:none;position:absolute;left:0;right:0;top:100%;background:#0d1016;border-bottom:1px solid #1b2231;padding:12px}
+#mobileMenu a{display:block;padding:10px 12px;border-radius:8px;color:#e1e7f5}
+.hero{padding:32px 0 24px;background:radial-gradient(800px 400px at 10% 0%,rgba(225,29,46,.18),transparent 60%),radial-gradient(700px 350px at 95% 10%,rgba(212,175,55,.14),transparent 60%)}
+.hero-wrap{display:grid;grid-template-columns:1fr;gap:18px}
+.h-title{font-family:Oswald,Inter,sans-serif;font-weight:700;font-size:34px;letter-spacing:.6px;margin:8px 0}
+.h-sub{color:var(--muted)}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap}
+.hero-card{border:1px solid #202738;background:linear-gradient(180deg,#0f131a,#0b0d10);border-radius:16px;padding:16px;display:flex;gap:14px;align-items:center}
+.hero-card img{width:72px;height:72px;border-radius:12px;object-fit:cover;border:1px solid #2a3244}
+.info-grid{display:grid;grid-template-columns:1fr;gap:16px}
+.info-card{background:linear-gradient(180deg,#0f131a,#0b0d10);border:1px solid #20283a;border-radius:16px;padding:16px}
+.pricing-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.price-card{border:1px solid #232a3d;background:linear-gradient(180deg,#0e131b,#0b0d10);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.price{font-family:Oswald,sans-serif;font-size:28px}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.gallery-grid img{border-radius:10px;height:90px;object-fit:cover}
+.gallery-grid button{border:none;padding:0;background:transparent}
+.news-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.news-card{display:flex;gap:12px;border:1px solid #232a3c;background:#0f131a;border-radius:16px;overflow:hidden}
+.news-card img{width:120px;height:120px;object-fit:cover}
+.news-body{padding:12px}
+.calendar-wrap{border:1px solid #232a3d;border-radius:16px;background:linear-gradient(180deg,#0f131a,#0b0d10)}
+.calendar-head{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid #1f2635}
+.calendar-head .when{display:flex;gap:8px;align-items:center}
+.calendar-head .when strong{font-family:Oswald,sans-serif;letter-spacing:.4px}
+.calendar-body{padding:10px}
+.session{display:flex;gap:10px;align-items:center;justify-content:space-between;border:1px solid #232a3d;background:#0e131b;border-radius:12px;padding:10px;margin-bottom:8px}
+.s-left{display:flex;gap:10px;align-items:center}
+.color{width:14px;height:14px;border-radius:4px;box-shadow:0 0 0 2px rgba(255,255,255,.06) inset}
+.s-name{font-weight:700}
+.s-sub{color:var(--muted);font-size:12px}
+.s-cap{font-size:12px;color:#b9c2d6}
+.tabs{display:flex;gap:8px}
+.tab{padding:6px 10px;border-radius:999px;border:1px solid #263049;background:#0e131b;color:#d7dff0;cursor:pointer}
+.tab.active{background:var(--accent);border-color:transparent}
+.modal{position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;z-index:100}
+.modal.active{display:flex}
+.modal .sheet{background:#0d1118;border-top-left-radius:16px;border-top-right-radius:16px;width:100%;max-width:560px;border:1px solid #1d2434;padding:16px}
 .form{display:grid;gap:10px}
 .input{display:grid;gap:6px}
-.input input,.input select,.input textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);outline:none}
-.input input:focus,.input select:focus,.input textarea:focus{border-color:var(--acc);box-shadow:0 0 0 4px var(--ring)}
-.map{height:220px;border-radius:14px;overflow:hidden;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);position:relative}
-.map iframe{position:absolute;inset:0;width:100%;height:100%;filter:grayscale(100%) contrast(1.1) brightness(.9)}
-.footer{padding:18px;text-align:center;color:var(--muted)}
-.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#0d131a;border:1px solid rgba(255,255,255,.12);padding:12px 14px;border-radius:12px;display:none}
-.hidden{display:none}
-.badge .x{opacity:.7}
-hr.sep{border:0;border-top:1px solid rgba(255,255,255,.08);margin:8px 0}
+.input input,.input select,.input textarea{width:100%;padding:12px;background:#0b0f16;border:1px solid #283045;border-radius:10px;color:#f0f5ff}
+.input small{color:var(--muted)}
+.form .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;background:#0e131b;border:1px solid #273049;color:#e9efff;padding:10px 14px;border-radius:10px;display:none;z-index:120}
+.about{display:grid;grid-template-columns:1fr;gap:14px}
+.about-card{display:flex;gap:14px;align-items:center;border:1px solid #232a3c;background:#0f131a;border-radius:16px;padding:14px}
+.contact{display:grid;grid-template-columns:1fr;gap:14px}
+.map{width:100%;height:260px;border:1px solid #222b3f;border-radius:16px;overflow:hidden}
+.footer{padding:28px 0;border-top:1px solid #1b2231;background:#0a0d12}
+.footer .cols{display:grid;grid-template-columns:1fr;gap:16px}
+.ref{color:#aeb7ca}
+@media(min-width:740px){
+.navlinks{display:flex}
+.burger{display:none}
+.hero-wrap{grid-template-columns:1.1fr .9fr;align-items:center}
+.info-grid{grid-template-columns:repeat(3,1fr)}
+.pricing-grid{grid-template-columns:repeat(4,1fr)}
+.gallery-grid{grid-template-columns:repeat(6,1fr)}
+.news-grid{grid-template-columns:repeat(2,1fr)}
+.about{grid-template-columns:1.1fr .9fr}
+.contact{grid-template-columns:1fr 1fr}
+}
 </style>
 </head>
 <body>
-<div class="container hero section">
-  <div class="card nav">
-    <div class="brand"><span class="brand-dot"></span><span>Pilates Mosonmagyaróvár</span></div>
-    <div class="row">
-      <a href="#edzesek" class="tag">Edzések</a>
-      <a href="#galeria" class="tag">Galéria</a>
-      <a href="#arak" class="tag">Árak</a>
-      <a href="#orarend" class="tag">Órarend</a>
-      <a href="#hir" class="tag">Hírek</a>
-      <a href="#rolam" class="tag">Rólam</a>
-      <a href="#kapcsolat" class="tag">Kapcsolat</a>
-    </div>
-  </div>
+<header class="header">
+<div class="topbar">
+<div class="ann-strip container" id="annStrip"></div>
+</div>
+<div class="container nav">
+<div class="brand">
+<div class="logo"><span>KB</span></div>
+<div class="name">Világbajnok Kick-box Edző</div>
+</div>
+<nav class="navlinks">
+<a href="#rolam">Rólam</a>
+<a href="#kickbox">Mi az a kick-box?</a>
+<a href="#arak">Árak</a>
+<a href="#naptar">Edzésnaptár</a>
+<a href="#hirek">Hírek</a>
+<a href="#galeria">Galéria</a>
+<a href="#kapcsolat">Kapcsolat</a>
+</nav>
+<button class="burger" id="burger" aria-label="Menü"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="#aeb7ca" stroke-width="2" stroke-linecap="round"/></svg></button>
+</div>
+<div id="mobileMenu" class="container">
+<a href="#rolam">Rólam</a>
+<a href="#kickbox">Mi az a kick-box?</a>
+<a href="#arak">Árak</a>
+<a href="#naptar">Edzésnaptár</a>
+<a href="#hirek">Hírek</a>
+<a href="#galeria">Galéria</a>
+<a href="#kapcsolat">Kapcsolat</a>
+</div>
+</header>
 
-  <div id="announceBar" class="announcements section"></div>
+<section class="hero">
+<div class="container hero-wrap">
+<div>
+<span class="badge">Mosonmagyaróvár</span>
+<h1 class="h-title">Kick-box edzések világbajnok szinten</h1>
+<p class="h-sub">Modern, erőteljes, férfias stílus. Technikák, erőnlét, fegyelem és mentális fókusz. Csatlakozz a közösséghez és eddz célirányosan, okosan.</p>
+<div class="hero-cta">
+<a class="btn" href="#naptar">Időpont foglalása</a>
+<a class="btn alt" href="#arak">Árak és csomagok</a>
+</div>
+</div>
+<div class="hero-card">
+<img src="https://images.unsplash.com/photo-1517438322307-e67111335449?q=80&w=600&auto=format&fit=crop" alt="Kick-box">
+<div>
+<div class="s-name">Kiemelt edzés</div>
+<div class="s-sub">Haladó kombinációk, erő-állóképesség, sparring fókusz</div>
+</div>
+</div>
+</div>
+</section>
 
-  <div class="hero-grid">
-    <div class="card hero-cta">
-      <h1 class="h1">Pilates edzések Mosonmagyaróváron</h1>
-      <p class="p">Erősíts, nyújts, kapcsolódj. Kiscsoportos órák limitált férőhellyel, több szinten, barátságos közegben.</p>
-      <div class="actions">
-        <a href="#orarend" class="btn primary">Időpontok és foglalás</a>
-        <a href="#arak" class="btn">Árak és csomagok</a>
-      </div>
-      <div class="separator"></div>
-      <div class="kpis">
-        <div class="kpi"><strong id="kpiTrainings">0</strong><span class="muted">Heti foglalkozás</span></div>
-        <div class="kpi"><strong id="kpiTypes">0</strong><span class="muted">Edzéstípus</span></div>
-        <div class="kpi"><strong id="kpiSpots">0</strong><span class="muted">Szabad hely ma</span></div>
-      </div>
-    </div>
-    <div class="card" style="padding:6px;">
-      <div class="gallery" style="grid-template-columns:1fr 1fr;gap:6px;">
-        <img src="https://images.unsplash.com/photo-1552196563-55cd4e45efb3?q=80&w=800&auto=format&fit=crop" alt="Pilates 1">
-        <img src="https://images.unsplash.com/photo-1599050751795-5f9d5f60cba6?q=80&w=800&auto=format&fit=crop" alt="Pilates 2">
-        <img src="https://images.unsplash.com/photo-1549570652-97324981a6fd?q=80&w=800&auto=format&fit=crop" alt="Pilates 3">
-        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=800&auto=format&fit=crop" alt="Pilates 4">
-      </div>
-    </div>
-  </div>
+<section id="kickbox" class="section">
+<div class="container">
+<div class="section-head">
+<h2>Mi az a kick-box?</h2>
+</div>
+<div class="info-grid">
+<div class="info-card"><strong>Átfogó harcművészet</strong><p>A kick-box ütések és rúgások kombinációjára épülő, dinamikus küzdősport. Fejleszti a robbanékonyságot, reakcióidőt, testtudatot.</p></div>
+<div class="info-card"><strong>Fizikum és technika</strong><p>Az edzéseken technikai kombinációk, lépéstechnikák, zsákmunka, erősítő és mobilitási blokkok váltják egymást.</p></div>
+<div class="info-card"><strong>Biztonságos fejlődés</strong><p>Fokozatos felépítés, partner- és zsákgyakorlatok. A sparring irányított, kontrollált környezetben történik.</p></div>
+</div>
+</div>
+</section>
+
+<section id="arak" class="section">
+<div class="container">
+<div class="section-head">
+<h2>Árak és csomagok</h2>
+</div>
+<div class="pricing-grid">
+<div class="price-card">
+<div class="price">3 500 Ft</div>
+<div>Alkalmi belépő</div>
+<ul>
+<li>1 edzés</li>
+<li>Kezdőknek és haladóknak</li>
+</ul>
+<button class="btn" onclick="scrollToCalendar()">Foglalok</button>
+</div>
+<div class="price-card">
+<div class="price">28 000 Ft</div>
+<div>10 alkalmas bérlet</div>
+<ul>
+<li>60 napig érvényes</li>
+<li>Kedvezményes egységár</li>
+</ul>
+<button class="btn" onclick="scrollToCalendar()">Foglalok</button>
+</div>
+<div class="price-card">
+<div class="price">24 900 Ft</div>
+<div>Havi korlátlan</div>
+<ul>
+<li>Korlátlan csoportos</li>
+<li>Havi megújulás</li>
+</ul>
+<button class="btn" onclick="scrollToCalendar()">Foglalok</button>
+</div>
+<div class="price-card">
+<div class="price">8 900 Ft</div>
+<div>Személyi edzés</div>
+<ul>
+<li>1x60 perc</li>
+<li>Egyéni célokhoz igazítva</li>
+</ul>
+<a class="btn" href="#kapcsolat">Időpont egyeztetés</a>
+</div>
+</div>
+</div>
+</section>
+
+<section id="naptar" class="section">
+<div class="container">
+<div class="section-head">
+<h2>Edzésnaptár</h2>
+<p class="lead">Válassz időpontot és foglalj helyet. Az edzések létszáma korlátozott.</p>
+</div>
+<div class="calendar-wrap">
+<div class="calendar-head">
+<div class="when"><button class="tab" id="prevWeek" aria-label="Előző hét">‹</button><strong id="weekRange">–</strong><button class="tab" id="nextWeek" aria-label="Következő hét">›</button></div>
+<div class="tabs">
+<button class="tab active" id="tabList">Lista</button>
+<button class="tab" id="tabWeek">Heti</button>
+</div>
+</div>
+<div class="calendar-body">
+<div id="sessionsList"></div>
+<div id="sessionsWeek" style="display:none"></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="galeria" class="section">
+<div class="container">
+<div class="section-head"><h2>Galéria</h2></div>
+<div class="gallery-grid" id="gallery">
+<button><img src="https://images.unsplash.com/photo-1607962837359-915385c5a8f3?q=80&w=600&auto=format&fit=crop" alt=""></button>
+<button><img src="https://images.unsplash.com/photo-1521805103424-d8f8430e8930?q=80&w=600&auto=format&fit=crop" alt=""></button>
+<button><img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=600&auto=format&fit=crop" alt=""></button>
+<button><img src="https://images.unsplash.com/photo-1534158914592-062992fbe900?q=80&w=600&auto=format&fit=crop" alt=""></button>
+<button><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=600&auto=format&fit=crop" alt=""></button>
+<button><img src="https://images.unsplash.com/photo-1597466765990-64ad1c35dafc?q=80&w=600&auto=format&fit=crop" alt=""></button>
+</div>
+</div>
+</section>
+
+<section id="hirek" class="section">
+<div class="container">
+<div class="section-head">
+<h2>Hírek</h2>
+<p class="lead">Friss közlemények és beszámolók az edzőtől.</p>
+</div>
+<div class="news-grid" id="newsGrid"></div>
+</div>
+</section>
+
+<section id="rolam" class="section">
+<div class="container">
+<div class="section-head">
+<h2>Rólam</h2>
+</div>
+<div class="about">
+<div class="about-card">
+<img src="https://images.unsplash.com/photo-1549057446-9f5c6ac91a04?q=80&w=600&auto=format&fit=crop" alt="Edző" style="width:96px;height:96px;border-radius:12px;object-fit:cover;border:1px solid #2a3244">
+<div>
+<div class="s-name">Világbajnok Kick-box Edző</div>
+<div class="s-sub">Nemzetközi verseny- és edzői tapasztalat, profi felkészítési rendszer. Kezdőtől a haladóig, minden szinten.</div>
+</div>
+</div>
+<div class="info-card">
+<strong>Filozófia</strong>
+<p>Célorientált felkészítés, erős alaptechnikák, okos periodizáció. A fejlődés mérése, kontrollált terhelés és mentális fókusz minden edzés része.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="kapcsolat" class="section">
+<div class="container">
+<div class="section-head">
+<h2>Kapcsolat</h2>
+</div>
+<div class="contact">
+<div class="info-card">
+<p><strong>Helyszín</strong><br>Mosonmagyaróvár, Magyarország</p>
+<p><strong>E-mail</strong><br><a href="mailto:info@kickbox-movar.hu">info@kickbox-movar.hu</a></p>
+<p><strong>Telefon</strong><br><a href="tel:+36301234567">+36 30 123 4567</a></p>
+<p><a class="btn ghost" href="https://maps.google.com/?q=Mosonmagyar%C3%B3v%C3%A1r" target="_blank" rel="noopener">Útvonalterv</a></p>
+</div>
+<div class="map">
+<iframe title="Térkép - Mosonmagyaróvár" src="https://www.google.com/maps?q=Mosonmagyar%C3%B3v%C3%A1r,Hungary&output=embed" width="100%" height="100%" frameborder="0" style="border:0"></iframe>
+</div>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="container">
+<div class="cols">
+<div class="ref">© <span id="year"></span> Világbajnok Kick-box Edző • Mosonmagyaróvár</div>
+<div class="ref">Közösség: <a href="#" aria-label="Instagram">Instagram</a> • <a href="#" aria-label="Facebook">Facebook</a></div>
+<div class="ref">További hivatkozások: <a href="#hirek">Hírek</a> • <a href="#naptar">Naptár</a> • <a href="admin.html">Admin</a></div>
+</div>
+</div>
+</footer>
+
+<div class="modal" id="imgModal">
+<div class="sheet" style="border-top-left-radius:16px;border-top-right-radius:16px">
+<div style="display:flex;justify-content:flex-end">
+<button class="btn alt" id="imgClose">Bezárás</button>
+</div>
+<img id="imgPreview" alt="" style="width:100%;height:auto;border-radius:10px;margin-top:8px">
+</div>
 </div>
 
-<div id="edzesek" class="container section">
-  <div class="section-title">
-    <h2>Edzések és szintek</h2>
-    <div class="legend" id="legend"></div>
-  </div>
-  <div id="trainingTypes" class="grid cols-2"></div>
+<div class="modal" id="bookModal">
+<div class="sheet">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+<div style="font-weight:700">Foglalás</div>
+<button class="btn alt" id="bookClose">Bezárás</button>
+</div>
+<form class="form" id="bookForm">
+<div class="input"><label>Választott edzés</label><input id="bfTraining" type="text" readonly></div>
+<div class="row">
+<div class="input"><label>Dátum</label><input id="bfDate" type="text" readonly></div>
+<div class="input"><label>Időpont</label><input id="bfTime" type="text" readonly></div>
+</div>
+<div class="row">
+<div class="input"><label>Teljes név</label><input id="bfName" type="text" required></div>
+<div class="input"><label>E-mail</label><input id="bfEmail" type="email" required></div>
+</div>
+<div class="row">
+<div class="input"><label>Telefon</label><input id="bfPhone" type="tel" required></div>
+<div class="input"><label>Megjegyzés</label><input id="bfNote" type="text" placeholder="Opcionális"></div>
+</div>
+<input type="hidden" id="bfTrainingId">
+<input type="hidden" id="bfCapacity">
+<button class="btn" type="submit">Foglalás megerősítése</button>
+<small class="s-sub">A foglalással elfogadod a részvételi feltételeket.</small>
+</form>
+</div>
 </div>
 
-<div id="galeria" class="container section">
-  <div class="section-title"><h2>Galéria</h2></div>
-  <div class="card" style="padding:10px;">
-    <div class="gallery">
-      <img src="https://images.unsplash.com/photo-1552196560-5a58007b2f89?q=80&w=600&auto=format&fit=crop" alt="">
-      <img src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?q=80&w=600&auto=format&fit=crop" alt="">
-      <img src="https://images.unsplash.com/photo-1518310952931-b1de897abd40?q=80&w=600&auto=format&fit=crop" alt="">
-      <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=600&auto=format&fit=crop" alt="">
-      <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=600&auto=format&fit=crop" alt="">
-      <img src="https://images.unsplash.com/photo-1571731268624-2741a3fc42cd?q=80&w=600&auto=format&fit=crop" alt="">
-    </div>
-  </div>
-</div>
-
-<div id="arak" class="container section">
-  <div class="section-title"><h2>Árak és csomagok</h2></div>
-  <div class="grid cols-3" id="pricing">
-    <div class="card price-card">
-      <div class="tag">Alkalmi</div>
-      <div class="price">3 500 Ft</div>
-      <div class="muted">1 alkalom, érvényes: 1 hét</div>
-      <div class="list">
-        <div class="li"><span class="tag">Kiscsoport</span><span class="muted">max. létszám</span></div>
-        <div class="li"><span class="tag">Foglalás</span><span class="muted">rugalmas</span></div>
-      </div>
-      <a href="#orarend" class="btn primary">Foglalok</a>
-    </div>
-    <div class="card price-card">
-      <div class="tag">Bérlet</div>
-      <div class="price">12 000 Ft</div>
-      <div class="muted">4 alkalom, érvényes: 5 hét</div>
-      <div class="list">
-        <div class="li"><span class="tag">Elsőbbség</span><span class="muted">foglalásnál</span></div>
-        <div class="li"><span class="tag">Rugalmasság</span><span class="muted">módosítás</span></div>
-      </div>
-      <a href="#orarend" class="btn primary">Foglalok</a>
-    </div>
-    <div class="card price-card">
-      <div class="tag">Privát</div>
-      <div class="price">7 500 Ft</div>
-      <div class="muted">1 fő / 60 perc</div>
-      <div class="list">
-        <div class="li"><span class="tag">Személyre szabott</span></div>
-        <div class="li"><span class="tag">Rugalmas időpont</span></div>
-      </div>
-      <a href="#kontakt" class="btn">Kapcsolat</a>
-    </div>
-  </div>
-</div>
-
-<div id="orarend" class="container section">
-  <div class="section-title">
-    <h2>Órarend és foglalás</h2>
-    <div class="tabs">
-      <button class="tab active" data-view="calendar">Naptár nézet</button>
-      <button class="tab" data-view="list">Lista nézet</button>
-    </div>
-  </div>
-  <div class="card" style="padding:14px;">
-    <div class="calendar">
-      <div class="cal-nav">
-        <div class="row">
-          <button id="prevMonth" class="btn">Előző</button>
-          <button id="todayBtn" class="btn">Ma</button>
-          <button id="nextMonth" class="btn">Következő</button>
-        </div>
-        <div id="calLabel" class="tag"></div>
-      </div>
-      <div class="cal-grid" id="calGrid"></div>
-      <div class="separator"></div>
-      <div class="list-view hidden" id="listView"></div>
-    </div>
-  </div>
-  <div class="section" style="padding-top:18px;">
-    <div class="card" style="padding:14px;">
-      <div class="section-title"><h2>Foglalás</h2></div>
-      <form id="bookingForm" class="form">
-        <div class="grid cols-2">
-          <div class="input"><label>Edzéstípus</label><select id="bfType"></select></div>
-          <div class="input"><label>Dátum</label><input id="bfDate" type="date"></div>
-        </div>
-        <div class="grid cols-2">
-          <div class="input"><label>Időpont</label><select id="bfTime"></select></div>
-          <div class="input"><label>Férőhely</label><input id="bfCapacity" type="text" disabled></div>
-        </div>
-        <div class="grid cols-2">
-          <div class="input"><label>Név</label><input id="bfName" type="text" required></div>
-          <div class="input"><label>E-mail</label><input id="bfEmail" type="email" required></div>
-        </div>
-        <div class="input"><label>Telefon</label><input id="bfPhone" type="tel"></div>
-        <div class="input"><label>Megjegyzés</label><textarea id="bfNote" rows="3"></textarea></div>
-        <button class="btn primary" type="submit">Foglalás elküldése</button>
-        <div id="bookingInfo" class="muted"></div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<div id="hir" class="container section">
-  <div class="section-title"><h2>Hírek</h2></div>
-  <div id="newsList" class="grid"></div>
-</div>
-
-<div id="rolam" class="container section">
-  <div class="section-title"><h2>Rólam</h2></div>
-  <div class="card" style="padding:16px;">
-    <div class="row" style="align-items:center;">
-      <img src="https://images.unsplash.com/photo-1594824476967-48c8b9642732?q=80&w=240&auto=format&fit=crop" alt="Edző" style="width:96px;height:96px;border-radius:16px;object-fit:cover;">
-      <div>
-        <div class="card-title">Pilates oktató</div>
-        <div class="muted">Lélegzet, tartás, erő, fókusz. Több éves tapasztalattal segítek a fájdalommentes, erős és rugalmas test elérésében, barátságos, támogató légkörben.</div>
-      </div>
-    </div>
-    <hr class="sep">
-    <div class="grid cols-2">
-      <div class="tag">Kezdő és haladó csoportok</div>
-      <div class="tag">Korlátozott létszám</div>
-      <div class="tag">Mosonmagyaróvár központ</div>
-      <div class="tag">Privát órák kérésre</div>
-    </div>
-  </div>
-</div>
-
-<div id="kapcsolat" class="container section">
-  <div class="section-title"><h2>Kapcsolat</h2></div>
-  <div class="grid cols-2">
-    <div class="card" style="padding:14px;">
-      <div class="list">
-        <div class="li"><span class="tag">Cím</span><div>Mosonmagyaróvár, Magyarország</div></div>
-        <div class="li"><span class="tag">E-mail</span><a href="mailto:info@pilates-movar.hu">info@pilates-movar.hu</a></div>
-        <div class="li"><span class="tag">Telefon</span><a href="tel:+36301234567">+36 30 123 4567</a></div>
-        <div class="li"><span class="tag">Közösség</span><div class="row"><a class="tag" href="#">Facebook</a><a class="tag" href="#">Instagram</a></div></div>
-      </div>
-    </div>
-    <div class="map card">
-      <iframe title="Térkép" src="https://www.openstreetmap.org/export/embed.html?bbox=17.249%2C47.843%2C17.300%2C47.886&layer=mapnik&marker=47.867%2C17.274"></iframe>
-    </div>
-  </div>
-</div>
-
-<div class="container section">
-  <div class="footer card">
-    <div>Hivatkozások: <a href="#orarend">Órarend</a> • <a href="#arak">Árak</a> • <a href="#hir">Hírek</a></div>
-    <div class="muted" style="margin-top:6px;">© <span id="year"></span> Pilates Mosonmagyaróvár</div>
-    <div class="muted" style="margin-top:6px;"><a class="tag" href="admin.html">Admin</a></div>
-  </div>
-</div>
-
-<div id="toast" class="toast"></div>
+<div class="toast" id="toast"></div>
 
 <script>
 const JSONBIN_KEY="$2a$10$9sO/ja29sMebpWNvsWmp5.dJ6lv7CPeLBMRFaA/cAEwz42ii6qlCS";
-const BIN_ANN="68b5536243b1c97be932d1ed";
-const BIN_RES="68b5535343b1c97be932d1e1";
-const BIN_NEWS="68b5531fd0ea881f406dbd52";
-const BIN_CAL="68b55123d0ea881f406dbb52";
-
-const api={
-  get:async(id)=>{const r=await fetch("https://api.jsonbin.io/v3/b/"+id,{headers:{"X-Master-Key":JSONBIN_KEY}});if(!r.ok)throw new Error("Hiba letöltéskor");const j=await r.json();return j.record},
-  put:async(id,data)=>{const r=await fetch("https://api.jsonbin.io/v3/b/"+id,{method:"PUT",headers:{"Content-Type":"application/json","X-Master-Key":JSONBIN_KEY},body:JSON.stringify(data)});if(!r.ok)throw new Error("Hiba mentéskor");return r.json()}
-};
-
-const el=(q)=>document.querySelector(q);
-const els=(q)=>document.querySelectorAll(q);
-const toast=(m)=>{const t=el("#toast");t.textContent=m;t.style.display="block";setTimeout(()=>t.style.display="none",2200)};
-
-const state={calendar:null,reservations:[],news:[],announcements:[],view:"calendar",today:new Date()};
-const fmt2=(n)=>String(n).padStart(2,"0");
-const ymd=(d)=>d.getFullYear()+"-"+fmt2(d.getMonth()+1)+"-"+fmt2(d.getDate());
-const addDays=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
-const weekdayHu=["V","H","K","Sze","Cs","P","Szo"];
-
-async function loadAll(){
-  const [cal,res,news,ann]=await Promise.all([api.get(BIN_CAL),api.get(BIN_RES),api.get(BIN_NEWS),api.get(BIN_ANN)]);
-  state.calendar=cal;
-  state.reservations=res;
-  state.news=news;
-  state.announcements=ann;
-  renderAll();
-}
-
-function renderAnnouncements(){
-  const wrap=el("#announceBar");wrap.innerHTML="";
-  const now=new Date();
-  state.announcements.filter(a=>a.active!==false && (!a.expiresAt || new Date(a.expiresAt)>=now)).forEach(a=>{
-    const b=document.createElement("div");
-    b.className="badge "+(a.type==="danger"?"danger":a.type==="info"?"info":"success");
-    b.innerHTML='<strong>'+a.title+'</strong><span class="x">'+a.content+'</span>';
-    wrap.appendChild(b);
-  });
-}
-
-function renderTrainingTypes(){
-  const cont=el("#trainingTypes");cont.innerHTML="";
-  const legend=el("#legend");legend.innerHTML="";
-  state.calendar.trainingTypes.forEach(t=>{
-    const card=document.createElement("div");
-    card.className="card";
-    card.style.padding="14px";
-    card.innerHTML='<div class="row" style="justify-content:space-between;"><div class="card-title">'+t.name+' <span class="muted">• '+t.level+'</span></div><span class="tag"><span class="dot" style="background:'+t.color+'"></span>'+t.capacity+' fő</span></div><div class="muted" style="margin-top:6px;">'+(t.description||"")+'</div><div class="row" style="margin-top:10px;"><span class="tag">Helyszín: '+(t.location||"")+'</span><span class="tag">Időtartam: '+(t.duration||60)+' perc</span></div>';
-    cont.appendChild(card);
-    const li=document.createElement("div");
-    li.className="item";
-    li.innerHTML='<span class="dot" style="background:'+t.color+'"></span><span>'+t.name+'</span>';
-    legend.appendChild(li);
-  });
-}
-
-function expandRecurring(monthDate){
-  const start=new Date(monthDate.getFullYear(),monthDate.getMonth(),1);
-  const end=new Date(monthDate.getFullYear(),monthDate.getMonth()+1,0);
-  const events=[];
-  const byType=Object.fromEntries(state.calendar.trainingTypes.map(t=>[t.id,t]));
-  state.calendar.recurring.forEach(r=>{
-    let d=new Date(start);
-    while(d<=end){
-      if(d.getDay()===r.weekday){events.push({id:r.id+"_"+ymd(d),trainingTypeId:r.trainingTypeId,date:ymd(d),time:r.time,location:r.location,capacity:r.capacity});}
-      d=addDays(d,1);
-    }
-  });
-  events.sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
-  return {events,byType};
-}
-
-function capacityLeft(trainingTypeId,date,time){
-  const t=state.calendar.trainingTypes.find(x=>x.id===trainingTypeId);
-  const base=t?Number(t.capacity||0):0;
-  const extraCap=0;
-  const cap=extraCap||base;
-  const taken=state.reservations.filter(r=>r.trainingTypeId===trainingTypeId && r.date===date && r.time===time).length;
-  return Math.max(0,cap-taken);
-}
-
-function renderCalendar(monthDate){
-  const grid=el("#calGrid");grid.innerHTML="";
-  const label=el("#calLabel");
-  const monthNames=["Január","Február","Március","Április","Május","Június","Július","Augusztus","Szeptember","Október","November","December"];
-  label.textContent=monthNames[monthDate.getMonth()]+" "+monthDate.getFullYear();
-  const {events,byType}=expandRecurring(monthDate);
-  const first=new Date(monthDate.getFullYear(),monthDate.getMonth(),1);
-  const offset=(first.getDay()+6)%7;
-  for(let i=0;i<7;i++){const head=document.createElement("div");head.className="muted";head.style.textAlign="center";head.textContent=["H","K","Sze","Cs","P","Szo","V"][i];grid.appendChild(head)}
-  let daysInMonth=new Date(monthDate.getFullYear(),monthDate.getMonth()+1,0).getDate();
-  for(let i=0;i<offset;i++){const d=document.createElement("div");d.className="cal-cell";d.style.opacity=".35";grid.appendChild(d)}
-  for(let day=1;day<=daysInMonth;day++){
-    const cell=document.createElement("div");cell.className="cal-cell";
-    const dstr=ymd(new Date(monthDate.getFullYear(),monthDate.getMonth(),day));
-    const header=document.createElement("div");header.className="date";header.textContent=day+".";
-    cell.appendChild(header);
-    events.filter(e=>e.date===dstr).forEach(e=>{
-      const t=byType[e.trainingTypeId];
-      if(!t)return;
-      const left=capacityLeft(e.trainingTypeId,e.date,e.time);
-      const ev=document.createElement("div");
-      ev.className="event";
-      ev.style.background=t.color;
-      ev.innerHTML='<div class="cap">'+t.name+' • '+e.time+'</div><div style="font-size:11px">'+(left>0?left+" szabad hely":"Betelt")+'</div>';
-      ev.style.cursor="pointer";
-      ev.onclick=()=>preselectBooking(t.id,e.date,e.time,left);
-      cell.appendChild(ev);
-    });
-    grid.appendChild(cell);
-  }
-  updateKPIs(monthDate,events);
-  renderListView(events);
-}
-
-function updateKPIs(monthDate,events){
-  const weekStart=addDays(new Date(),-((new Date().getDay()+6)%7));
-  const weekEnd=addDays(weekStart,6);
-  const weekStr=[ymd(weekStart),ymd(weekEnd)];
-  const weekly=events.filter(e=>e.date>=weekStr[0]&&e.date<=weekStr[1]).length;
-  el("#kpiTrainings").textContent=weekly;
-  el("#kpiTypes").textContent=state.calendar.trainingTypes.length;
-  const todayStr=ymd(new Date());
-  const todayEvents=events.filter(e=>e.date===todayStr);
-  let free=0;todayEvents.forEach(e=>free+=capacityLeft(e.trainingTypeId,e.date,e.time));
-  el("#kpiSpots").textContent=free;
-}
-
-function renderListView(events){
-  const wrap=el("#listView");wrap.innerHTML="";
-  const byType=Object.fromEntries(state.calendar.trainingTypes.map(t=>[t.id,t]));
-  const upcoming=events.filter(e=>new Date(e.date+"T"+e.time+":00")>=addDays(new Date(),-1)).slice(0,40);
-  upcoming.forEach(e=>{
-    const t=byType[e.trainingTypeId];
-    const left=capacityLeft(e.trainingTypeId,e.date,e.time);
-    const row=document.createElement("div");
-    row.className="list-item";
-    row.innerHTML='<div><div class="card-title">'+t.name+' • '+e.time+'</div><div class="muted">'+e.date+' • '+(t.location||"")+'</div></div><div class="row"><div class="tag">'+(left>0?left+" hely":"Betelt")+'</div><button class="btn '+(left>0?'primary':'danger')+'" '+(left>0?'':'disabled')+'>Foglalás</button></div>';
-    row.querySelector("button").onclick=()=>preselectBooking(t.id,e.date,e.time,left);
-    wrap.appendChild(row);
-  });
-}
-
-function renderNews(){
-  const cont=el("#newsList");cont.innerHTML="";
-  state.news.sort((a,b)=>b.date.localeCompare(a.date)).forEach(n=>{
-    const card=document.createElement("div");card.className="card";card.style.padding="14px";
-    card.innerHTML='<div class="row" style="justify-content:space-between;"><div class="card-title">'+n.title+'</div><div class="muted">'+n.date+'</div></div><div class="muted" style="margin-top:6px;">'+n.content+'</div>';
-    cont.appendChild(card);
-  });
-}
-
-function fillBookingSelectors(){
-  const selType=el("#bfType");selType.innerHTML="";
-  state.calendar.trainingTypes.forEach(t=>{
-    const o=document.createElement("option");o.value=t.id;o.textContent=t.name+" • "+t.level;selType.appendChild(o);
-  });
-  el("#bfDate").value=ymd(new Date());
-  populateTimes();
-}
-
-function populateTimes(){
-  const typeId=el("#bfType").value;
-  const date=el("#bfDate").value;
-  const weekday=new Date(date).getDay();
-  const times=[...state.calendar.recurring.filter(r=>r.trainingTypeId===typeId && r.weekday===weekday).map(r=>r.time)];
-  const sel=el("#bfTime");sel.innerHTML="";
-  times.forEach(t=>{const o=document.createElement("option");o.value=t;o.textContent=t;sel.appendChild(o)});
-  updateCapPreview();
-}
-
-function preselectBooking(typeId,date,time,left){
-  el("#bfType").value=typeId;
-  el("#bfDate").value=date;
-  populateTimes();
-  if(time){el("#bfTime").value=time}
-  updateCapPreview();
-  toast(left>0?"Foglalás előkészítve: "+date+" "+time:"Az esemény betelt");
-  location.hash="#orarend";
-}
-
-function updateCapPreview(){
-  const typeId=el("#bfType").value;
-  const date=el("#bfDate").value;
-  const time=el("#bfTime").value;
-  if(!typeId||!date||!time){el("#bfCapacity").value="";return}
-  const left=capacityLeft(typeId,date,time);
-  el("#bfCapacity").value=left>0?(left+" szabad hely"):"Betelt";
-  el("#bookingInfo").textContent=left>0?"":"Figyelem: nincs szabad hely erre az időpontra.";
-}
-
-async function submitBooking(e){
-  e.preventDefault();
-  const trainingTypeId=el("#bfType").value;
-  const date=el("#bfDate").value;
-  const time=el("#bfTime").value;
-  const name=el("#bfName").value.trim();
-  const email=el("#bfEmail").value.trim();
-  const phone=el("#bfPhone").value.trim();
-  const note=el("#bfNote").value.trim();
-  if(!trainingTypeId||!date||!time||!name||!email){toast("Kérjük, töltsd ki a kötelező mezőket.");return}
-  const left=capacityLeft(trainingTypeId,date,time);
-  if(left<=0){toast("Sajnos betelt. Válassz másik időpontot.");return}
-const reservation = {
-id: (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())),
-trainingTypeId: trainingTypeId,
-date: date,
-time: time,
-name: name,
-email: email,
-phone: phone,
-note: note,
-createdAt: new Date().toISOString()
-};
-  const list=[...state.reservations,reservation];
-  try{await api.put(BIN_RES,list);state.reservations=list;toast("Foglalás sikeres!");updateCapPreview();renderCalendar(currentMonth)}catch(err){toast("Hiba történt a foglalás mentésekor.");}
-}
-
-let currentMonth=new Date(new Date().getFullYear(),new Date().getMonth(),1);
-
-function bindUI(){
-  els(".tab").forEach(b=>b.addEventListener("click",()=>{
-    els(".tab").forEach(x=>x.classList.remove("active"));
-    b.classList.add("active");
-    state.view=b.dataset.view;
-    if(state.view==="calendar"){el("#calGrid").classList.remove("hidden");el("#listView").classList.add("hidden")}else{el("#calGrid").classList.add("hidden");el("#listView").classList.remove("hidden")}
-  }));
-  el("#prevMonth").onclick=()=>{currentMonth=new Date(currentMonth.getFullYear(),currentMonth.getMonth()-1,1);renderCalendar(currentMonth)};
-  el("#nextMonth").onclick=()=>{currentMonth=new Date(currentMonth.getFullYear(),currentMonth.getMonth()+1,1);renderCalendar(currentMonth)};
-  el("#todayBtn").onclick=()=>{currentMonth=new Date(new Date().getFullYear(),new Date().getMonth(),1);renderCalendar(currentMonth)};
-  el("#bfType").onchange=populateTimes;
-  el("#bfDate").onchange=populateTimes;
-  el("#bfTime").onchange=updateCapPreview;
-  el("#bookingForm").addEventListener("submit",submitBooking);
-  el("#year").textContent=new Date().getFullYear();
-}
-
-function renderAll(){
-  renderAnnouncements();
-  renderTrainingTypes();
-  fillBookingSelectors();
-  renderCalendar(currentMonth);
-  renderNews();
-}
-
-bindUI();
-loadAll().catch(()=>toast("Hálózati hiba. Próbáld újra."));
+const BINS={ann:"68b5536243b1c97be932d1ed",res:"68b5535343b1c97be932d1e1",news:"68b5531fd0ea881f406dbd52",cal:"68b55123d0ea881f406dbb52"};
+const huDaysFull=["Vasárnap","Hétfő","Kedd","Szerda","Csütörtök","Péntek","Szombat"];
+const huDaysShort=["V","H","K","Sze","Cs","P","Szo"];
+const huMonths=["január","február","március","április","május","június","július","augusztus","szeptember","október","november","december"];
+const today=new Date();
+let weekStart=startOfWeek(today);
+let state={calendar:{trainingTypes:[],recurring:[]},reservations:[],announcements:[],news:[]};
+function startOfWeek(d){const x=new Date(d);const wd=(x.getDay()+6)%7;x.setDate(x.getDate()-wd);x.setHours(0,0,0,0);return x}
+function endOfWeek(d){const x=new Date(d);x.setDate(x.getDate()+6);x.setHours(23,59,59,999);return x}
+function fmtDateISO(d){const y=d.getFullYear();const m=String(d.getMonth()+1).padStart(2,"0");const da=String(d.getDate()).padStart(2,"0");return y+"-"+m+"-"+da}
+function fmtHuman(d){return d.getDate()+". "+huMonths[d.getMonth()]+" "+d.getFullYear()+"."}
+function h(ts){const d=new Date(ts);return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")}
+function parseTime(s){const [hh,mm]=s.split(":").map(n=>parseInt(n,10));return {hh,mm}}
+function addDays(d,n){const x=new Date(d);x.setDate(x.getDate()+n);return x}
+function uid(){if (crypto&&crypto.randomUUID){return crypto.randomUUID()}return "id-"+Date.now()+"-"+Math.floor(Math.random()*1e6)}
+async function getBin(id){try{const r=await fetch("https://api.jsonbin.io/v3/b/"+id+"/latest",{headers:{"X-Master-Key":JSONBIN_KEY}});if(!r.ok)throw new Error("get "+id);const j=await r.json();return j.record}catch(e){return null}}
+async function putBin(id,data){const r=await fetch("https://api.jsonbin.io/v3/b/"+id,{method:"PUT",headers:{"Content-Type":"application/json","X-Master-Key":JSONBIN_KEY},body:JSON.stringify(data)});if(!r.ok)throw new Error("put "+id);return true}
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.style.display="block";setTimeout(()=>{t.style.display="none"},2400)}
+function sampleCalendar(){return {trainingTypes:[{id:"t1",name:"Alap technika",description:"Kezdőknek technikai alapok",level:"Kezdő",color:"#4f46e5",capacity:14,duration:60,location:"Dojo A"},{id:"t2",name:"Erő-állóképesség",description:"Kondicionáló fókusz",level:"Nyílt",color:"#22c55e",capacity:16,duration:60,location:"Dojo B"},{id:"t3",name:"Haladó kombinációk",description:"Kombinációk és sparring",level:"Haladó",color:"#e11d2e",capacity:12,duration:75,location:"Dojo A"}],recurring:[{id:"r1",trainingTypeId:"t1",weekday:1,time:"18:00",location:"Dojo A"},{id:"r2",trainingTypeId:"t2",weekday:3,time:"18:00",location:"Dojo B"},{id:"r3",trainingTypeId:"t3",weekday:5,time:"17:30",location:"Dojo A"}]}}
+async function loadAll(){const [ann,cal,news,res]=await Promise.all([getBin(BINS.ann),getBin(BINS.cal),getBin(BINS.news),getBin(BINS.res)]);state.announcements=Array.isArray(ann)?ann:[];state.calendar=cal&&cal.trainingTypes?cal:sampleCalendar();state.news=Array.isArray(news)?news:[];state.reservations=Array.isArray(res)?res:[];renderAll()}
+function renderAll(){renderAnnouncements();renderNews();renderCalendar();document.getElementById("year").textContent=String(new Date().getFullYear())}
+function renderAnnouncements(){const wrap=document.getElementById("annStrip");wrap.innerHTML="";const now=new Date();const list=state.announcements.filter(a=>a.active!==false).filter(a=>!a.expiresAt||new Date(a.expiresAt)>=now);if(list.length===0){const n=document.createElement("div");n.className="ann-pill";n.innerHTML="<strong>Üdvözlünk!</strong>&nbsp; Nézd meg a legfrissebb időpontokat és foglalj.";wrap.appendChild(n);return}list.forEach(a=>{const el=document.createElement("div");el.className="ann-pill"+(a.type==="warning"?" warn":a.type==="danger"?" danger":"");el.innerHTML="<strong>"+a.title+"</strong> "+(a.content||"");wrap.appendChild(el)})}
+function sessionsBetween(from,to){const out=[];const {trainingTypes,recurring}=state.calendar;for(let i=0;i<recurring.length;i++){const r=recurring[i];let cur=new Date(from);cur.setHours(0,0,0,0);while(cur<=to){if(cur.getDay()===r.weekday){const dstr=fmtDateISO(cur);out.push({id:"s-"+r.id+"-"+dstr,trainingTypeId:r.trainingTypeId,date:dstr,time:r.time,location:r.location||findType(r.trainingTypeId)?.location||"",capacityOverride:r.capacity});cur=addDays(cur,7)}else{cur=addDays(cur,1)}}}out.sort((a,b)=>new Date(a.date+"T"+a.time)-new Date(b.date+"T"+b.time));return out}
+function occFor(session){return state.reservations.filter(x=>x.trainingTypeId===session.trainingTypeId&&x.date===session.date&&x.time===session.time).length}
+function findType(id){return state.calendar.trainingTypes.find(t=>t.id===id)}
+function renderCalendar(){const ws=weekStart;const we=endOfWeek(ws);document.getElementById("weekRange").textContent=fmtHuman(ws)+" – "+fmtHuman(we);const list=sessionsBetween(ws,we);const listWrap=document.getElementById("sessionsList");const weekWrap=document.getElementById("sessionsWeek");listWrap.innerHTML="";weekWrap.innerHTML="";if(list.length===0){listWrap.innerHTML='<div class="info-card">Nincs ütemezett edzés ezen a héten.</div>';weekWrap.innerHTML=listWrap.innerHTML;return}list.forEach(s=>{const t=findType(s.trainingTypeId);const cap=s.capacityOverride||t.capacity;const occ=occFor(s);const free=Math.max(0,cap-occ);const row=document.createElement("div");row.className="session";row.innerHTML='<div class="s-left"><div class="color" style="background:'+t.color+'"></div><div><div class="s-name">'+t.name+' • '+s.time+'</div><div class="s-sub">'+huDaysFull[new Date(s.date).getDay()]+' • '+s.date+' • '+(s.location||t.location)+' • '+t.level+'</div></div></div><div><div class="s-cap">'+occ+'/'+cap+' foglalt</div>'+(free>0?'<button class="btn" data-sid="'+s.id+'">Foglalás</button>':'<span class="badge">Betelt</span>')+'</div>';listWrap.appendChild(row)});const days=[0,1,2,3,4,5,6].map(d=>({d,list:list.filter(s=>new Date(s.date).getDay()===d)}));days.forEach(day=>{const col=document.createElement("div");col.innerHTML='<div style="font-weight:700;margin:6px 0">'+huDaysFull[day.d]+"</div>";day.list.forEach(s=>{const t=findType(s.trainingTypeId);const cap=s.capacityOverride||t.capacity;const occ=occFor(s);const free=Math.max(0,cap-occ);const el=document.createElement("div");el.className="session";el.innerHTML='<div class="s-left"><div class="color" style="background:'+t.color+'"></div><div><div class="s-name">'+s.time+' • '+t.name+'</div><div class="s-sub">'+s.date+' • '+(s.location||t.location)+'</div></div></div><div>'+(free>0?'<button class="btn" data-sid="'+s.id+'">Foglalás</button>':'<span class="badge">Betelt</span>')+'</div>';col.appendChild(el)});weekWrap.appendChild(col)});document.querySelectorAll('button[data-sid]').forEach(b=>b.addEventListener('click',onBookClick))}
+function onBookClick(e){const sid=e.currentTarget.getAttribute("data-sid");const ws=weekStart;const we=endOfWeek(ws);const sessions=sessionsBetween(addDays(ws,-30),addDays(we,60));const s=sessions.find(x=>x.id===sid);if(!s)return;const t=findType(s.trainingTypeId);document.getElementById("bfTraining").value=t.name+" • "+t.level;document.getElementById("bfTrainingId").value=t.id;document.getElementById("bfDate").value=s.date;document.getElementById("bfTime").value=s.time;document.getElementById("bfCapacity").value=String(s.capacityOverride||t.capacity);document.getElementById("bookModal").classList.add("active")}
+async function submitBooking(ev){ev.preventDefault();const trainingTypeId=document.getElementById("bfTrainingId").value;const date=document.getElementById("bfDate").value;const time=document.getElementById("bfTime").value;const name=document.getElementById("bfName").value.trim();const email=document.getElementById("bfEmail").value.trim();const phone=document.getElementById("bfPhone").value.trim();const note=document.getElementById("bfNote").value.trim();if(!name||!email||!phone){toast("Kérjük tölts ki a kötelező mezőket.");return}const latest=await getBin(BINS.res);state.reservations=Array.isArray(latest)?latest:[];const t=findType(trainingTypeId);const cap=Number(document.getElementById("bfCapacity").value||t.capacity);const occ=occFor({trainingTypeId,date,time});if(occ>=cap){toast("Sajnáljuk, ez az időpont betelt.");return}const rec={id:uid(),trainingTypeId,date,time,name,email,phone,note,createdAt:new Date().toISOString()};const newArr=[...state.reservations,rec];await putBin(BINS.res,newArr);state.reservations=newArr;toast("Foglalás rögzítve.");document.getElementById("bookModal").classList.remove("active");renderCalendar()}
+function renderNews(){const grid=document.getElementById("newsGrid");grid.innerHTML="";if(state.news.length===0){grid.innerHTML='<div class="info-card">Még nincs közzétett hír.</div>';return}state.news.sort((a,b)=>new Date(b.date)-new Date(a.date));state.news.forEach(n=>{const card=document.createElement("div");card.className="news-card";const img=n.image||"https://images.unsplash.com/photo-1517438322307-e67111335449?q=80&w=600&auto=format&fit=crop";card.innerHTML='<img src="'+img+'" alt=""><div class="news-body"><div style="font-weight:700;margin-bottom:6px">'+n.title+'</div><div class="s-sub" style="margin-bottom:8px">'+new Date(n.date||Date.now()).toLocaleDateString("hu-HU")+'</div><div>'+n.content+'</div></div>';grid.appendChild(card)})}
+function scrollToCalendar(){document.querySelector("#naptar").scrollIntoView({behavior:"smooth"})}
+document.getElementById("prevWeek").addEventListener("click",()=>{weekStart=addDays(weekStart,-7);renderCalendar()});
+document.getElementById("nextWeek").addEventListener("click",()=>{weekStart=addDays(weekStart,7);renderCalendar()});
+document.getElementById("tabList").addEventListener("click",()=>{document.getElementById("tabList").classList.add("active");document.getElementById("tabWeek").classList.remove("active");document.getElementById("sessionsList").style.display="block";document.getElementById("sessionsWeek").style.display="none"});
+document.getElementById("tabWeek").addEventListener("click",()=>{document.getElementById("tabWeek").classList.add("active");document.getElementById("tabList").classList.remove("active");document.getElementById("sessionsList").style.display="none";document.getElementById("sessionsWeek").style.display="block"});
+document.getElementById("bookClose").addEventListener("click",()=>document.getElementById("bookModal").classList.remove("active"));
+document.getElementById("imgClose").addEventListener("click",()=>document.getElementById("imgModal").classList.remove("active"));
+document.getElementById("bookForm").addEventListener("submit",submitBooking);
+document.getElementById("burger").addEventListener("click",()=>{const m=document.getElementById("mobileMenu");m.style.display=m.style.display==="block"?"none":"block"});
+document.querySelectorAll("#mobileMenu a").forEach(a=>a.addEventListener("click",()=>{document.getElementById("mobileMenu").style.display="none"}));
+document.getElementById("gallery").addEventListener("click",e=>{const img=e.target.closest("img");if(!img)return;document.getElementById("imgPreview").src=img.src;document.getElementById("imgModal").classList.add("active")});
+loadAll();
 </script>
 </body>
 </html>
