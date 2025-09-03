@@ -608,7 +608,8 @@
           } catch (err) {
             setToast("Nem sikerült menteni. Ellenőrizd a kapcsolatot vagy a kulcsot.")
           }
-        }) window.addEventListener("load", async () => {
+        })
+        window.addEventListener("load", async () => {
           const stored = localStorage.getItem("jsonbin_master_key");
           if (stored) MASTER_KEY = stored;
           ui.bookingModal = new bootstrap.Modal(document.getElementById("bookingModal"));
