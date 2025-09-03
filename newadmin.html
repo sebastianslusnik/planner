@@ -1,318 +1,520 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>NUTU Team Admin</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0b0e12;--panel:#151a21;--panel2:#10161d;--text:#e9eef5;--muted:#b6c0cd;--border:#232a35;--primary:#00e0a4;--danger:#ff4d5e;--accent:#6ea8fe;--shadow:0 10px 30px rgba(0,0,0,.35)
+  --bg:#090c13;--panel:#0f1422;--line:#273048;--text:#eef2ff;--muted:#9aa6bf;
+  --accent:#66f0a9;--accent-2:#ff4d6d;--accent-3:#6da9ff;--radius:16px;
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b0e12 0%, #0a0d11 100%);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
-.container{max-width:1200px;margin:0 auto;padding:16px}
-.header{position:sticky;top:0;z-index:30;background:rgba(10,13,17,.7);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-h1{font-size:18px;margin:0;font-weight:800}
-.btn{padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--panel);color:var(--text);font-weight:700;cursor:pointer}
-.btn.primary{background:linear-gradient(180deg,#00e0a4,#12b889);border:none}
-.btn.danger{background:rgba(255,77,94,.12);border-color:rgba(255,77,94,.4);color:#ff9aa3}
-.grid{display:grid;grid-template-columns:1.1fr 1fr;gap:16px;margin-top:16px}
-.card{background:linear-gradient(180deg,#11161d,#0e131a);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow)}
-.card-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--border)}
-.card-title{margin:0;font-size:16px;font-weight:800}
-.card-body{padding:16px}
-.form{display:grid;gap:10px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-label{font-size:12px;color:var(--muted)}
-.input, select, textarea{background:#0f141b;border:1px solid var(--border);color:var(--text);padding:10px 12px;border-radius:10px;width:100%}
+body{margin:0;background:radial-gradient(80% 60% at 50% 0%,#0e1630,#0b0f19 60%,#090c13);color:var(--text);font-family:Outfit,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial}
+.header{position:sticky;top:0;z-index:40;background:rgba(10,13,20,.6);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
+.logo{display:flex;gap:12px;align-items:center}
+.logo .mark{width:38px;height:38px;border-radius:12px;background:conic-gradient(#66f0a9,#6da9ff,#ff4d6d,#66f0a9)}
+.button{appearance:none;border:1px solid var(--line);background:linear-gradient(180deg,#12192b,#0d1426);padding:10px 14px;border-radius:12px;color:var(--text);cursor:pointer;font-weight:700}
+.button.primary{background:linear-gradient(180deg,#6af2b4,#47d895);color:#04120a;border:0}
+.grid{display:grid;grid-template-columns:280px 1fr;gap:16px}
+@media(max-width:960px){.grid{grid-template-columns:1fr}}
+.side{background:linear-gradient(180deg,#0c1120,#0b101d);border:1px solid var(--line);border-radius:14px;padding:12px;height:fit-content;position:sticky;top:74px}
+.side .menu{display:grid;gap:8px}
+.side .menu .mi{padding:10px 12px;border-radius:10px;border:1px solid var(--line);cursor:pointer}
+.side .menu .mi.active{border-color:var(--accent);box-shadow:0 0 0 2px rgba(102,240,169,.2) inset}
+.panel{background:linear-gradient(180deg,#0c1222,#0b1120);border:1px solid var(--line);border-radius:16px}
+.panel .hd{display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:1px solid var(--line)}
+.panel .bd{padding:16px}
+.block{border:1px solid var(--line);background:linear-gradient(180deg,#0f1628,#0e1526);border-radius:14px;padding:12px;margin-bottom:12px}
+.input{display:grid;gap:6px;margin-bottom:10px}
+.input label{font-size:13px;color:var(--muted)}
+.input input,.input select,.input textarea{padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:linear-gradient(180deg,#12192b,#0f1628);color:var(--text);outline:none}
+.row{display:flex;gap:8px;flex-wrap:wrap}
 .table{width:100%;border-collapse:collapse}
-.table th,.table td{border-bottom:1px solid var(--border);padding:10px;text-align:left;font-size:13px}
-.kv{display:flex;flex-wrap:wrap;gap:8px}
-.badge{padding:4px 8px;border-radius:8px;background:#0f141b;border:1px solid var(--border);font-size:12px}
-@media(max-width:980px){.grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
+.table th,.table td{border-bottom:1px solid var(--line);padding:10px;text-align:left;font-size:14px}
+.badge{padding:4px 8px;border-radius:10px;font-size:11px;border:1px solid var(--line)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:8px 12px}
+.modal{position:fixed;inset:0;background:rgba(6,8,12,.6);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
+.modal.active{display:flex}
+.sheet{width:100%;max-width:560px;background:linear-gradient(180deg,#0c1222,#0b1120);border:1px solid var(--line);border-radius:16px}
+.sheet .hd{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line)}
+.sheet .bd{padding:16px}
+.toast{position:fixed;right:16px;bottom:16px;background:linear-gradient(180deg,#0f172a,#0b1224);border:1px solid var(--line);padding:12px 14px;border-radius:12px;display:none}
+.toast.show{display:block}
+.login{max-width:420px;margin:60px auto;border:1px solid var(--line);background:linear-gradient(180deg,#0c1222,#0b1120);border-radius:16px;padding:18px}
 </style>
 </head>
 <body>
 <header class="header">
-  <div class="container">
-    <div class="nav">
-      <h1>NUTU Team Admin</h1>
-      <div class="kv">
-        <a class="btn" href="index.html">Vissza a főoldalra</a>
-        <button class="btn" id="reloadBtn">Frissítés</button>
-        <span class="badge">JSONBin szinkron aktív</span>
+  <div class="container nav">
+    <div class="logo">
+      <div class="mark"></div>
+      <div>
+        <div style="font-weight:800">NUTU Team • Admin</div>
+        <small style="color:#9aa6bf">Központi irányítópult</small>
       </div>
+    </div>
+    <div class="row">
+      <a class="button" href="index.html">Vissza a webre</a>
+      <button class="button" id="logoutBtn">Kilépés</button>
     </div>
   </div>
 </header>
 
-<main class="container">
-  <section class="grid">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">Bejelentések</h3>
-        <button class="btn primary" id="addAnnouncement">Új</button>
-      </div>
-      <div class="card-body">
-        <div class="form" id="annList"></div>
-      </div>
+<div class="container" id="authWrap">
+  <div class="login">
+    <div style="font-weight:800;font-size:20px;margin-bottom:8px">Admin bejelentkezés</div>
+    <div class="input">
+      <label>Mester jelszó</label>
+      <input type="password" id="pass" placeholder="••••••••">
     </div>
+    <button class="button primary" id="loginBtn">Belépés</button>
+    <div style="margin-top:10px;color:#9aa6bf;font-size:14px">Védelem: kliens oldali hash ellenőrzés</div>
+  </div>
+</div>
 
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">Hírek</h3>
-        <button class="btn primary" id="addNews">Új</button>
+<main class="container" id="app" style="display:none">
+  <div class="grid">
+    <aside class="side">
+      <div class="menu">
+        <div class="mi active" data-tab="dashboard">Áttekintés</div>
+        <div class="mi" data-tab="trainingTypes">Edzés típusok</div>
+        <div class="mi" data-tab="recurring">Rendszeres időpontok</div>
+        <div class="mi" data-tab="reservations">Foglalások</div>
+        <div class="mi" data-tab="news">Hírek</div>
+        <div class="mi" data-tab="announcements">Kiemelések</div>
       </div>
-      <div class="card-body">
-        <div class="form" id="newsList"></div>
-      </div>
-    </div>
-  </section>
+    </aside>
+    <section>
+      <div class="panel">
+        <div class="hd"><div id="tabTitle">Áttekintés</div></div>
+        <div class="bd">
+          <div id="tab-dashboard">
+            <div class="row">
+              <div class="block">
+                <div style="font-weight:700;margin-bottom:6px">Gyors adatok</div>
+                <div class="kv" id="quickStats"></div>
+              </div>
+              <div class="block">
+                <div style="font-weight:700;margin-bottom:6px">Akciók</div>
+                <div class="row">
+                  <button class="button" id="addTypeBtn">Új típus</button>
+                  <button class="button" id="addRecurringBtn">Új rendszeres időpont</button>
+                  <button class="button" id="addNewsBtn">Új hír</button>
+                  <button class="button" id="addAnnBtn">Új kiemelés</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
-  <section class="grid" style="margin-top:16px">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">Edzéstípusok</h3>
-        <button class="btn primary" id="addType">Új típus</button>
-      </div>
-      <div class="card-body">
-        <div id="types"></div>
-      </div>
-    </div>
+          <div id="tab-trainingTypes" style="display:none">
+            <div class="row" style="justify-content:flex-end;margin-bottom:8px">
+              <button class="button primary" id="addTypeBtn2">Új típus hozzáadása</button>
+            </div>
+            <table class="table" id="typesTable">
+              <thead><tr><th>Név</th><th>Szint</th><th>Leírás</th><th>Helyszín</th><th>Szín</th><th>Kapacitás</th><th>Időtartam</th><th></th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
 
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">Ismétlődő időpontok</h3>
-        <button class="btn primary" id="addRecurring">Új ismétlődés</button>
-      </div>
-      <div class="card-body">
-        <div id="recurring"></div>
-      </div>
-    </div>
-  </section>
+          <div id="tab-recurring" style="display:none">
+            <div class="row" style="justify-content:flex-end;margin-bottom:8px">
+              <button class="button primary" id="addRecurringBtn2">Új rendszeres időpont</button>
+            </div>
+            <table class="table" id="recTable">
+              <thead><tr><th>Nap</th><th>Idő</th><th>Típus</th><th>Helyszín</th><th>Kapacitás</th><th></th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
 
-  <section class="card" style="margin-top:16px">
-    <div class="card-header">
-      <h3 class="card-title">Foglalások</h3>
-      <div>
-        <button class="btn" id="exportCSV">Export CSV</button>
+          <div id="tab-reservations" style="display:none">
+            <table class="table" id="resTable">
+              <thead><tr><th>Dátum</th><th>Idő</th><th>Típus</th><th>Név</th><th>Email</th><th>Telefon</th><th>Megjegyzés</th><th></th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div id="tab-news" style="display:none">
+            <div class="row" style="justify-content:flex-end;margin-bottom:8px">
+              <button class="button primary" id="addNewsBtn2">Új hír</button>
+            </div>
+            <table class="table" id="newsTable">
+              <thead><tr><th>Cím</th><th>Dátum</th><th>Kép</th><th>Tartalom</th><th></th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div id="tab-announcements" style="display:none">
+            <div class="row" style="justify-content:flex-end;margin-bottom:8px">
+              <button class="button primary" id="addAnnBtn2">Új kiemelés</button>
+            </div>
+            <table class="table" id="annTable">
+              <thead><tr><th>Cím</th><th>Típus</th><th>Lejárat</th><th>Aktív</th><th>Tartalom</th><th></th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+        </div>
       </div>
-    </div>
-    <div class="card-body">
-      <table class="table" id="reservationsTable">
-        <thead>
-          <tr>
-            <th>Dátum</th><th>Idő</th><th>Típus</th><th>Név</th><th>E-mail</th><th>Telefon</th><th>Megjegyzés</th><th></th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </section>
+    </section>
+  </div>
 </main>
 
-<div id="modalRoot"></div>
+<div class="modal" id="modal">
+  <div class="sheet">
+    <div class="hd">
+      <div id="modalTitle">Szerkesztés</div>
+      <button class="button" id="closeModal">Bezár</button>
+    </div>
+    <div class="bd" id="modalBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
-const JSONBIN_MASTER = "$2a$10$9sO/ja29sMebpWNvsWmp5.dJ6lv7CPeLBMRFaA/cAEwz42ii6qlCS"
+const JSONBIN_API_KEY = "$2a$10$9sO/ja29sMebpWNvsWmp5.dJ6lv7CPeLBMRFaA/cAEwz42ii6qlCS";
 const BINS = {
   announcements: "68b5536243b1c97be932d1ed",
   reservations: "68b5535343b1c97be932d1e1",
   news: "68b5531fd0ea881f406dbd52",
   calendar: "68b55123d0ea881f406dbb52"
+};
+const MASTER_HASH = "admin";
+
+const appState = {
+  authed:false,
+  calendar:null,
+  news:[],
+  announcements:[],
+  reservations:[]
+};
+
+async function bcryptCompare(plain, hash){
+  const r = await fetch("https://unpkg.com/bcryptjs@2.4.3/dist/bcrypt.min.js");
+  const code = await r.text();
+  const s = document.createElement("script"); s.textContent = code; document.body.appendChild(s);
+  return await new Promise(res=>{res(window.dcodeIO.bcrypt.compareSync(plain,hash))});
 }
-const api = {
-  async get(id){
-    const r = await fetch(`https://api.jsonbin.io/v3/b/${id}/latest`,{headers:{'X-Master-Key':JSONBIN_MASTER,'Content-Type':'application/json','X-Bin-Meta':'false'}})
-    if(!r.ok) throw new Error('Hálózati hiba')
-    return r.json()
-  },
-  async put(id, body){
-    const r = await fetch(`https://api.jsonbin.io/v3/b/${id}`,{method:'PUT',headers:{'X-Master-Key':JSONBIN_MASTER,'Content-Type':'application/json'},body:JSON.stringify(body)})
-    if(!r.ok) throw new Error('Mentési hiba')
-    return r.json()
-  }
+
+function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2200)}
+function switchTab(id){
+  document.querySelectorAll(".side .mi").forEach(mi=>mi.classList.toggle("active",mi.dataset.tab===id));
+  document.getElementById("tabTitle").textContent = document.querySelector(`.side .mi[data-tab="${id}"]`).textContent;
+  document.querySelectorAll('[id^="tab-"]').forEach(sec=>sec.style.display="none");
+  document.getElementById("tab-"+id).style.display="block";
 }
-const state = {announcements:[],news:[],calendar:null,reservations:[]}
-function el(tag, attrs={}, ...children){const e=document.createElement(tag);Object.entries(attrs).forEach(([k,v])=>{if(k==='class') e.className=v; else if(k==='style') e.setAttribute('style',v); else if(k.startsWith('on')) e.addEventListener(k.slice(2),v); else e.setAttribute(k,v)});children.forEach(c=>{if(c==null)return; if(typeof c==='string') e.appendChild(document.createTextNode(c)); else e.appendChild(c)});return e}
-function input(value, placeholder){const i=document.createElement('input');i.className='input';i.value=value||'';if(placeholder)i.placeholder=placeholder;return i}
-function select(options, value){const s=document.createElement('select');s.className='input';options.forEach(o=>{const op=document.createElement('option');op.value=o.value;op.textContent=o.label; if(o.value===value) op.selected=true; s.appendChild(op)});return s}
-function textarea(value){const t=document.createElement('textarea');t.className='input';t.rows=3;t.value=value||'';return t}
-function uid(){return crypto.randomUUID()}
+document.querySelectorAll(".side .mi").forEach(mi=>mi.addEventListener("click",()=>switchTab(mi.dataset.tab)));
+
+async function fetchBin(id){
+  const r = await fetch(`https://api.jsonbin.io/v3/b/${id}/latest`,{headers:{'X-Master-Key':JSONBIN_API_KEY}});
+  if(!r.ok) throw new Error("Hiba a letöltésnél");
+  const j = await r.json(); return j.record;
+}
+async function putBin(id,record){
+  const r = await fetch(`https://api.jsonbin.io/v3/b/${id}`,{method:"PUT",headers:{'Content-Type':'application/json','X-Master-Key':JSONBIN_API_KEY},body:JSON.stringify(record)});
+  if(!r.ok) throw new Error("Mentési hiba");
+  const j = await r.json(); return j.record;
+}
 
 async function loadAll(){
-  const [ann, news, cal, res] = await Promise.all([api.get(BINS.announcements), api.get(BINS.news), api.get(BINS.calendar), api.get(BINS.reservations)])
-  state.announcements=ann||[]
-  state.news=news||[]
-  state.calendar=cal||{trainingTypes:[],recurring:[]}
-  state.reservations=res||[]
-  renderAnnouncements()
-  renderNews()
-  renderTypes()
-  renderRecurring()
-  renderReservations()
+  const [calendar,news,ann,res] = await Promise.all([
+    fetchBin(BINS.calendar),
+    fetchBin(BINS.news),
+    fetchBin(BINS.announcements),
+    fetchBin(BINS.reservations),
+  ]);
+  appState.calendar=calendar; appState.news=news; appState.announcements=ann; appState.reservations=res;
+  renderDashboard();
+  renderTypes();
+  renderRecurring();
+  renderReservations();
+  renderNews();
+  renderAnnouncements();
 }
 
-function renderAnnouncements(){
-  const root=document.getElementById('annList')
-  root.innerHTML=''
-  state.announcements.forEach(a=>{
-    const title=input(a.title,'Cím')
-    const content=textarea(a.content)
-    const type=select([{value:'info',label:'Info'},{value:'danger',label:'Danger'},{value:'warning',label:'Warning'}], a.type||'info')
-    const expires=input(a.expiresAt||'','Lejárat (YYYY-MM-DD)')
-    const active=select([{value:'true',label:'Aktív'},{value:'false',label:'Inaktív'}], String(a.active!==false))
-    const save=el('button',{class:'btn primary',onclick:async()=>{Object.assign(a,{title:title.value,content:content.value,type:type.value,expiresAt:expires.value,active:active.value==='true'});await api.put(BINS.announcements,[...state.announcements]);loadAll()}},'Mentés')
-    const del=el('button',{class:'btn danger',onclick:async()=>{state.announcements=state.announcements.filter(x=>x.id!==a.id);await api.put(BINS.announcements,state.announcements);loadAll()}},'Törlés')
-    root.appendChild(el('div',{class:'card',style:'padding:12px;margin-bottom:10px'},
-      el('div',{class:'form'},
-        el('div',{class:'form-row'}, el('div',{},el('label',{},'Cím'),title), el('div',{},el('label',{},'Típus'),type)),
-        el('div',{},el('label',{},'Tartalom'),content),
-        el('div',{class:'form-row'}, el('div',{},el('label',{},'Lejárat'),expires), el('div',{},el('label',{},'Állapot'),active)),
-        el('div',{}, save, el('span',{style:'margin-left:8px'}), del)
-      )
-    ))
-  })
-}
-document.getElementById('addAnnouncement').onclick=async()=>{
-  state.announcements.unshift({id:uid(),title:'Új bejelentés',content:'',type:'info',active:true})
-  await api.put(BINS.announcements,state.announcements)
-  loadAll()
-}
-
-function renderNews(){
-  const root=document.getElementById('newsList')
-  root.innerHTML=''
-  state.news.forEach(n=>{
-    const title=input(n.title,'Cím')
-    const image=input(n.image||'','Kép URL (opcionális)')
-    const content=textarea(n.content)
-    const date=input(n.date||'','Dátum (YYYY-MM-DD)')
-    const save=el('button',{class:'btn primary',onclick:async()=>{Object.assign(n,{title:title.value,image:image.value||null,content:content.value,date:date.value});await api.put(BINS.news,[...state.news]);loadAll()}},'Mentés')
-    const del=el('button',{class:'btn danger',onclick:async()=>{state.news=state.news.filter(x=>x.id!==n.id);await api.put(BINS.news,state.news);loadAll()}},'Törlés')
-    root.appendChild(el('div',{class:'card',style:'padding:12px;margin-bottom:10px'},
-      el('div',{class:'form'},
-        el('div',{class:'form-row'}, el('div',{},el('label',{},'Cím'),title), el('div',{},el('label',{},'Dátum'),date)),
-        el('div',{},el('label',{},'Kép URL'),image),
-        el('div',{},el('label',{},'Tartalom'),content),
-        el('div',{},save, el('span',{style:'margin-left:8px'}), del)
-      )
-    ))
-  })
-}
-document.getElementById('addNews').onclick=async()=>{
-  state.news.unshift({id:uid(),title:'Új hír',image:null,content:'',date:new Date().toISOString().slice(0,10)})
-  await api.put(BINS.news,state.news)
-  loadAll()
+function renderDashboard(){
+  const q=document.getElementById("quickStats");
+  const totalTypes = appState.calendar?.trainingTypes?.length||0;
+  const totalRecurring = appState.calendar?.recurring?.length||0;
+  const totalRes = appState.reservations?.length||0;
+  const totalNews = appState.news?.length||0;
+  const totalAnn = appState.announcements?.length||0;
+  q.innerHTML = `
+    <b>Edzés típusok</b><span>${totalTypes}</span>
+    <b>Rendszeres időpontok</b><span>${totalRecurring}</span>
+    <b>Foglalások</b><span>${totalRes}</span>
+    <b>Hírek</b><span>${totalNews}</span>
+    <b>Kiemelések</b><span>${totalAnn}</span>
+  `;
 }
 
 function renderTypes(){
-  const root=document.getElementById('types')
-  root.innerHTML=''
-  const wrapper=el('div',{})
-  ;(state.calendar.trainingTypes||[]).forEach(t=>{
-    const name=input(t.name,'Név')
-    const level=input(t.level,'Szint')
-    const desc=input(t.description,'Leírás')
-    const loc=input(t.location,'Helyszín')
-    const color=input(t.color,'Szín (hex)')
-    const capacity=input(String(t.capacity||12),'Kapacitás')
-    const duration=input(String(t.duration||60),'Időtartam (perc)')
-    const save=el('button',{class:'btn primary',onclick:async()=>{Object.assign(t,{name:name.value,level:level.value,description:desc.value,location:loc.value,color:color.value,capacity:Number(capacity.value||12),duration:Number(duration.value||60)});await api.put(BINS.calendar,state.calendar);loadAll()}},'Mentés')
-    const del=el('button',{class:'btn danger',onclick:async()=>{state.calendar.trainingTypes=state.calendar.trainingTypes.filter(x=>x.id!==t.id);state.calendar.recurring=state.calendar.recurring.filter(r=>r.trainingTypeId!==t.id);await api.put(BINS.calendar,state.calendar);loadAll()}},'Törlés')
-    wrapper.appendChild(el('div',{class:'card',style:'padding:12px;margin-bottom:10px'},
-      el('div',{class:'form'},
-        el('div',{class:'form-row'}, el('div',{},el('label',{},'Név'),name), el('div',{},el('label',{},'Szint'),level)),
-        el('div',{class:'form-row'}, el('div',{},el('label',{},'Szín'),color), el('div',{},el('label',{},'Helyszín'),loc)),
-        el('div',{class:'form-row'}, el('div',{},el('label',{},'Kapacitás'),capacity), el('div',{},el('label',{},'Időtartam'),duration)),
-        el('div',{},el('label',{},'Leírás'),desc),
-        el('div',{},save, el('span',{style:'margin-left:8px'}), del)
-      )
-    ))
-  })
-  root.appendChild(wrapper)
+  const tb = document.querySelector("#typesTable tbody");
+  tb.innerHTML="";
+  (appState.calendar.trainingTypes||[]).forEach(t=>{
+    const tr=document.createElement("tr");
+    tr.innerHTML=`
+      <td>${t.name}</td>
+      <td>${t.level}</td>
+      <td>${t.description||""}</td>
+      <td>${t.location||""}</td>
+      <td><span class="badge" style="border-color:${t.color};color:${t.color}">${t.color}</span></td>
+      <td>${t.capacity??""}</td>
+      <td>${t.duration??""}p</td>
+      <td><div class="row">
+        <button class="button" data-act="edit">Szerkeszt</button>
+        <button class="button" data-act="del">Törlés</button>
+      </div></td>
+    `;
+    tr.querySelector('[data-act="edit"]').addEventListener("click",()=>editType(t));
+    tr.querySelector('[data-act="del"]').addEventListener("click",()=>delType(t.id));
+    tb.appendChild(tr);
+  });
 }
-document.getElementById('addType').onclick=async()=>{
-  const t={id:uid(),name:'Új típus',level:'Kezdő',description:'',location:'Moson',color:'#6ea8fe',capacity:12,duration:60}
-  state.calendar.trainingTypes.push(t)
-  await api.put(BINS.calendar,state.calendar)
-  loadAll()
+
+function editType(t){
+  openModal("Edzés típus", `
+    <div class="input"><label>Név</label><input id="name" value="${t?.name||""}"></div>
+    <div class="row">
+      <div class="input" style="flex:1"><label>Szint</label><input id="level" value="${t?.level||""}"></div>
+      <div class="input" style="flex:1"><label>Szín</label><input id="color" value="${t?.color||"#6da9ff"}"></div>
+    </div>
+    <div class="input"><label>Leírás</label><input id="description" value="${t?.description||""}"></div>
+    <div class="row">
+      <div class="input" style="flex:1"><label>Helyszín</label><input id="location" value="${t?.location||""}"></div>
+      <div class="input" style="flex:1"><label>Kapacitás</label><input id="capacity" type="number" value="${t?.capacity??""}"></div>
+      <div class="input" style="flex:1"><label>Időtartam (perc)</label><input id="duration" type="number" value="${t?.duration??60}"></div>
+    </div>
+    <button class="button primary" id="saveBtn">Mentés</button>
+  `);
+  document.getElementById("saveBtn").addEventListener("click",async()=>{
+    const obj = {
+      id: t?.id||crypto.randomUUID(),
+      name: val("name"), level: val("level"),
+      color: val("color"), description: val("description"),
+      location: val("location"),
+      capacity: num("capacity"), duration: num("duration")||60
+    };
+    const list = [...(appState.calendar.trainingTypes||[])];
+    const idx = list.findIndex(x=>x.id===obj.id);
+    if(idx>=0) list[idx]=obj; else list.push(obj);
+    appState.calendar.trainingTypes = list;
+    await putBin(BINS.calendar, appState.calendar);
+    closeModal(); renderTypes(); showToast("Mentve");
+  });
+}
+function delType(id){
+  const list = (appState.calendar.trainingTypes||[]).filter(x=>x.id!==id);
+  appState.calendar.trainingTypes = list;
+  putBin(BINS.calendar, appState.calendar).then(()=>{renderTypes();showToast("Típus törölve")});
 }
 
 function renderRecurring(){
-  const root=document.getElementById('recurring')
-  root.innerHTML=''
-  const days=[{v:1,l:'Hétfő'},{v:2,l:'Kedd'},{v:3,l:'Szerda'},{v:4,l:'Csütörtök'},{v:5,l:'Péntek'},{v:6,l:'Szombat'},{v:7,l:'Vasárnap'}]
-  ;(state.calendar.recurring||[]).forEach(r=>{
-    const typeSel=select((state.calendar.trainingTypes||[]).map(t=>({value:t.id,label:`${t.name} • ${t.level}`})), r.trainingTypeId)
-    const daySel=select(days.map(d=>({value:String(d.v),label:d.l})), String(r.weekday))
-    const time=input(r.time,'Idő (HH:MM)')
-    const loc=input(r.location||'','Helyszín (opcionális)')
-    const cap=input(String(r.capacity||''),'Kapacitás (opcionális)')
-    const save=el('button',{class:'btn primary',onclick:async()=>{Object.assign(r,{trainingTypeId:typeSel.value,weekday:Number(daySel.value),time:time.value,location:loc.value||null,capacity:cap.value?Number(cap.value):null});await api.put(BINS.calendar,state.calendar);loadAll()}},'Mentés')
-    const del=el('button',{class:'btn danger',onclick:async()=>{state.calendar.recurring=state.calendar.recurring.filter(x=>x.id!==r.id);await api.put(BINS.calendar,state.calendar);loadAll()}},'Törlés')
-    root.appendChild(el('div',{class:'card',style:'padding:12px;margin-bottom:10px'},
-      el('div',{class:'form'},
-        el('div',{class:'form-row'}, el('div',{},el('label',{},'Edzéstípus'),typeSel), el('div',{},el('label',{},'Nap'),daySel)),
-        el('div',{class:'form-row'}, el('div',{},el('label',{},'Idő'),time), el('div',{},el('label',{},'Kapacitás'),cap)),
-        el('div',{},el('label',{},'Helyszín'),loc),
-        el('div',{},save, el('span',{style:'margin-left:8px'}), del)
-      )
-    ))
-  })
+  const tb = document.querySelector("#recTable tbody");
+  tb.innerHTML="";
+  const days = ["Hétfő","Kedd","Szerda","Csütörtök","Péntek","Szombat","Vasárnap"];
+  (appState.calendar.recurring||[]).forEach(r=>{
+    const tt = (appState.calendar.trainingTypes||[]).find(t=>t.id===r.trainingTypeId);
+    const tr=document.createElement("tr");
+    tr.innerHTML=`
+      <td>${days[r.weekday]}</td>
+      <td>${r.time}</td>
+      <td>${tt?tt.name:"Ismeretlen"}</td>
+      <td>${r.location||""}</td>
+      <td>${r.capacity??""}</td>
+      <td><div class="row">
+        <button class="button" data-act="edit">Szerkeszt</button>
+        <button class="button" data-act="del">Törlés</button>
+      </div></td>
+    `;
+    tr.querySelector('[data-act="edit"]').addEventListener("click",()=>editRecurring(r));
+    tr.querySelector('[data-act="del"]').addEventListener("click",()=>delRecurring(r.id));
+    tb.appendChild(tr);
+  });
 }
-document.getElementById('addRecurring').onclick=async()=>{
-  const firstType=state.calendar.trainingTypes[0]
-  if(!firstType){alert('Előbb hozz létre edzéstípust');return}
-  state.calendar.recurring.push({id:uid(),trainingTypeId:firstType.id,weekday:1,time:'17:00',location:null,capacity:null})
-  await api.put(BINS.calendar,state.calendar)
-  loadAll()
+function editRecurring(r){
+  const options = (appState.calendar.trainingTypes||[]).map(t=>`<option value="${t.id}" ${t.id===(r?.trainingTypeId||"")?"selected":""}>${t.name} • ${t.level}</option>`).join("");
+  openModal("Rendszeres időpont", `
+    <div class="row">
+      <div class="input" style="flex:1"><label>Nap</label>
+        <select id="weekday">
+          <option value="0"${r?.weekday===0?" selected":""}>Hétfő</option>
+          <option value="1"${r?.weekday===1?" selected":""}>Kedd</option>
+          <option value="2"${r?.weekday===2?" selected":""}>Szerda</option>
+          <option value="3"${r?.weekday===3?" selected":""}>Csütörtök</option>
+          <option value="4"${r?.weekday===4?" selected":""}>Péntek</option>
+          <option value="5"${r?.weekday===5?" selected":""}>Szombat</option>
+          <option value="6"${r?.weekday===6?" selected":""}>Vasárnap</option>
+        </select>
+      </div>
+      <div class="input" style="flex:1"><label>Idő</label><input id="time" placeholder="HH:MM" value="${r?.time||""}"></div>
+    </div>
+    <div class="input"><label>Edzés típus</label><select id="trainingTypeId">${options}</select></div>
+    <div class="row">
+      <div class="input" style="flex:1"><label>Helyszín</label><input id="location" value="${r?.location||""}"></div>
+      <div class="input" style="flex:1"><label>Kapacitás (opcionális)</label><input id="capacity" type="number" value="${r?.capacity??""}"></div>
+    </div>
+    <button class="button primary" id="saveBtn">Mentés</button>
+  `);
+  document.getElementById("saveBtn").addEventListener("click",async()=>{
+    const obj = {
+      id: r?.id||crypto.randomUUID(),
+      weekday: Number(val("weekday")),
+      time: val("time"),
+      trainingTypeId: val("trainingTypeId"),
+      location: val("location")||null,
+      capacity: num("capacity")
+    };
+    const list = [...(appState.calendar.recurring||[])];
+    const idx = list.findIndex(x=>x.id===obj.id);
+    if(idx>=0) list[idx]=obj; else list.push(obj);
+    appState.calendar.recurring = list;
+    await putBin(BINS.calendar, appState.calendar);
+    closeModal(); renderRecurring(); showToast("Mentve");
+  });
+}
+function delRecurring(id){
+  appState.calendar.recurring = (appState.calendar.recurring||[]).filter(x=>x.id!==id);
+  putBin(BINS.calendar, appState.calendar).then(()=>{renderRecurring();showToast("Időpont törölve")});
 }
 
 function renderReservations(){
-  const tbody=document.querySelector('#reservationsTable tbody')
-  tbody.innerHTML=''
-  const typeName=id=> (state.calendar.trainingTypes||[]).find(t=>t.id===id)?.name || 'Ismeretlen'
-  state.reservations.sort((a,b)=> (a.date+a.time).localeCompare(b.date+b.time)).forEach(r=>{
-    const tr=document.createElement('tr')
-    tr.appendChild(el('td',{},r.date))
-    tr.appendChild(el('td',{},r.time))
-    tr.appendChild(el('td',{},typeName(r.trainingTypeId)))
-    tr.appendChild(el('td',{},r.name))
-    tr.appendChild(el('td',{},r.email))
-    tr.appendChild(el('td',{},r.phone||''))
-    tr.appendChild(el('td',{},r.note||''))
-    tr.appendChild(el('td',{}, el('button',{class:'btn danger',onclick:()=>confirmDelete(r.id)},'Törlés')))
-    tbody.appendChild(tr)
-  })
+  const tb = document.querySelector("#resTable tbody"); tb.innerHTML="";
+  const types = appState.calendar.trainingTypes||[];
+  appState.reservations.sort((a,b)=>new Date(a.date)-new Date(b.date)||a.time.localeCompare(b.time)).forEach(r=>{
+    const tt = types.find(t=>t.id===r.trainingTypeId);
+    const tr=document.createElement("tr");
+    tr.innerHTML=`
+      <td>${r.date}</td>
+      <td>${r.time}</td>
+      <td>${tt?tt.name:"—"}</td>
+      <td>${r.name}</td>
+      <td>${r.email}</td>
+      <td>${r.phone||""}</td>
+      <td>${r.note||""}</td>
+      <td><button class="button" data-act="del">Törlés</button></td>
+    `;
+    tr.querySelector('[data-act="del"]').addEventListener("click",()=>delReservation(r.id));
+    tb.appendChild(tr);
+  });
+}
+function delReservation(id){
+  appState.reservations = (appState.reservations||[]).filter(x=>x.id!==id);
+  putBin(BINS.reservations, appState.reservations).then(()=>{renderReservations();showToast("Foglalás törölve")});
 }
 
-async function confirmDelete(id){
-  if(!confirm('Biztosan törlöd a foglalást?')) return
-  state.reservations=state.reservations.filter(r=>r.id!==id)
-  await api.put(BINS.reservations, state.reservations)
-  renderReservations()
+function renderNews(){
+  const tb = document.querySelector("#newsTable tbody"); tb.innerHTML="";
+  appState.news.sort((a,b)=>new Date(b.date)-new Date(a.date)).forEach(n=>{
+    const tr=document.createElement("tr");
+    tr.innerHTML=`
+      <td>${n.title}</td>
+      <td>${n.date}</td>
+      <td>${n.image?'<span class="badge">van</span>':'—'}</td>
+      <td>${n.content}</td>
+      <td><div class="row">
+        <button class="button" data-act="edit">Szerkeszt</button>
+        <button class="button" data-act="del">Törlés</button>
+      </div></td>
+    `;
+    tr.querySelector('[data-act="edit"]').addEventListener("click",()=>editNews(n));
+    tr.querySelector('[data-act="del"]').addEventListener("click",()=>delNews(n.id));
+    tb.appendChild(tr);
+  });
+}
+function editNews(n){
+  openModal("Hír", `
+    <div class="input"><label>Cím</label><input id="title" value="${n?.title||""}"></div>
+    <div class="input"><label>Dátum</label><input id="date" type="date" value="${n?.date||new Date().toISOString().slice(0,10)}"></div>
+    <div class="input"><label>Kép URL (opcionális)</label><input id="image" value="${n?.image||""}"></div>
+    <div class="input"><label>Tartalom</label><textarea id="content">${n?.content||""}</textarea></div>
+    <button class="button primary" id="saveBtn">Mentés</button>
+  `);
+  document.getElementById("saveBtn").addEventListener("click",async()=>{
+    const obj = {id:n?.id||crypto.randomUUID(), title:val("title"), image:val("image")||null, content:val("content"), date:val("date")||new Date().toISOString().slice(0,10)};
+    const list = [...(appState.news||[])]; const idx = list.findIndex(x=>x.id===obj.id); if(idx>=0) list[idx]=obj; else list.push(obj);
+    appState.news = list; await putBin(BINS.news, appState.news); closeModal(); renderNews(); showToast("Hír mentve");
+  });
+}
+function delNews(id){
+  appState.news = (appState.news||[]).filter(x=>x.id!==id);
+  putBin(BINS.news, appState.news).then(()=>{renderNews();showToast("Hír törölve")});
 }
 
-document.getElementById('exportCSV').onclick=()=>{
-  const rows=[['Dátum','Idő','Típus','Név','E-mail','Telefon','Megjegyzés']]
-  const types=state.calendar.trainingTypes||[]
-  const typeName=id=> types.find(t=>t.id===id)?.name || ''
-  state.reservations.forEach(r=>{
-    rows.push([r.date,r.time,typeName(r.trainingTypeId),r.name,r.email,r.phone||'',r.note||''])
-  })
-  const csv=rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n')
-  const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'})
-  const url=URL.createObjectURL(blob)
-  const a=document.createElement('a')
-  a.href=url;a.download='foglalasok.csv';a.click()
-  URL.revokeObjectURL(url)
+function renderAnnouncements(){
+  const tb = document.querySelector("#annTable tbody"); tb.innerHTML="";
+  appState.announcements.forEach(a=>{
+    const tr=document.createElement("tr");
+    tr.innerHTML=`
+      <td>${a.title}</td>
+      <td>${a.type||"info"}</td>
+      <td>${a.expiresAt||"—"}</td>
+      <td>${a.active!==false?"Igen":"Nem"}</td>
+      <td>${a.content}</td>
+      <td><div class="row">
+        <button class="button" data-act="edit">Szerkeszt</button>
+        <button class="button" data-act="del">Törlés</button>
+      </div></td>
+    `;
+    tr.querySelector('[data-act="edit"]').addEventListener("click",()=>editAnn(a));
+    tr.querySelector('[data-act="del"]').addEventListener("click",()=>delAnn(a.id));
+    tb.appendChild(tr);
+  });
+}
+function editAnn(a){
+  openModal("Kiemelés", `
+    <div class="input"><label>Cím</label><input id="title" value="${a?.title||""}"></div>
+    <div class="input"><label>Típus</label>
+      <select id="type">
+        <option value="info"${(a?.type||"info")==="info"?" selected":""}>Info</option>
+        <option value="success"${a?.type==="success"?" selected":""}>Success</option>
+        <option value="danger"${a?.type==="danger"?" selected":""}>Danger</option>
+      </select>
+    </div>
+    <div class="input"><label>Lejárat (opcionális)</label><input id="expiresAt" type="date" value="${a?.expiresAt||""}"></div>
+    <div class="input"><label>Aktív</label>
+      <select id="active"><option value="true"${a?.active!==false?" selected":""}>Igen</option><option value="false"${a?.active===false?" selected":""}>Nem</option></select>
+    </div>
+    <div class="input"><label>Tartalom</label><textarea id="content">${a?.content||""}</textarea></div>
+    <button class="button primary" id="saveBtn">Mentés</button>
+  `);
+  document.getElementById("saveBtn").addEventListener("click",async()=>{
+    const obj = {id:a?.id||crypto.randomUUID(), title:val("title"), type:val("type"), content:val("content"), expiresAt:val("expiresAt")||null, active:val("active")==="true"};
+    const list=[...(appState.announcements||[])]; const idx=list.findIndex(x=>x.id===obj.id); if(idx>=0) list[idx]=obj; else list.push(obj);
+    appState.announcements=list; await putBin(BINS.announcements,appState.announcements); closeModal(); renderAnnouncements(); showToast("Kiemelés mentve");
+  });
+}
+function delAnn(id){
+  appState.announcements = (appState.announcements||[]).filter(x=>x.id!==id);
+  putBin(BINS.announcements, appState.announcements).then(()=>{renderAnnouncements();showToast("Kiemelés törölve")});
 }
 
-document.getElementById('reloadBtn').onclick=()=>loadAll()
-loadAll().catch(()=>{})
+function openModal(title,html){document.getElementById("modalTitle").textContent=title; const b=document.getElementById("modalBody"); b.innerHTML=html; document.getElementById("modal").classList.add("active")}
+function closeModal(){document.getElementById("modal").classList.remove("active"); document.getElementById("modalBody").innerHTML=""}
+document.getElementById("closeModal").addEventListener("click",closeModal);
+["addTypeBtn","addTypeBtn2"].forEach(id=>document.getElementById(id).addEventListener("click",()=>editType(null)));
+["addRecurringBtn","addRecurringBtn2"].forEach(id=>document.getElementById(id).addEventListener("click",()=>editRecurring(null)));
+["addNewsBtn","addNewsBtn2"].forEach(id=>document.getElementById(id).addEventListener("click",()=>editNews(null)));
+["addAnnBtn","addAnnBtn2"].forEach(id=>document.getElementById(id).addEventListener("click",()=>editAnn(null)));
+
+function val(id){return document.getElementById(id).value.trim()}
+function num(id){const v=val(id); return v===""?null:Number(v)}
+
+document.getElementById("loginBtn").addEventListener("click",async()=>{
+  const p = document.getElementById("pass").value;
+  try{
+    const ok = await bcryptCompare(p, MASTER_HASH);
+    if(ok){appState.authed=true; document.getElementById("authWrap").style.display="none"; document.getElementById("app").style.display="block"; await loadAll(); showToast("Bejelentkezve")}
+    else showToast("Helytelen jelszó");
+  }catch(e){showToast("Hitelesítési hiba")}
+});
+document.getElementById("logoutBtn").addEventListener("click",()=>{location.reload()});
+
 </script>
 </body>
 </html>
