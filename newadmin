@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="hu" data-bs-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NUTU Team – Admin</title>
+https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css
+https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css
+https://fonts.googleapis.comhttps://fonts.gstatic.com
+https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap
+<style>
+:root{--bg:#0b0f14;--card:#141a24;--accent:#e11d2e}
+html,body{background:linear-gradient(180deg,var(--bg) 0%,#0d1117 100%);color:#e9eef5;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+.navbar{background:rgba(10,13,18,.8);backdrop-filter:saturate(140%) blur(8px)}
+.card{background:linear-gradient(180deg,var(--card),#0f141d);border:1px solid rgba(255,255,255,.06)}
+.btn-accent{background:var(--accent);border-color:var(--accent)}
+.btn-accent:hover{filter:brightness(1.1)}
+.badge-cap{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15)}
+input[type=color]{height:38px;padding:0}
+.table> :not(caption)>*>*{background:transparent;border-color:rgba(255,255,255,.08)}
+.form-hint{font-size:.85rem;color:#9aa4b2}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">NUTU Team • Admin</a>
+    <div class="ms-auto d-flex align-items-center gap-2">
+      <input id="masterKey" type="password" class="form-control" placeholder="JSONBin Master Key">
+      <button id="saveKey" class="btn btn-outline-light">Mentés</button>
+      <a href="index.html" class="btn btn-accent">Nyilvános oldal</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container py-4">
+  <ul class="nav nav-pills mb-3" id="tabs" role="tablist">
+    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-overview" type="button">Áttekintés</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-trainings" type="button">Edzéstípusok</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-recurring" type="button">Heti ütemterv</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-reservations" type="button">Foglalások</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-news" type="button">Hírek</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-ann" type="button">Bejelentések</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-settings" type="button">Beállítások</button></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="tab-overview">
+      <div class="row g-3">
+        <div class="col-lg-4">
+          <div class="card p-3 h-100">
+            <div class="fw-bold mb-2">Szinkron állapota</div>
+            <div id="syncStatus" class="text-secondary">Betöltés...</div>
+            <div class="mt-3 d-grid gap-2">
+              <button id="btnReload" class="btn btn-outline-light">Újratöltés</button>
+            </div>
+            <div class="mt-3 small">Binek</div>
+            <div class="small text-secondary">Announcements: <span class="badge text-bg-dark" id="idAnn"></span></div>
+            <div class="small text-secondary">Reservations: <span class="badge text-bg-dark" id="idRes"></span></div>
+            <div class="small text-secondary">News: <span class="badge text-bg-dark" id="idNews"></span></div>
+            <div class="small text-secondary">Calendar: <span class="badge text-bg-dark" id="idCal"></span></div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="card p-3">
+            <div class="fw-bold mb-2">Gyors műveletek</div>
+            <div class="d-flex flex-wrap gap-2">
+              <button id="btnDefaultSchedule" class="btn btn-outline-light">Alapértelmezett heti ütemterv beállítása</button>
+              <button id="btnClearAnnouncements" class="btn btn-outline-danger">Lejárt bejelentések archiválása</button>
+              <button id="btnExport" class="btn btn-outline-light">Exportálás JSON-ba</button>
+              <label class="btn btn-outline-light mb-0"><input type="file" id="importFile" accept=".json" hidden> Importálás</label>
+            </div>
+            <div class="form-hint mt-2">Az ütemterv gomb a megadott fix időpontokkal tölti fel a recurring listát. Minden művelet mentést igényel.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="tab-trainings">
+      <div class="card p-3">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="fw-bold">Edzéstípusok</div>
+          <button id="btnAddTraining" class="btn btn-accent">Új típus</button>
+        </div>
+        <div class="table-responsive mt-3">
+          <table class="table align-middle">
+            <thead><tr><th>Név</th><th>Szint</th><th>Leírás</th><th>Helyszín</th><th>Szín</th><th>Kapacitás</th><th>Időtartam</th><th></th></tr></thead>
+            <tbody id="trainingTable"></tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button id="saveTrainings" class="btn btn-outline-light">Mentés</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="tab-recurring">
+      <div class="card p-3">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="fw-bold">Heti visszatérő időpontok</div>
+          <button id="btnAddRecurring" class="btn btn-accent">Új időpont</button>
+        </div>
+        <div class="table-responsive mt-3">
+          <table class="table align-middle">
+            <thead><tr><th>Edzéstípus</th><th>Nap</th><th>Idő</th><th>Helyszín</th><th>Kapacitás</th><th></th></tr></thead>
+            <tbody id="recurringTable"></tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button id="saveRecurring" class="btn btn-outline-light">Mentés</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="tab-reservations">
+      <div class="card p-3">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="fw-bold">Foglalások</div>
+          <button id="btnAddReservation" class="btn btn-accent">Új foglalás</button>
+        </div>
+        <div class="table-responsive mt-3">
+          <table class="table align-middle">
+            <thead><tr><th>Dátum</th><th>Idő</th><th>Típus</th><th>Név</th><th>E-mail</th><th>Telefon</th><th>Megjegyzés</th><th></th></tr></thead>
+            <tbody id="reservationsTable"></tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button id="saveReservations" class="btn btn-outline-light">Mentés</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="tab-news">
+      <div class="card p-3">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="fw-bold">Hírek</div>
+          <button id="btnAddNews" class="btn btn-accent">Új hír</button>
+        </div>
+        <div class="table-responsive mt-3">
+          <table class="table align-middle">
+            <thead><tr><th>Dátum</th><th>Cím</th><th>Kép URL</th><th>Tartalom</th><th></th></tr></thead>
+            <tbody id="newsTable"></tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button id="saveNews" class="btn btn-outline-light">Mentés</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="tab-ann">
+      <div class="card p-3">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="fw-bold">Bejelentések</div>
+          <button id="btnAddAnn" class="btn btn-accent">Új bejelentés</button>
+        </div>
+        <div class="table-responsive mt-3">
+          <table class="table align-middle">
+            <thead><tr><th>Cím</th><th>Tartalom</th><th>Típus</th><th>Aktív</th><th>Lejár</th><th></th></tr></thead>
+            <tbody id="annTable"></tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button id="saveAnn" class="btn btn-outline-light">Mentés</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="tab-settings">
+      <div class="card p-3">
+        <div class="fw-bold mb-2">Alapadatok</div>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Márkanév</label>
+            <input id="st_brand" type="text" class="form-control" placeholder="NUTU Team">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Edző neve és titulus</label>
+            <input id="st_coach" type="text" class="form-control" placeholder="Farkas László NUTU – Kickbox világbajnok és személyi edző">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Cím</label>
+            <input id="st_addr" type="text" class="form-control" placeholder="Jókai Mór utca 8., Mosonmagyaróvár, Hungary">
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Telefon</label>
+            <input id="st_phone" type="text" class="form-control" placeholder="+36 70 949 3977">
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">E-mail</label>
+            <input id="st_email" type="email" class="form-control" placeholder="nutu.fighter@gmail.com">
+          </div>
+        </div>
+        <div class="d-flex justify-content-end mt-3">
+          <button id="saveSettings" class="btn btn-outline-light">Mentés</button>
+        </div>
+        <div class="form-hint mt-2">A beállítások a Calendar binben a site kulcs alá kerülnek.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index:1080">
+  <div id="toast" class="toast align-items-center text-bg-dark border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body" id="toastBody">Művelet kész</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>
+
+https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js
+<script>
+const BINS={announcements:"68b5536243b1c97be932d1ed",reservations:"68b5535343b1c97be932d1e1",news:"68b5531fd0ea881f406dbd52",calendar:"68b55123d0ea881f406dbb52"}
+let MASTER_KEY="$2a$10$9sO/ja29sMebpWNvsWmp5.dJ6lv7CPeLBMRFaA/cAEwz42ii6qlCS"
+const state={trainingTypes:[],recurring:[],reservations:[],news:[],announcements:[],site:null}
+const weekdays=["Hétfő","Kedd","Szerda","Csütörtök","Péntek","Szombat","Vasárnap"]
+const toast=new bootstrap.Toast(document.getElementById("toast"))
+function t(msg){document.getElementById("toastBody").textContent=msg;toast.show()}
+function uuid(){if('randomUUID'in crypto){return crypto.randomUUID()}const a=()=>Math.floor((1+Math.random())*0x10000).toString(16).substring(1);return a()+a()+"-"+a()+"-"+a()+"-"+a()+"-"+a()+a()+a()}
+function fetchBin(id){return fetch("https://api.jsonbin.io/v3/b/"+id+"/latest").then(r=>r.json()).then(j=>j.record||j)}
+function putBin(id,data){const key=localStorage.getItem("jsonbin_master_key")||MASTER_KEY;return fetch("https://api.jsonbin.io/v3/b/"+id,{method:"PUT",headers:{"Content-Type":"application/json","X-Master-Key":key},body:JSON.stringify(data)}).then(r=>{if(!r.ok)throw new Error("Hiba: "+r.status);return r.json()})}
+function loadAll(){return Promise.all([fetchBin(BINS.calendar).then(d=>{state.trainingTypes=d.trainingTypes||[];state.recurring=d.recurring||[];state.site=d.site||null}),fetchBin(BINS.reservations).then(d=>{state.reservations=Array.isArray(d)?d:(d||[])}).catch(()=>state.reservations=[]),fetchBin(BINS.news).then(d=>{state.news=Array.isArray(d)?d:(d?.items||[])}).catch(()=>state.news=[]),fetchBin(BINS.announcements).then(d=>{state.announcements=Array.isArray(d)?d:(d?.items||[])}).catch(()=>state.announcements=[])])}
+function syncStatus(ok,msg){const el=document.getElementById("syncStatus");el.innerHTML=ok?("<span class='text-success'><i class='bi bi-check2-circle'></i> "+msg+"</span>"):("<span class='text-danger'><i class='bi bi-x-circle'></i> "+msg+"</span>")}
+function renderIds(){document.getElementById("idAnn").textContent=BINS.announcements;document.getElementById("idRes").textContent=BINS.reservations;document.getElementById("idNews").textContent=BINS.news;document.getElementById("idCal").textContent=BINS.calendar}
+function trainingRow(t){const tr=document.createElement("tr");tr.dataset.id=t.id;tr.innerHTML="<td><input class='form-control' value='"+(t.name||"")+"' data-k='name'></td><td><input class='form-control' value='"+(t.level||"")+"' data-k='level'></td><td><input class='form-control' value='"+(t.description||"")+"' data-k='description'></td><td><input class='form-control' value='"+(t.location||"")+"' data-k='location'></td><td><input type='color' class='form-control form-control-color' value='"+(t.color||"#e11d2e")+"' data-k='color'></td><td><input type='number' min='0' class='form-control' value='"+(t.capacity??"")+"' data-k='capacity' placeholder='pl. 12'></td><td><input type='number' min='0' class='form-control' value='"+(t.duration??60)+"' data-k='duration'></td><td class='text-end'><button class='btn btn-outline-danger btn-sm' data-act='del'><i class='bi bi-trash'></i></button></td>";return tr}
+function renderTrainings(){const tb=document.getElementById("trainingTable");tb.innerHTML="";for(const t of state.trainingTypes){tb.appendChild(trainingRow(t))}}
+function collectTrainings(){const trs=[...document.querySelectorAll("#trainingTable tr")];const out=[];for(const tr of trs){const id=tr.dataset.id||uuid();const obj={id};[...tr.querySelectorAll("input")].forEach(inp=>{const k=inp.dataset.k;const v=inp.type==="number"?(inp.value===""?null:Number(inp.value)):inp.value;obj[k]=v});out.push(obj)}return out}
+function recurringRow(r){const tr=document.createElement("tr");tr.dataset.id=r.id;const opts=state.trainingTypes.map(t=>"<option value='"+t.id+"' "+(t.id===r.trainingTypeId?"selected":"")+">"+t.name+"</option>").join("");const days=weekdays.map((d,i)=>"<option value='"+i+"' "+(i===r.weekday?"selected":"")+">"+d+"</option>").join("");tr.innerHTML="<td><select class='form-select' data-k='trainingTypeId'>"+opts+"</select></td><td><select class='form-select' data-k='weekday'>"+days+"</select></td><td><input type='time' class='form-control' value='"+(r.time||"18:00")+"' data-k='time'></td><td><input class='form-control' value='"+(r.location||"")+"' data-k='location' placeholder='felülírás (opcionális)'></td><td><input type='number' min='0' class='form-control' value='"+(r.capacity??"")+"' data-k='capacity' placeholder='üres=alap'></td><td class='text-end'><button class='btn btn-outline-danger btn-sm' data-act='del'><i class='bi bi-trash'></i></button></td>";return tr}
+function renderRecurring(){const tb=document.getElementById("recurringTable");tb.innerHTML="";for(const r of state.recurring){tb.appendChild(recurringRow(r))}}
+function collectRecurring(){const trs=[...document.querySelectorAll("#recurringTable tr")];const out=[];for(const tr of trs){const id=tr.dataset.id||uuid();const obj={id};[...tr.querySelectorAll("input,select")].forEach(inp=>{const k=inp.dataset.k;let v=inp.value;if(k==="weekday")v=Number(v);if(k==="capacity")v=inp.value===""?null:Number(v);obj[k]=v});out.push(obj)}return out}
+function reservationsRow(r){const tt=state.trainingTypes.find(t=>t.id===r.trainingTypeId);const tr=document.createElement("tr");tr.dataset.id=r.id;tr.innerHTML="<td><input type='date' class='form-control' value='"+r.date+"' data-k='date'></td><td><input type='time' class='form-control' value='"+r.time+"' data-k='time'></td><td><select class='form-select' data-k='trainingTypeId'>"+state.trainingTypes.map(t=>"<option value='"+t.id+"' "+(t.id===r.trainingTypeId?"selected":"")+">"+t.name+"</option>").join("")+"</select></td><td><input class='form-control' value='"+(r.name||"")+"' data-k='name'></td><td><input type='email' class='form-control' value='"+(r.email||"")+"' data-k='email'></td><td><input class='form-control' value='"+(r.phone||"")+"' data-k='phone'></td><td><input class='form-control' value='"+(r.note||"")+"' data-k='note'></td><td class='text-end'><button class='btn btn-outline-danger btn-sm' data-act='del'><i class='bi bi-trash'></i></button></td>";return tr}
+function renderReservations(){const tb=document.getElementById("reservationsTable");tb.innerHTML="";const items=[...state.reservations].sort((a,b)=>{const A=a.date+"T"+a.time,B=b.date+"T"+b.time;return A.localeCompare(B)});for(const r of items){tb.appendChild(reservationsRow(r))}}
+function collectReservations(){const trs=[...document.querySelectorAll("#reservationsTable tr")];const out=[];for(const tr of trs){const id=tr.dataset.id||uuid();const obj={id,createdAt:new Date().toISOString()};[...tr.querySelectorAll("input,select")].forEach(inp=>{const k=inp.dataset.k;obj[k]=inp.value});out.push(obj)}return out}
+function newsRow(n){const tr=document.createElement("tr");tr.dataset.id=n.id;tr.innerHTML="<td><input type='date' class='form-control' value='"+(n.date||new Date().toISOString().slice(0,10))+"' data-k='date'></td><td><input class='form-control' value='"+(n.title||"")+"' data-k='title'></td><td><input class='form-control' value='"+(n.image||"")+"' data-k='image' placeholder='https://...'></td><td><input class='form-control' value='"+(n.content||"")+"' data-k='content'></td><td class='text-end'><button class='btn btn-outline-danger btn-sm' data-act='del'><i class='bi bi-trash'></i></button></td>";return tr}
+function renderNews(){const tb=document.getElementById("newsTable");tb.innerHTML="";const items=[...state.news].sort((a,b)=>new Date(b.date)-new Date(a.date));for(const n of items){tb.appendChild(newsRow(n))}}
+function collectNews(){const trs=[...document.querySelectorAll("#newsTable tr")];const out=[];for(const tr of trs){const id=tr.dataset.id||uuid();const obj={id};[...tr.querySelectorAll("input")].forEach(inp=>{const k=inp.dataset.k;obj[k]=inp.value});out.push(obj)}return out}
+function annRow(a){const tr=document.createElement("tr");tr.dataset.id=a.id;tr.innerHTML="<td><input class='form-control' value='"+(a.title||"")+"' data-k='title'></td><td><input class='form-control' value='"+(a.content||"")+"' data-k='content'></td><td><select class='form-select' data-k='type'><option value='info' "+((a.type||"info")==="info"?"selected":"")+">Info</option><option value='success' "+(a.type==="success"?"selected":"")+">Success</option><option value='warning' "+(a.type==="warning"?"selected":"")+">Warning</option><option value='danger' "+(a.type==="danger"?"selected":"")+">Danger</option></select></td><td class='text-center'><input type='checkbox' "+(a.active!==false?"checked":"")+" data-k='active'></td><td><input type='date' class='form-control' value='"+(a.expiresAt||"")+"' data-k='expiresAt'></td><td class='text-end'><button class='btn btn-outline-danger btn-sm' data-act='del'><i class='bi bi-trash'></i></button></td>";return tr}
+function renderAnn(){const tb=document.getElementById("annTable");tb.innerHTML="";const items=[...state.announcements].sort((a,b)=>(a.active===false)-(b.active===false)||String(a.expiresAt||"").localeCompare(String(b.expiresAt||"")));for(const a of items){tb.appendChild(annRow(a))}}
+function collectAnn(){const trs=[...document.querySelectorAll("#annTable tr")];const out=[];for(const tr of trs){const id=tr.dataset.id||uuid();const obj={id};[...tr.querySelectorAll("input,select")].forEach(inp=>{const k=inp.dataset.k;let v=inp.type==="checkbox"?inp.checked:inp.value;if(k==="active")v=!!v;obj[k]=v});out.push(obj)}return out}
+function bindDeletes(){document.body.addEventListener("click",e=>{const btn=e.target.closest("button[data-act='del']");if(!btn)return;const tr=btn.closest("tr");tr.remove()})}
+function saveTrainings(){const data=collectTrainings();return fetchBin(BINS.calendar).then(d=>{d.trainingTypes=data;return putBin(BINS.calendar,d)}).then(()=>{state.trainingTypes=data;t("Edzéstípusok mentve")}).catch(()=>t("Mentési hiba"))}
+function saveRecurring(){const data=collectRecurring();return fetchBin(BINS.calendar).then(d=>{d.recurring=data;return putBin(BINS.calendar,d)}).then(()=>{state.recurring=data;t("Ütemterv mentve")}).catch(()=>t("Mentési hiba"))}
+function saveReservations(){const data=collectReservations();return putBin(BINS.reservations,data).then(()=>{state.reservations=data;t("Foglalások mentve")}).catch(()=>t("Mentési hiba"))}
+function saveNews(){const data=collectNews();return putBin(BINS.news,data).then(()=>{state.news=data;t("Hírek mentve")}).catch(()=>t("Mentési hiba"))}
+function saveAnn(){const data=collectAnn();return putBin(BINS.announcements,data).then(()=>{state.announcements=data;t("Bejelentések mentve")}).catch(()=>t("Mentési hiba"))}
+function defaultSchedule(){if(!state.trainingTypes.length){t("Előbb vegyél fel edzéstípusokat");return}const byName=(name)=>{const f=state.trainingTypes.find(x=>x.name.toLowerCase().includes(name));return f?f.id:state.trainingTypes[0].id};const out=[];const push=(weekday,time,name)=>out.push({id:uuid(),trainingTypeId:byName(name),weekday,time,location:null,capacity:null});[1,3,5].forEach(d=>{push(d,"16:00","kezd");push(d,"17:00","utánp");push(d,"18:00","verseny")});[2,4].forEach(d=>{push(d,"17:00","kiscsoport");push(d,"18:00","női")});state.recurring=out;renderRecurring();t("Alap ütemterv kitöltve, mentsd el")}
+function archiveExpiredAnn(){const today=new Date().toISOString().slice(0,10);state.announcements=state.announcements.map(a=>{if(a.expiresAt&&a.expiresAt<today){return {...a,active:false}}return a});renderAnn();t("Lejárt bejelentések inaktiválva, mentsd el")}
+function exportAll(){const data={calendar:{trainingTypes:state.trainingTypes,recurring:state.recurring,site:state.site},reservations:state.reservations,news:state.news,announcements:state.announcements};const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="nutu_export.json";a.click();URL.revokeObjectURL(url)}
+function importAll(file){const reader=new FileReader();reader.onload=()=>{try{const data=JSON.parse(reader.result);if(data.calendar){state.trainingTypes=data.calendar.trainingTypes||[];state.recurring=data.calendar.recurring||[];state.site=data.calendar.site||null;renderTrainings();renderRecurring()}if(Array.isArray(data.reservations))state.reservations=data.reservations;if(Array.isArray(data.news))state.news=data.news;if(Array.isArray(data.announcements))state.announcements=data.announcements;renderReservations();renderNews();renderAnn();t("Import kész, mentsd el a füleken")}catch(e){t("Import hiba")}};reader.readAsText(file)}
+document.getElementById("saveKey").addEventListener("click",()=>{const v=document.getElementById("masterKey").value.trim();if(!v){t("Üres kulcs");return}localStorage.setItem("jsonbin_master_key",v);t("Kulcs mentve")})
+document.getElementById("btnReload").addEventListener("click",init)
+document.getElementById("btnDefaultSchedule").addEventListener("click",defaultSchedule)
+document.getElementById("btnClearAnnouncements").addEventListener("click",archiveExpiredAnn)
+document.getElementById("btnExport").addEventListener("click",exportAll)
+document.getElementById("importFile").addEventListener("change",e=>{if(e.target.files[0])importAll(e.target.files[0])})
+document.getElementById("btnAddTraining").addEventListener("click",()=>{state.trainingTypes.push({id:uuid(),name:"Új típus",level:"",description:"",location:"Moson",color:"#e11d2e",capacity:12,duration:60});renderTrainings()})
+document.getElementById("btnAddRecurring").addEventListener("click",()=>{const tt=state.trainingTypes[0];state.recurring.push({id:uuid(),trainingTypeId:tt?tt.id:"",weekday:1,time:"18:00",location:null,capacity:null});renderRecurring()})
+document.getElementById("btnAddReservation").addEventListener("click",()=>{const tt=state.trainingTypes[0];const today=new Date().toISOString().slice(0,10);state.reservations.push({id:uuid(),trainingTypeId:tt?tt.id:"",date:today,time:"18:00",name:"",email:"",phone:"",note:"",createdAt:new Date().toISOString()});renderReservations()})
+document.getElementById("btnAddNews").addEventListener("click",()=>{const d=new Date().toISOString().slice(0,10);state.news.push({id:uuid(),title:"Új hír",image:"",content:"",date:d});renderNews()})
+document.getElementById("btnAddAnn").addEventListener("click",()=>{const d=new Date().toISOString().slice(0,10);state.announcements.push({id:uuid(),title:"Figyelem!",content:"",type:"info",expiresAt:d,active:true});renderAnn()})
+document.getElementById("saveTrainings").addEventListener("click",saveTrainings)
+document.getElementById("saveRecurring").addEventListener("click",saveRecurring)
+document.getElementById("saveReservations").addEventListener("click",saveReservations)
+document.getElementById("saveNews").addEventListener("click",saveNews)
+document.getElementById("saveAnn").addEventListener("click",saveAnn)
+function renderSettings(){document.getElementById("st_brand").value=state.site?.brand||"NUTU Team";document.getElementById("st_coach").value=state.site?.coach||"Farkas László NUTU – Kickbox világbajnok és személyi edző";document.getElementById("st_addr").value=state.site?.address||"Jókai Mór utca 8., Mosonmagyaróvár, Hungary";document.getElementById("st_phone").value=state.site?.phone||"+36 70 949 3977";document.getElementById("st_email").value=state.site?.email||"nutu.fighter@gmail.com"}
+function saveSettings(){const site={brand:document.getElementById("st_brand").value.trim(),coach:document.getElementById("st_coach").value.trim(),address:document.getElementById("st_addr").value.trim(),phone:document.getElementById("st_phone").value.trim(),email:document.getElementById("st_email").value.trim()};fetchBin(BINS.calendar).then(d=>{d.site=site;return putBin(BINS.calendar,d)}).then(()=>{state.site=site;t("Beállítások mentve")}).catch(()=>t("Mentési hiba"))}
+document.getElementById("saveSettings").addEventListener("click",saveSettings)
+function init(){document.getElementById("masterKey").value=localStorage.getItem("jsonbin_master_key")||"";renderIds();loadAll().then(()=>{renderTrainings();renderRecurring();renderReservations();renderNews();renderAnn();renderSettings();syncStatus(true,"Adatok betöltve")}).catch(()=>syncStatus(false,"Betöltési hiba"))}
+bindDeletes();init()
+</script>
+</body>
+</html>
