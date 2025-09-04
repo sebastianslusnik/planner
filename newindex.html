@@ -3,96 +3,110 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NUTU Team | Időpontfoglalás és hírek</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<title>NUTU Team • Időpontfoglalás, Órarend és Hírek</title>
 <style>
 :root{
-  --bg:#0b0e13;
-  --bg-2:#121725;
-  --panel:#171d2f;
-  --card:#0f1422;
-  --accent:#66f0a9;
-  --accent-2:#ff4d6d;
-  --accent-3:#6da9ff;
-  --text:#edf1ff;
-  --muted:#a6b0c3;
-  --line:#273048;
-  --shadow:0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.02);
+  --bg:#090b12;
+  --bg-soft:#0b0e17;
+  --bg-hero:#0a0d14;
+  --card:#0e1220;
+  --border:#1e2435;
+  --muted:#9aa6bf;
+  --text:#eef2ff;
+  --primary:#5cf0b2;
+  --primary-2:#6aa6ff;
+  --danger:#ff5a79;
+  --warning:#ffb84d;
   --radius:16px;
+  --shadow:0 12px 30px rgba(0,0,0,.5);
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:linear-gradient(180deg,#0a0d14,#0c1020 35%,#0b0e13);color:var(--text);font-family:Outfit,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif}
-a{color:inherit;text-decoration:none}
+html,body{margin:0;background:linear-gradient(180deg,var(--bg),#0b0f1a);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border-radius:14px;background:linear-gradient(135deg,var(--primary),#38cf8f);color:#04120a;border:0;font-weight:800;letter-spacing:.3px;cursor:pointer;box-shadow:0 10px 20px rgba(92,240,178,.22)}
+.button.secondary{background:linear-gradient(135deg,#1a2135,#12192b);color:var(--text);border:1px solid var(--border);box-shadow:none}
+.button.ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);padding:6px 10px;border-radius:999px;font-size:12px}
+.badge.danger{border-color:rgba(255,90,121,.35);color:#ff9db0;background:linear-gradient(180deg,rgba(255,90,121,.15),rgba(255,90,121,.05))}
+.badge.info{border-color:rgba(106,166,255,.35);color:#b7ccff;background:linear-gradient(180deg,rgba(106,166,255,.15),rgba(106,166,255,.06))}
+.badge.success{border-color:rgba(92,240,178,.35);color:#c9ffe9;background:linear-gradient(180deg,rgba(92,240,178,.15),rgba(92,240,178,.06))}
 .container{max-width:1200px;margin:0 auto;padding:0 20px}
-.header{position:sticky;top:0;z-index:50;background:rgba(11,14,19,.62);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06)}
+.header{position:sticky;top:0;z-index:50;background:rgba(10,13,20,.5);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
 .brand{display:flex;align-items:center;gap:12px}
-.logo{width:44px;height:44px;border-radius:12px;background:conic-gradient(from 210deg at 50% 50%,#66f0a9,#6da9ff,#ff4d6d,#66f0a9);position:relative;box-shadow:0 10px 30px rgba(102,240,169,.25)}
-.logo::after{content:"";position:absolute;inset:3px;border-radius:10px;background:radial-gradient(120px 120px at 30% 30%,rgba(255,255,255,.18),transparent 50%),linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.5))}
-.brand h1{font-size:20px;letter-spacing:.6px;margin:0;font-weight:800}
-.brand small{display:block;color:var(--muted);margin-top:-2px;font-weight:400}
-.actions{display:flex;align-items:center;gap:8px}
-.button{appearance:none;border:0;padding:12px 16px;border-radius:14px;background:linear-gradient(180deg,#1b233a,#0e1526);color:var(--text);box-shadow:var(--shadow);cursor:pointer;font-weight:600;letter-spacing:.2px;transition:.2s}
-.button:hover{transform:translateY(-1px);box-shadow:0 14px 34px rgba(0,0,0,.45)}
-.button.accent{background:linear-gradient(180deg,#6af2b4,#47d895);color:#08130e}
-.button.ghost{background:transparent;border:1px solid var(--line)}
+.brand .logo{width:42px;height:42px;border-radius:12px;background:conic-gradient(from 240deg,#5cf0b2,#6aa6ff,#ff5a79,#5cf0b2);position:relative}
+.brand .logo:after{content:"";position:absolute;inset:3px;border-radius:10px;background:radial-gradient(120px 120px at 30% 30%,rgba(255,255,255,.18),transparent 55%)}
+.brand h1{margin:0;font-size:20px;font-weight:900;letter-spacing:.5px}
+.brand small{display:block;color:var(--muted);margin-top:2px}
+.hero{position:relative;background:radial-gradient(1200px 600px at 100% -10%,rgba(104,170,255,.12),transparent 40%),radial-gradient(1200px 600px at 0% 0%,rgba(92,240,178,.08),transparent 40%),var(--bg-hero);border-bottom:1px solid var(--border)}
+.hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;padding:40px 0}
+@media(max-width:960px){.hero-inner{grid-template-columns:1fr}}
+.hero-copy{padding:10px 0}
+.kicker{letter-spacing:.25em;text-transform:uppercase;color:var(--muted);font-size:12px;margin-bottom:12px}
+.hero h2{font-size:44px;line-height:1.08;margin:0 0 10px;font-weight:900;text-transform:uppercase}
+.hero p{color:var(--muted);margin:8px 0 18px}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap}
+.hero-card{background:linear-gradient(180deg,#0c1222,#0b1120);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.ann-strip{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.section{padding:32px 0}
 .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
 @media(max-width:980px){.grid{grid-template-columns:1fr}}
-.hero{padding:24px 0 8px}
-.announce-strip{display:flex;gap:12px;align-items:flex-start;overflow:auto;padding:8px 0 2px}
-.badge{padding:6px 10px;border-radius:10px;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.6px;white-space:nowrap}
-.badge.danger{background:linear-gradient(180deg,rgba(255,77,109,.18),rgba(255,77,109,.06));color:#ff8aa1;border:1px solid rgba(255,77,109,.35)}
-.badge.info{background:linear-gradient(180deg,rgba(109,169,255,.18),rgba(109,169,255,.06));color:#a9c7ff;border:1px solid rgba(109,169,255,.35)}
-.badge.success{background:linear-gradient(180deg,rgba(102,240,169,.18),rgba(102,240,169,.06));color:#b7ffd8;border:1px solid rgba(102,240,169,.35)}
-.panel{background:linear-gradient(180deg,#0c1222,#0c1120);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
-.panel-header{display:flex;align-items:center;justify-content:space-between;padding:18px 18px 10px}
-.panel-title{font-size:18px;font-weight:700}
-.panel-sub{color:var(--muted);font-size:14px}
-.panel-body{padding:16px 18px 20px}
-.card{background:linear-gradient(180deg,#0c1120,#0a0f1d);border:1px solid var(--line);border-radius:14px;padding:14px}
-.row{display:flex;gap:12px;flex-wrap:wrap}
-.kv{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:14px;color:var(--muted)}
-.kv b{color:var(--text)}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{padding:8px 12px;border-radius:12px;border:1px solid var(--line);background:linear-gradient(180deg,#12192b,#0e1526);font-size:13px}
+.panel{background:linear-gradient(180deg,#0c1222,#0a1020);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+.panel .hd{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid var(--border)}
+.panel .bd{padding:16px}
 .legend{display:flex;gap:8px;flex-wrap:wrap}
-.legend .leg{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1px solid var(--line)}
-.leg-dot{width:10px;height:10px;border-radius:50%}
-.calendar{display:grid;gap:10px}
-.calendar-controls{display:flex;justify-content:space-between;align-items:center;padding:8px 0 12px}
-.calendar-controls .cal-btn{padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:linear-gradient(180deg,#12192b,#0e1526);cursor:pointer}
+.legend .tag{display:flex;gap:8px;align-items:center;border:1px solid var(--border);padding:8px 10px;border-radius:12px}
+.legend .dot{width:10px;height:10px;border-radius:50%}
+.info-cards{display:grid;gap:12px}
+.card{background:linear-gradient(180deg,#0b111e,#0a0f1d);border:1px solid var(--border);border-radius:14px;padding:12px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;color:var(--muted)}
+.kv b{color:var(--text)}
+.hr{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);margin:10px 0}
+.news-list{display:grid;gap:10px}
+.news-item{display:grid;grid-template-columns:80px 1fr;gap:12px;align-items:center;border:1px solid var(--border);border-radius:12px;background:linear-gradient(180deg,#0b121f,#0a101d);padding:10px}
+.news-item .thumb{width:80px;height:80px;border-radius:10px;border:1px solid var(--border);background:#11152a;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--muted)}
+.calendar-controls{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
-.day{background:linear-gradient(180deg,#0b1120,#0a0f1e);border:1px solid var(--line);border-radius:12px;min-height:120px;padding:10px;display:flex;flex-direction:column;gap:8px}
-.day.today{outline:2px solid rgba(102,240,169,.45)}
-.day .dhead{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}
-.slot{display:flex;align-items:center;gap:8px;padding:8px;border-radius:10px;border:1px dashed rgba(255,255,255,.08);background:linear-gradient(180deg,#0d1426,#0c1222)}
+@media(max-width:860px){.calendar-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:861px) and (max-width:1100px){.calendar-grid{grid-template-columns:repeat(4,1fr)}}
+.day{background:linear-gradient(180deg,#0b1120,#0a0f1e);border:1px solid var(--border);border-radius:12px;min-height:120px;padding:10px;display:flex;flex-direction:column;gap:8px}
+.day.today{outline:2px solid rgba(92,240,178,.45)}
+.dhead{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}
+.slot{display:flex;gap:8px;align-items:center;border:1px dashed rgba(255,255,255,.1);background:linear-gradient(180deg,#0d1426,#0c1222);padding:8px;border-radius:10px}
 .slot .dot{width:8px;height:8px;border-radius:50%}
-.slot .meta{font-size:12px;color:var(--muted)}
-.slot strong{display:block;font-size:13px}
-.slot .book{margin-left:auto;padding:6px 10px;border-radius:10px;border:1px solid var(--line);background:linear-gradient(180deg,#131a2d,#0f1628);font-size:12px;cursor:pointer}
-.slot.full{opacity:.5;filter:grayscale(.1)}
-.hr{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);margin:12px 0}
-.news-list{display:grid;gap:12px}
-.news-item{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,#0c1120,#0a0f1d);padding:12px}
-.news-item img{width:80px;height:80px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
-.footer{margin-top:24px;padding:24px 0;color:var(--muted);border-top:1px solid var(--line);background:linear-gradient(180deg,#0a0e17,#0a0d14)}
-.contact{display:grid;gap:8px}
-.ann{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);background:linear-gradient(180deg,#141a2b,#0f1526);padding:10px 12px;border-radius:12px}
-.ann .type{font-size:11px;text-transform:uppercase;letter-spacing:.7px;border:1px solid var(--line);padding:4px 8px;border-radius:8px}
+.slot-info{font-size:12px;color:var(--muted)}
+.slot strong{font-size:13px;display:block}
+.slot .book{margin-left:auto;padding:6px 10px;border-radius:10px;border:1px solid var(--border);background:linear-gradient(180deg,#131a2d,#0f1628);font-size:12px;cursor:pointer}
+.slot.full{opacity:.55}
+.schedule-wrap{overflow:auto}
+.schedule-table{width:100%;border-collapse:separate;border-spacing:0 10px}
+.schedule-table thead th{font-size:12px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);padding:10px;text-align:left}
+.schedule-table tbody td{background:linear-gradient(180deg,#0c1222,#0b1120);border:1px solid var(--border);padding:12px;vertical-align:top}
+.schedule-table tbody td:first-child{border-top-left-radius:12px;border-bottom-left-radius:12px}
+.schedule-table tbody td:last-child{border-top-right-radius:12px;border-bottom-right-radius:12px}
+.schedule-time{font-weight:800;color:#b7c3e6}
+.sch-title{font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+.sch-trainer{font-size:12px;color:var(--muted)}
+.footer{border-top:1px solid var(--border);margin-top:28px;background:linear-gradient(180deg,#0a0e18,#090c13)}
+.footer .inner{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;padding:22px 0;color:var(--muted)}
 .modal{position:fixed;inset:0;background:rgba(7,9,13,.6);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
 .modal.active{display:flex}
-.modal .sheet{width:100%;max-width:520px;background:linear-gradient(180deg,#0c1222,#0b1120);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}
-.sheet .hd{padding:16px 16px 8px;display:flex;justify-content:space-between;align-items:center}
+.sheet{width:100%;max-width:540px;background:linear-gradient(180deg,#0c1222,#0b1120);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow)}
+.sheet .hd{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--border)}
 .sheet .bd{padding:16px}
 .input{display:grid;gap:6px;margin-bottom:12px}
-.input label{font-size:13px;color:var(--muted)}
-.input input,.input select,.input textarea{width:100%;padding:12px 12px;border-radius:12px;border:1px solid var(--line);background:linear-gradient(180deg,#0f1628,#0d1426);color:var(--text);outline:none}
-.input textarea{min-height:88px;resize:vertical}
+.input label{font-size:12px;color:var(--muted)}
+.input input,.input select,.input textarea{padding:12px;border-radius:12px;border:1px solid var(--border);background:linear-gradient(180deg,#0f1628,#0e1526);color:var(--text);outline:none}
+.input textarea{min-height:92px;resize:vertical}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media(max-width:520px){.two{grid-template-columns:1fr}}
-.toast{position:fixed;right:16px;bottom:16px;background:linear-gradient(180deg,#0f172a,#0b1224);border:1px solid var(--line);color:var(--text);padding:12px 14px;border-radius:12px;box-shadow:var(--shadow);display:none;z-index:200}
+@media(max-width:540px){.two{grid-template-columns:1fr}}
+.toast{position:fixed;right:16px;bottom:16px;background:linear-gradient(180deg,#0f172a,#0b1224);border:1px solid var(--border);padding:12px 14px;border-radius:12px;display:none;z-index:120}
 .toast.show{display:block}
+.hero-visual{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(180deg,#0b0f1b,#0a0e18)}
+.hero-visual .banner{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,.35);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.08);padding:10px;border-radius:12px}
+.hero-visual .img{aspect-ratio:16/9;background:radial-gradient(120% 100% at 80% 10%,rgba(106,166,255,.22),transparent 50%),radial-gradient(90% 90% at 10% 20%,rgba(92,240,178,.25),transparent 55%),#0b0f18}
+.link{color:#cfe0ff;text-decoration:underline dotted 1px}
 </style>
 </head>
 <body>
@@ -105,92 +119,119 @@ a{color:inherit;text-decoration:none}
         <small>Farkas László NUTU – Kickbox világbajnok és személyi edző</small>
       </div>
     </div>
-    <div class="actions">
-      <a class="button ghost" href="#calendar">Időpontfoglalás</a>
-      <a class="button accent" href="admin.html">Belépés az Adminba</a>
+    <div class="hero-cta">
+      <a class="button secondary" href="#orarend">Órarend</a>
+      <a class="button" href="#naptar">Foglalás</a>
+      <a class="button ghost" href="admin.html">Admin</a>
     </div>
   </div>
 </header>
 
-<section class="hero container">
-  <div class="announce-strip" id="announceStrip"></div>
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <div class="kicker">Kickbox • Mosonmagyaróvár</div>
+      <h2>Edzésidőpontok és azonnali foglalás</h2>
+      <p>Hétfő–Szerda–Péntek: 16:00 Kezdő, 17:00 Utánpótlás, 18:00 Versenyzők/Felnőttek. Kedd–Csütörtök: 17:00 Kiscsoport (egyeztetve), 18:00 Női csoport.</p>
+      <div class="hero-cta">
+        <a class="button" href="#naptar">Foglalj időpontot</a>
+        <a class="button secondary" href="#hirek">Hírek</a>
+      </div>
+      <div class="ann-strip" id="announceStrip"></div>
+    </div>
+    <div class="hero-visual">
+      <div class="img"></div>
+      <div class="banner">
+        <div style="font-weight:800;margin-bottom:4px">NUTU Team • Központ</div>
+        <div class="kv" style="grid-template-columns:auto 1fr">
+          <b>Cím</b><span>Jókai Mór utca 8., Mosonmagyaróvár</span>
+          <b>Telefon</b><span><a class="link" href="tel:+36709493977">+36 70 949 3977</a></span>
+          <b>Email</b><span><a class="link" href="mailto:nutu.fighter@gmail.com">nutu.fighter@gmail.com</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<main class="container grid" id="calendar">
-  <section class="panel">
-    <div class="panel-header">
-      <div>
-        <div class="panel-title">Edzés naptár és foglalás</div>
-        <div class="panel-sub">Válassz időpontot és foglalj azonnal</div>
+<main class="container section">
+  <div class="grid">
+    <section class="panel" id="naptar">
+      <div class="hd">
+        <div>
+          <div style="font-weight:900;text-transform:uppercase;letter-spacing:.12em">Heti naptár • Foglalás</div>
+          <div style="color:var(--muted);font-size:13px">Válassz időpontot és foglalj azonnal</div>
+        </div>
+        <div class="legend" id="legend"></div>
       </div>
-      <div class="legend" id="legend"></div>
-    </div>
-    <div class="panel-body">
-      <div class="calendar">
+      <div class="bd">
         <div class="calendar-controls">
-          <button class="cal-btn" id="prevBtn">Előző hét</button>
-          <div style="font-weight:700" id="calRange"></div>
-          <button class="cal-btn" id="nextBtn">Következő hét</button>
+          <button class="button secondary" id="prevBtn">Előző hét</button>
+          <div id="calRange" style="font-weight:900;letter-spacing:.04em"></div>
+          <button class="button secondary" id="nextBtn">Következő hét</button>
         </div>
         <div class="calendar-grid" id="calGrid"></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <aside class="panel">
-    <div class="panel-header">
-      <div class="panel-title">Információk</div>
-      <div class="panel-sub">Edzések, helyszín, kapcsolat</div>
-    </div>
-    <div class="panel-body">
-      <div class="card">
-        <div class="row">
-          <div class="kv">
-            <b>Helyszín</b><span>Jókai Mór utca 8., Mosonmagyaróvár</span>
-            <b>Telefon</b><span><a href="tel:+36709493977">+36 70 949 3977</a></span>
-            <b>Email</b><span><a href="mailto:nutu.fighter@gmail.com">nutu.fighter@gmail.com</a></span>
+    <aside class="panel" id="hirek">
+      <div class="hd">
+        <div style="font-weight:900;text-transform:uppercase;letter-spacing:.12em">Információk és hírek</div>
+      </div>
+      <div class="bd">
+        <div class="info-cards">
+          <div class="card">
+            <div style="font-weight:800;margin-bottom:8px">Kapcsolat és helyszín</div>
+            <div class="kv">
+              <b>Cím</b><span>Jókai Mór utca 8., Mosonmagyaróvár</span>
+              <b>Telefon</b><span><a class="link" href="tel:+36709493977">+36 70 949 3977</a></span>
+              <b>Email</b><span><a class="link" href="mailto:nutu.fighter@gmail.com">nutu.fighter@gmail.com</a></span>
+            </div>
+            <div class="hr"></div>
+            <div style="font-weight:800;margin-bottom:6px">Típusok</div>
+            <div id="typeChips" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+          </div>
+          <div class="card" id="orarend">
+            <div style="font-weight:900;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">Órarend (Fitfye stílus)</div>
+            <div class="schedule-wrap">
+              <table class="schedule-table">
+                <thead>
+                  <tr>
+                    <th>Idő</th>
+                    <th>Hétfő</th>
+                    <th>Kedd</th>
+                    <th>Szerda</th>
+                    <th>Csütörtök</th>
+                    <th>Péntek</th>
+                    <th>Szombat</th>
+                    <th>Vasárnap</th>
+                  </tr>
+                </thead>
+                <tbody id="scheduleBody"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <div style="font-weight:800;margin-bottom:8px">Hírek</div>
+            <div class="news-list" id="newsList"></div>
           </div>
         </div>
-        <div class="hr"></div>
-        <div>
-          <div style="font-weight:700;margin-bottom:8px">Heti ütemterv</div>
-          <ul style="margin:0;padding-left:18px;color:var(--muted)">
-            <li>Hétfő – Szerda – Péntek: 16:00 Kezdő csoport, 17:00 Utánpótlás, 18:00 Versenyzők/Felnőttek</li>
-            <li>Kedd – Csütörtök: 17:00 Kiscsoport (előre egyeztetve), 18:00 Női csoport</li>
-          </ul>
-        </div>
-        <div class="hr"></div>
-        <div>
-          <div style="font-weight:700;margin-bottom:8px">Típusok</div>
-          <div class="chips" id="typeChips"></div>
-        </div>
       </div>
-      <div style="height:12px"></div>
-      <div class="card">
-        <div style="font-weight:700;margin-bottom:8px">Hírek</div>
-        <div class="news-list" id="newsList"></div>
-      </div>
-    </div>
-  </aside>
+    </aside>
+  </div>
 </main>
 
 <footer class="footer">
-  <div class="container">
-    <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center">
-      <div class="contact">
-        <div>NUTU Team • Kickbox</div>
-        <div>Jókai Mór utca 8., Mosonmagyaróvár, Hungary</div>
-        <div><a href="tel:+36709493977">+36 70 949 3977</a> • <a href="mailto:nutu.fighter@gmail.com">nutu.fighter@gmail.com</a></div>
-      </div>
-      <div>&copy; <span id="year"></span> NUTU Team. Minden jog fenntartva.</div>
-    </div>
+  <div class="container inner">
+    <div>NUTU Team • Kickbox • Mosonmagyaróvár</div>
+    <div>&copy; <span id="year"></span> Minden jog fenntartva</div>
+    <div><a class="link" href="admin.html">Admin</a></div>
   </div>
 </footer>
 
 <div class="modal" id="bookModal">
   <div class="sheet">
     <div class="hd">
-      <div style="font-weight:800">Foglalás</div>
+      <div style="font-weight:900">Foglalás</div>
       <button class="button ghost" id="closeModal">Bezár</button>
     </div>
     <div class="bd">
@@ -213,7 +254,7 @@ a{color:inherit;text-decoration:none}
         <label>Megjegyzés</label>
         <textarea id="inpNote" placeholder="Kérdés, extra információ"></textarea>
       </div>
-      <button class="button accent" id="confirmBooking">Foglalás megerősítése</button>
+      <button class="button" id="confirmBooking">Foglalás megerősítése</button>
     </div>
   </div>
 </div>
@@ -228,6 +269,7 @@ const BINS = {
   news: "68b5531fd0ea881f406dbd52",
   calendar: "68b55123d0ea881f406dbb52"
 };
+
 const state = {
   calendar: null,
   news: [],
@@ -237,10 +279,7 @@ const state = {
   selected: null
 };
 
-function startOfWeek(d){
-  const nd = new Date(d); const day = (nd.getDay()+6)%7; nd.setDate(nd.getDate()-day); nd.setHours(0,0,0,0); return nd;
-}
-function fmtDate(d){return d.toLocaleDateString("hu-HU",{year:"numeric",month:"2-digit",day:"2-digit"})}
+function startOfWeek(d){const nd=new Date(d);const day=(nd.getDay()+6)%7;nd.setDate(nd.getDate()-day);nd.setHours(0,0,0,0);return nd}
 function fmtShort(d){return d.toLocaleDateString("hu-HU",{month:"2-digit",day:"2-digit"})}
 function ymd(d){return d.toISOString().slice(0,10)}
 function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2600)}
@@ -268,120 +307,92 @@ async function loadAll(){
     state.announcements = anns.filter(a=>a.active!==false).filter(a=>!a.expiresAt||new Date(a.expiresAt)>=new Date());
     state.reservations = res;
     renderLegend();
-    renderChips();
+    renderTypeChips();
     renderAnnouncements();
     renderNews();
     renderCalendar();
-  }catch(e){showToast("Hiba történt az adatok betöltése közben")}
+    renderScheduleTable();
+  }catch(e){showToast("Hiba történt az adatok betöltésekor")}
 }
 
 function renderLegend(){
-  const el = document.getElementById("legend");
-  el.innerHTML = "";
+  const el = document.getElementById("legend"); el.innerHTML="";
   (state.calendar?.trainingTypes||[]).forEach(t=>{
-    const node = document.createElement("div");
-    node.className = "leg";
-    node.innerHTML = `<div class="leg-dot" style="background:${t.color||'#6da9ff'}"></div><div>${t.name} • ${t.level}</div>`;
-    el.appendChild(node);
+    const n=document.createElement("div"); n.className="tag";
+    n.innerHTML=`<span class="dot" style="background:${t.color||'#6aa6ff'}"></span><span>${t.name} • ${t.level}</span>`;
+    el.appendChild(n);
   });
 }
-
-function renderChips(){
-  const el = document.getElementById("typeChips");
-  el.innerHTML = "";
+function renderTypeChips(){
+  const el = document.getElementById("typeChips"); el.innerHTML="";
   (state.calendar?.trainingTypes||[]).forEach(t=>{
-    const d = document.createElement("div");
-    d.className="chip";
-    d.style.borderColor = t.color;
-    d.innerHTML = `${t.name} • ${t.level} • ${t.location||'Helyben'} • Kapacitás: ${t.capacity??'—'} • ${t.duration||60} perc`;
-    el.appendChild(d);
+    const b=document.createElement("div");
+    b.className="badge"; b.style.borderColor=t.color||'var(--border)'; b.style.color=t.color||'var(--text)';
+    b.innerHTML=`${t.name} • ${t.level} • ${t.location||'Helyben'} • Kapacitás: ${t.capacity??'—'} • ${t.duration||60}p`;
+    el.appendChild(b);
   });
 }
-
 function renderAnnouncements(){
-  const bar = document.getElementById("announceStrip");
-  bar.innerHTML = "";
+  const bar=document.getElementById("announceStrip"); bar.innerHTML="";
   state.announcements.forEach(a=>{
-    const b = document.createElement("div");
-    const cls = a.type==="danger"?"danger":a.type==="success"?"success":"info";
-    b.className = "badge "+cls;
-    b.textContent = `${a.title} — ${a.content}`;
+    const cls=a.type==="danger"?"danger":a.type==="success"?"success":"info";
+    const b=document.createElement("div"); b.className=`badge ${cls}`; b.textContent=`${a.title} — ${a.content}`;
     bar.appendChild(b);
   });
 }
-
 function renderNews(){
-  const list = document.getElementById("newsList");
-  list.innerHTML = "";
+  const list=document.getElementById("newsList"); list.innerHTML="";
   if(!state.news?.length){list.innerHTML='<div style="color:var(--muted)">Nincs hír</div>';return}
   state.news.sort((a,b)=>new Date(b.date)-new Date(a.date)).forEach(n=>{
-    const it = document.createElement("div");
-    it.className="news-item";
-    const img = n.image?`<img src="${n.image}" alt="hír">`:"";
-    it.innerHTML = `${img}<div><div style="font-weight:700">${n.title}</div><div style="color:var(--muted);font-size:13px">${fmtDate(new Date(n.date))}</div><div style="margin-top:6px">${n.content}</div></div>`;
-    list.appendChild(it);
+    const row=document.createElement("div"); row.className="news-item";
+    const thumb = n.image?`<img class="thumb" src="${n.image}" alt="hír">`:`<div class="thumb">Hír</div>`;
+    row.innerHTML = `${thumb}<div><div style="font-weight:800">${n.title}</div><div style="color:var(--muted);font-size:12px;margin-top:2px">${n.date}</div><div style="margin-top:6px">${n.content}</div></div>`;
+    list.appendChild(row);
   });
 }
 
-function weekDays(){
-  const arr=[]; for(let i=0;i<7;i++){const d=new Date(state.weekStart); d.setDate(d.getDate()+i); arr.push(d)}; return arr;
-}
-
+function weekDays(){const arr=[]; for(let i=0;i<7;i++){const d=new Date(state.weekStart); d.setDate(d.getDate()+i); arr.push(d)}; return arr}
 function generateSlotsForDate(dateYMD){
-  const day = new Date(dateYMD).getDay(); const weekday = (day+6)%7;
+  const day=new Date(dateYMD).getDay(); const weekday=(day+6)%7;
   const slots=[];
   for(const r of state.calendar.recurring||[]){
     if(r.weekday===weekday){
-      const tt = (state.calendar.trainingTypes||[]).find(t=>t.id===r.trainingTypeId);
+      const tt=(state.calendar.trainingTypes||[]).find(t=>t.id===r.trainingTypeId);
       if(!tt) continue;
       slots.push({
-        trainingType: tt,
-        time: r.time,
-        date: dateYMD,
-        capacity: r.capacity ?? tt.capacity ?? null,
-        location: r.location ?? tt.location ?? "",
-        duration: tt.duration ?? 60,
-        recurringId: r.id
+        trainingType:tt,time:r.time,date:dateYMD,
+        capacity:r.capacity??tt.capacity??null,
+        location:r.location??tt.location??"",duration:tt.duration??60,recurringId:r.id
       });
     }
   }
   return slots;
 }
-
 function reservationsCount(dateYMD,time,trainingTypeId){
   return (state.reservations||[]).filter(r=>r.date===dateYMD && r.time===time && r.trainingTypeId===trainingTypeId).length;
 }
-
 function renderCalendar(){
-  const grid = document.getElementById("calGrid");
-  grid.innerHTML = "";
-  const days = weekDays();
-  const range = `${fmtShort(days[0])} – ${fmtShort(days[6])}`;
-  document.getElementById("calRange").textContent = range;
+  const grid=document.getElementById("calGrid"); grid.innerHTML="";
+  const days=weekDays();
+  document.getElementById("calRange").textContent = `${fmtShort(days[0])} – ${fmtShort(days[6])}`;
   days.forEach(d=>{
-    const wrap = document.createElement("div");
-    wrap.className="day"+(ymd(d)===ymd(new Date())?" today":"");
-    const head = document.createElement("div");
-    head.className="dhead";
-    head.innerHTML = `<div>${d.toLocaleDateString("hu-HU",{weekday:"long"})}</div><div>${fmtShort(d)}</div>`;
+    const wrap=document.createElement("div"); wrap.className="day"+(ymd(d)===ymd(new Date())?" today":"");
+    const head=document.createElement("div"); head.className="dhead";
+    head.innerHTML=`<div>${d.toLocaleDateString("hu-HU",{weekday:"long"})}</div><div>${fmtShort(d)}</div>`;
     wrap.appendChild(head);
-    const slots = generateSlotsForDate(ymd(d));
-    if(!slots.length){
-      const x = document.createElement("div");
-      x.style.color="var(--muted)"; x.style.fontSize="12px"; x.textContent = "Nincs edzés";
-      wrap.appendChild(x);
-    }else{
-      slots.sort((a,b)=>a.time.localeCompare(b.time)).forEach(s=>{
-        const taken = reservationsCount(s.date,s.time,s.trainingType.id);
-        const full = s.capacity!=null && taken>=s.capacity;
-        const slot = document.createElement("div");
-        slot.className="slot"+(full?" full":"");
-        slot.innerHTML = `
-          <div class="dot" style="background:${s.trainingType.color}"></div>
+    const slots=generateSlotsForDate(ymd(d)).sort((a,b)=>a.time.localeCompare(b.time));
+    if(!slots.length){const x=document.createElement("div"); x.style.color="var(--muted)"; x.style.fontSize="12px"; x.textContent="Nincs edzés"; wrap.appendChild(x)}
+    else{
+      slots.forEach(s=>{
+        const taken=reservationsCount(s.date,s.time,s.trainingType.id);
+        const full=s.capacity!=null && taken>=s.capacity;
+        const slot=document.createElement("div"); slot.className="slot"+(full?" full":"");
+        slot.innerHTML=`
+          <div class="dot" style="background:${s.trainingType.color||'#6aa6ff'}"></div>
           <div>
             <strong>${s.time} • ${s.trainingType.name}</strong>
-            <div class="meta">${s.trainingType.level} • ${s.location} • ${s.duration} perc</div>
-            <div class="meta">${s.capacity!=null?`Férőhely: ${taken}/${s.capacity}`:'Férőhely: korlátozás nélkül'}</div>
+            <div class="slot-info">${s.trainingType.level} • ${s.location} • ${s.duration} perc</div>
+            <div class="slot-info">${s.capacity!=null?`Férőhely: ${taken}/${s.capacity}`:'Férőhely: korlátlan'}</div>
           </div>
           <button class="book"${full?' disabled':''}>${full?'Betelt':'Foglalok'}</button>
         `;
@@ -394,47 +405,58 @@ function renderCalendar(){
 }
 
 function openBooking(slot){
-  state.selected = slot;
-  document.getElementById("bookMeta").textContent = `${slot.date} • ${slot.time} • ${slot.trainingType.name} (${slot.trainingType.level})`;
+  state.selected=slot;
+  document.getElementById("bookMeta").textContent=`${slot.date} • ${slot.time} • ${slot.trainingType.name} (${slot.trainingType.level})`;
   document.getElementById("bookModal").classList.add("active");
 }
 function closeBooking(){
   document.getElementById("bookModal").classList.remove("active");
-  state.selected=null;
-  ["inpName","inpEmail","inpPhone","inpNote"].forEach(id=>document.getElementById(id).value="");
+  state.selected=null; ["inpName","inpEmail","inpPhone","inpNote"].forEach(id=>document.getElementById(id).value="");
+}
+async function submitBooking(){
+  const name=document.getElementById("inpName").value.trim();
+  const email=document.getElementById("inpEmail").value.trim();
+  const phone=document.getElementById("inpPhone").value.trim();
+  const note=document.getElementById("inpNote").value.trim();
+  if(!state.selected) return;
+  if(!name||!email){showToast("Kérlek add meg a nevet és email címet");return}
+  const latest = await fetchBin(BINS.reservations);
+  const taken = latest.filter(r=>r.date===state.selected.date && r.time===state.selected.time && r.trainingTypeId===state.selected.trainingType.id).length;
+  if(state.selected.capacity!=null && taken>=state.selected.capacity){showToast("Sajnos időközben betelt"); renderCalendar(); closeBooking(); return}
+  const newRes={id:crypto.randomUUID(),trainingTypeId:state.selected.trainingType.id,date:state.selected.date,time:state.selected.time,name,email,phone,note,createdAt:new Date().toISOString()};
+  const merged=[...latest,newRes]; await putBin(BINS.reservations,merged);
+  state.reservations=merged; showToast("Foglalás sikeres!"); closeBooking(); renderCalendar();
 }
 
-async function submitBooking(){
-  const name = document.getElementById("inpName").value.trim();
-  const email = document.getElementById("inpEmail").value.trim();
-  const phone = document.getElementById("inpPhone").value.trim();
-  const note = document.getElementById("inpNote").value.trim();
-  if(!state.selected){return}
-  if(!name || !email){showToast("Kérlek töltsd ki a nevet és email címet");return}
-  const existing = await fetchBin(BINS.reservations);
-  const taken = existing.filter(r=>r.date===state.selected.date && r.time===state.selected.time && r.trainingTypeId===state.selected.trainingType.id).length;
-  if(state.selected.capacity!=null && taken>=state.selected.capacity){showToast("Sajnos időközben betelt"); renderCalendar(); closeBooking(); return}
-  const newRes = {
-    id: crypto.randomUUID(),
-    trainingTypeId: state.selected.trainingType.id,
-    date: state.selected.date,
-    time: state.selected.time,
-    name,email,phone,note,
-    createdAt: new Date().toISOString()
-  };
-  const merged = [...existing,newRes];
-  await putBin(BINS.reservations,merged);
-  state.reservations = merged;
-  showToast("Foglalás sikeres! Találkozunk az edzésen.");
-  closeBooking();
-  renderCalendar();
+function renderScheduleTable(){
+  const tbody=document.getElementById("scheduleBody"); tbody.innerHTML="";
+  const times = ["16:00","17:00","18:00"];
+  const labels = ["Hétfő","Kedd","Szerda","Csütörtök","Péntek","Szombat","Vasárnap"];
+  times.forEach(time=>{
+    const tr=document.createElement("tr");
+    const tdTime=document.createElement("td"); tdTime.innerHTML=`<div class="schedule-time">${time}</div>`; tr.appendChild(tdTime);
+    for(let w=0;w<7;w++){
+      const td=document.createElement("td");
+      const slotsForWeekday = (state.calendar.recurring||[]).filter(r=>r.weekday===w && r.time===time);
+      if(slotsForWeekday.length){
+        const r=slotsForWeekday[0];
+        const tt=(state.calendar.trainingTypes||[]).find(t=>t.id===r.trainingTypeId);
+        const title = tt?tt.name:"Edzés";
+        td.innerHTML=`<div class="sch-title" style="color:${tt?.color||'#6aa6ff'}">${title}</div><div class="sch-trainer">${tt?tt.level:""}</div>`;
+      }else{
+        td.innerHTML=`<div class="sch-trainer" style="opacity:.5">—</div>`;
+      }
+      tr.appendChild(td);
+    }
+    tbody.appendChild(tr);
+  });
 }
 
 document.getElementById("prevBtn").addEventListener("click",()=>{state.weekStart.setDate(state.weekStart.getDate()-7);renderCalendar()});
 document.getElementById("nextBtn").addEventListener("click",()=>{state.weekStart.setDate(state.weekStart.getDate()+7);renderCalendar()});
 document.getElementById("closeModal").addEventListener("click",closeBooking);
 document.getElementById("confirmBooking").addEventListener("click",submitBooking);
-document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("year").textContent=new Date().getFullYear();
 loadAll();
 </script>
 </body>
