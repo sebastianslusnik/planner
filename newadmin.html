@@ -3,49 +3,47 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NUTU Team Admin</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<title>NUTU Team • Admin</title>
 <style>
 :root{
-  --bg:#090c13;--panel:#0f1422;--line:#273048;--text:#eef2ff;--muted:#9aa6bf;
-  --accent:#66f0a9;--accent-2:#ff4d6d;--accent-3:#6da9ff;--radius:16px;
+  --bg:#090b12;--panel:#0c1222;--card:#0e1526;--border:#1e2435;--text:#eef2ff;--muted:#9aa6bf;
+  --primary:#5cf0b2;--accent:#6aa6ff;--danger:#ff5a79;--radius:16px;
 }
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(80% 60% at 50% 0%,#0e1630,#0b0f19 60%,#090c13);color:var(--text);font-family:Outfit,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial}
-.header{position:sticky;top:0;z-index:40;background:rgba(10,13,20,.6);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+body{margin:0;background:linear-gradient(180deg,#090b12,#0b0f1a);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial}
+a{color:inherit;text-decoration:none}
 .container{max-width:1200px;margin:0 auto;padding:0 20px}
+.header{position:sticky;top:0;z-index:40;background:rgba(10,13,20,.5);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
 .nav{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
 .logo{display:flex;gap:12px;align-items:center}
-.logo .mark{width:38px;height:38px;border-radius:12px;background:conic-gradient(#66f0a9,#6da9ff,#ff4d6d,#66f0a9)}
-.button{appearance:none;border:1px solid var(--line);background:linear-gradient(180deg,#12192b,#0d1426);padding:10px 14px;border-radius:12px;color:var(--text);cursor:pointer;font-weight:700}
-.button.primary{background:linear-gradient(180deg,#6af2b4,#47d895);color:#04120a;border:0}
+.logo .mark{width:38px;height:38px;border-radius:12px;background:conic-gradient(#5cf0b2,#6aa6ff,#ff5a79,#5cf0b2)}
+.button{appearance:none;border:1px solid var(--border);background:linear-gradient(180deg,#12192b,#0d1426);padding:10px 14px;border-radius:12px;color:var(--text);cursor:pointer;font-weight:800}
+.button.primary{background:linear-gradient(135deg,var(--primary),#38cf8f);border:0;color:#06130c}
 .grid{display:grid;grid-template-columns:280px 1fr;gap:16px}
 @media(max-width:960px){.grid{grid-template-columns:1fr}}
-.side{background:linear-gradient(180deg,#0c1120,#0b101d);border:1px solid var(--line);border-radius:14px;padding:12px;height:fit-content;position:sticky;top:74px}
-.side .menu{display:grid;gap:8px}
-.side .menu .mi{padding:10px 12px;border-radius:10px;border:1px solid var(--line);cursor:pointer}
-.side .menu .mi.active{border-color:var(--accent);box-shadow:0 0 0 2px rgba(102,240,169,.2) inset}
-.panel{background:linear-gradient(180deg,#0c1222,#0b1120);border:1px solid var(--line);border-radius:16px}
-.panel .hd{display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:1px solid var(--line)}
+.side{background:linear-gradient(180deg,#0c1120,#0b101d);border:1px solid var(--border);border-radius:14px;padding:12px;height:fit-content;position:sticky;top:74px}
+.menu{display:grid;gap:8px}
+.mi{padding:10px 12px;border-radius:10px;border:1px solid var(--border);cursor:pointer}
+.mi.active{border-color:var(--primary);box-shadow:0 0 0 2px rgba(92,240,178,.2) inset}
+.panel{background:linear-gradient(180deg,#0c1222,#0b1120);border:1px solid var(--border);border-radius:16px}
+.panel .hd{display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:1px solid var(--border)}
 .panel .bd{padding:16px}
-.block{border:1px solid var(--line);background:linear-gradient(180deg,#0f1628,#0e1526);border-radius:14px;padding:12px;margin-bottom:12px}
+.block{border:1px solid var(--border);background:linear-gradient(180deg,#0f1628,#0e1526);border-radius:14px;padding:12px;margin-bottom:12px}
 .input{display:grid;gap:6px;margin-bottom:10px}
-.input label{font-size:13px;color:var(--muted)}
-.input input,.input select,.input textarea{padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:linear-gradient(180deg,#12192b,#0f1628);color:var(--text);outline:none}
+.input label{font-size:12px;color:var(--muted)}
+.input input,.input select,.input textarea{padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:linear-gradient(180deg,#12192b,#0f1628);color:var(--text);outline:none}
 .row{display:flex;gap:8px;flex-wrap:wrap}
 .table{width:100%;border-collapse:collapse}
-.table th,.table td{border-bottom:1px solid var(--line);padding:10px;text-align:left;font-size:14px}
-.badge{padding:4px 8px;border-radius:10px;font-size:11px;border:1px solid var(--line)}
+.table th,.table td{border-bottom:1px solid var(--border);padding:10px;text-align:left;font-size:14px;vertical-align:top}
+.badge{padding:4px 8px;border-radius:10px;font-size:11px;border:1px solid var(--border)}
 .kv{display:grid;grid-template-columns:auto 1fr;gap:8px 12px}
 .modal{position:fixed;inset:0;background:rgba(6,8,12,.6);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
 .modal.active{display:flex}
-.sheet{width:100%;max-width:560px;background:linear-gradient(180deg,#0c1222,#0b1120);border:1px solid var(--line);border-radius:16px}
-.sheet .hd{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line)}
+.sheet{width:100%;max-width:560px;background:linear-gradient(180deg,#0c1222,#0b1120);border:1px solid var(--border);border-radius:16px}
+.sheet .hd{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border)}
 .sheet .bd{padding:16px}
-.toast{position:fixed;right:16px;bottom:16px;background:linear-gradient(180deg,#0f172a,#0b1224);border:1px solid var(--line);padding:12px 14px;border-radius:12px;display:none}
+.toast{position:fixed;right:16px;bottom:16px;background:linear-gradient(180deg,#0f172a,#0b1224);border:1px solid var(--border);padding:12px 14px;border-radius:12px;display:none}
 .toast.show{display:block}
-.login{max-width:420px;margin:60px auto;border:1px solid var(--line);background:linear-gradient(180deg,#0c1222,#0b1120);border-radius:16px;padding:18px}
 </style>
 </head>
 <body>
@@ -54,30 +52,17 @@ body{margin:0;background:radial-gradient(80% 60% at 50% 0%,#0e1630,#0b0f19 60%,#
     <div class="logo">
       <div class="mark"></div>
       <div>
-        <div style="font-weight:800">NUTU Team • Admin</div>
-        <small style="color:#9aa6bf">Központi irányítópult</small>
+        <div style="font-weight:900">NUTU Team • Admin</div>
+        <small style="color:var(--muted)">Tartalomkezelés • JSONBin szinkron</small>
       </div>
     </div>
     <div class="row">
       <a class="button" href="index.html">Vissza a webre</a>
-      <button class="button" id="logoutBtn">Kilépés</button>
     </div>
   </div>
 </header>
 
-<div class="container" id="authWrap">
-  <div class="login">
-    <div style="font-weight:800;font-size:20px;margin-bottom:8px">Admin bejelentkezés</div>
-    <div class="input">
-      <label>Mester jelszó</label>
-      <input type="password" id="pass" placeholder="••••••••">
-    </div>
-    <button class="button primary" id="loginBtn">Belépés</button>
-    <div style="margin-top:10px;color:#9aa6bf;font-size:14px">Védelem: kliens oldali hash ellenőrzés</div>
-  </div>
-</div>
-
-<main class="container" id="app" style="display:none">
+<main class="container">
   <div class="grid">
     <aside class="side">
       <div class="menu">
@@ -96,11 +81,11 @@ body{margin:0;background:radial-gradient(80% 60% at 50% 0%,#0e1630,#0b0f19 60%,#
           <div id="tab-dashboard">
             <div class="row">
               <div class="block">
-                <div style="font-weight:700;margin-bottom:6px">Gyors adatok</div>
+                <div style="font-weight:800;margin-bottom:6px">Gyors adatok</div>
                 <div class="kv" id="quickStats"></div>
               </div>
               <div class="block">
-                <div style="font-weight:700;margin-bottom:6px">Akciók</div>
+                <div style="font-weight:800;margin-bottom:6px">Új elemek</div>
                 <div class="row">
                   <button class="button" id="addTypeBtn">Új típus</button>
                   <button class="button" id="addRecurringBtn">Új rendszeres időpont</button>
@@ -184,31 +169,18 @@ const BINS = {
   news: "68b5531fd0ea881f406dbd52",
   calendar: "68b55123d0ea881f406dbb52"
 };
-const MASTER_HASH = "admin";
 
-const appState = {
-  authed:false,
-  calendar:null,
-  news:[],
-  announcements:[],
-  reservations:[]
-};
+const appState = {calendar:null,news:[],announcements:[],reservations:[]};
 
-async function bcryptCompare(plain, hash){
-  const r = await fetch("https://unpkg.com/bcryptjs@2.4.3/dist/bcrypt.min.js");
-  const code = await r.text();
-  const s = document.createElement("script"); s.textContent = code; document.body.appendChild(s);
-  return await new Promise(res=>{res(window.dcodeIO.bcrypt.compareSync(plain,hash))});
-}
-
-function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2200)}
 function switchTab(id){
-  document.querySelectorAll(".side .mi").forEach(mi=>mi.classList.toggle("active",mi.dataset.tab===id));
-  document.getElementById("tabTitle").textContent = document.querySelector(`.side .mi[data-tab="${id}"]`).textContent;
+  document.querySelectorAll(".mi").forEach(mi=>mi.classList.toggle("active",mi.dataset.tab===id));
+  document.getElementById("tabTitle").textContent=document.querySelector(`.mi[data-tab="${id}"]`).textContent;
   document.querySelectorAll('[id^="tab-"]').forEach(sec=>sec.style.display="none");
   document.getElementById("tab-"+id).style.display="block";
 }
-document.querySelectorAll(".side .mi").forEach(mi=>mi.addEventListener("click",()=>switchTab(mi.dataset.tab)));
+document.querySelectorAll(".mi").forEach(mi=>mi.addEventListener("click",()=>switchTab(mi.dataset.tab)));
+
+function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2200)}
 
 async function fetchBin(id){
   const r = await fetch(`https://api.jsonbin.io/v3/b/${id}/latest`,{headers:{'X-Master-Key':JSONBIN_API_KEY}});
@@ -229,33 +201,27 @@ async function loadAll(){
     fetchBin(BINS.reservations),
   ]);
   appState.calendar=calendar; appState.news=news; appState.announcements=ann; appState.reservations=res;
-  renderDashboard();
-  renderTypes();
-  renderRecurring();
-  renderReservations();
-  renderNews();
-  renderAnnouncements();
+  renderDashboard(); renderTypes(); renderRecurring(); renderReservations(); renderNews(); renderAnnouncements();
 }
 
 function renderDashboard(){
   const q=document.getElementById("quickStats");
-  const totalTypes = appState.calendar?.trainingTypes?.length||0;
-  const totalRecurring = appState.calendar?.recurring?.length||0;
-  const totalRes = appState.reservations?.length||0;
-  const totalNews = appState.news?.length||0;
-  const totalAnn = appState.announcements?.length||0;
-  q.innerHTML = `
-    <b>Edzés típusok</b><span>${totalTypes}</span>
-    <b>Rendszeres időpontok</b><span>${totalRecurring}</span>
-    <b>Foglalások</b><span>${totalRes}</span>
-    <b>Hírek</b><span>${totalNews}</span>
-    <b>Kiemelések</b><span>${totalAnn}</span>
+  const tT=appState.calendar?.trainingTypes?.length||0;
+  const tR=appState.calendar?.recurring?.length||0;
+  const tRes=appState.reservations?.length||0;
+  const tN=appState.news?.length||0;
+  const tA=appState.announcements?.length||0;
+  q.innerHTML=`
+    <b>Edzés típusok</b><span>${tT}</span>
+    <b>Rendszeres időpontok</b><span>${tR}</span>
+    <b>Foglalások</b><span>${tRes}</span>
+    <b>Hírek</b><span>${tN}</span>
+    <b>Kiemelések</b><span>${tA}</span>
   `;
 }
 
 function renderTypes(){
-  const tb = document.querySelector("#typesTable tbody");
-  tb.innerHTML="";
+  const tb=document.querySelector("#typesTable tbody"); tb.innerHTML="";
   (appState.calendar.trainingTypes||[]).forEach(t=>{
     const tr=document.createElement("tr");
     tr.innerHTML=`
@@ -276,13 +242,12 @@ function renderTypes(){
     tb.appendChild(tr);
   });
 }
-
 function editType(t){
   openModal("Edzés típus", `
     <div class="input"><label>Név</label><input id="name" value="${t?.name||""}"></div>
     <div class="row">
       <div class="input" style="flex:1"><label>Szint</label><input id="level" value="${t?.level||""}"></div>
-      <div class="input" style="flex:1"><label>Szín</label><input id="color" value="${t?.color||"#6da9ff"}"></div>
+      <div class="input" style="flex:1"><label>Szín</label><input id="color" value="${t?.color||"#6aa6ff"}"></div>
     </div>
     <div class="input"><label>Leírás</label><input id="description" value="${t?.description||""}"></div>
     <div class="row">
@@ -293,33 +258,21 @@ function editType(t){
     <button class="button primary" id="saveBtn">Mentés</button>
   `);
   document.getElementById("saveBtn").addEventListener("click",async()=>{
-    const obj = {
-      id: t?.id||crypto.randomUUID(),
-      name: val("name"), level: val("level"),
-      color: val("color"), description: val("description"),
-      location: val("location"),
-      capacity: num("capacity"), duration: num("duration")||60
-    };
-    const list = [...(appState.calendar.trainingTypes||[])];
-    const idx = list.findIndex(x=>x.id===obj.id);
-    if(idx>=0) list[idx]=obj; else list.push(obj);
-    appState.calendar.trainingTypes = list;
-    await putBin(BINS.calendar, appState.calendar);
-    closeModal(); renderTypes(); showToast("Mentve");
+    const obj={id:t?.id||crypto.randomUUID(),name:val("name"),level:val("level"),color:val("color"),description:val("description"),location:val("location"),capacity:num("capacity"),duration:num("duration")||60};
+    const list=[...(appState.calendar.trainingTypes||[])]; const idx=list.findIndex(x=>x.id===obj.id); if(idx>=0) list[idx]=obj; else list.push(obj);
+    appState.calendar.trainingTypes=list; await putBin(BINS.calendar,appState.calendar); closeModal(); renderTypes(); showToast("Mentve");
   });
 }
 function delType(id){
-  const list = (appState.calendar.trainingTypes||[]).filter(x=>x.id!==id);
-  appState.calendar.trainingTypes = list;
-  putBin(BINS.calendar, appState.calendar).then(()=>{renderTypes();showToast("Típus törölve")});
+  appState.calendar.trainingTypes=(appState.calendar.trainingTypes||[]).filter(x=>x.id!==id);
+  putBin(BINS.calendar,appState.calendar).then(()=>{renderTypes();showToast("Törölve")});
 }
 
 function renderRecurring(){
-  const tb = document.querySelector("#recTable tbody");
-  tb.innerHTML="";
-  const days = ["Hétfő","Kedd","Szerda","Csütörtök","Péntek","Szombat","Vasárnap"];
+  const tb=document.querySelector("#recTable tbody"); tb.innerHTML="";
+  const days=["Hétfő","Kedd","Szerda","Csütörtök","Péntek","Szombat","Vasárnap"];
   (appState.calendar.recurring||[]).forEach(r=>{
-    const tt = (appState.calendar.trainingTypes||[]).find(t=>t.id===r.trainingTypeId);
+    const tt=(appState.calendar.trainingTypes||[]).find(t=>t.id===r.trainingTypeId);
     const tr=document.createElement("tr");
     tr.innerHTML=`
       <td>${days[r.weekday]}</td>
@@ -338,7 +291,7 @@ function renderRecurring(){
   });
 }
 function editRecurring(r){
-  const options = (appState.calendar.trainingTypes||[]).map(t=>`<option value="${t.id}" ${t.id===(r?.trainingTypeId||"")?"selected":""}>${t.name} • ${t.level}</option>`).join("");
+  const options=(appState.calendar.trainingTypes||[]).map(t=>`<option value="${t.id}" ${t.id===(r?.trainingTypeId||"")?"selected":""}>${t.name} • ${t.level}</option>`).join("");
   openModal("Rendszeres időpont", `
     <div class="row">
       <div class="input" style="flex:1"><label>Nap</label>
@@ -362,32 +315,21 @@ function editRecurring(r){
     <button class="button primary" id="saveBtn">Mentés</button>
   `);
   document.getElementById("saveBtn").addEventListener("click",async()=>{
-    const obj = {
-      id: r?.id||crypto.randomUUID(),
-      weekday: Number(val("weekday")),
-      time: val("time"),
-      trainingTypeId: val("trainingTypeId"),
-      location: val("location")||null,
-      capacity: num("capacity")
-    };
-    const list = [...(appState.calendar.recurring||[])];
-    const idx = list.findIndex(x=>x.id===obj.id);
-    if(idx>=0) list[idx]=obj; else list.push(obj);
-    appState.calendar.recurring = list;
-    await putBin(BINS.calendar, appState.calendar);
-    closeModal(); renderRecurring(); showToast("Mentve");
+    const obj={id:r?.id||crypto.randomUUID(),weekday:Number(val("weekday")),time:val("time"),trainingTypeId:val("trainingTypeId"),location:val("location")||null,capacity:num("capacity")};
+    const list=[...(appState.calendar.recurring||[])]; const idx=list.findIndex(x=>x.id===obj.id); if(idx>=0) list[idx]=obj; else list.push(obj);
+    appState.calendar.recurring=list; await putBin(BINS.calendar,appState.calendar); closeModal(); renderRecurring(); showToast("Mentve");
   });
 }
 function delRecurring(id){
-  appState.calendar.recurring = (appState.calendar.recurring||[]).filter(x=>x.id!==id);
-  putBin(BINS.calendar, appState.calendar).then(()=>{renderRecurring();showToast("Időpont törölve")});
+  appState.calendar.recurring=(appState.calendar.recurring||[]).filter(x=>x.id!==id);
+  putBin(BINS.calendar,appState.calendar).then(()=>{renderRecurring();showToast("Törölve")});
 }
 
 function renderReservations(){
-  const tb = document.querySelector("#resTable tbody"); tb.innerHTML="";
-  const types = appState.calendar.trainingTypes||[];
+  const tb=document.querySelector("#resTable tbody"); tb.innerHTML="";
+  const types=appState.calendar.trainingTypes||[];
   appState.reservations.sort((a,b)=>new Date(a.date)-new Date(b.date)||a.time.localeCompare(b.time)).forEach(r=>{
-    const tt = types.find(t=>t.id===r.trainingTypeId);
+    const tt=types.find(t=>t.id===r.trainingTypeId);
     const tr=document.createElement("tr");
     tr.innerHTML=`
       <td>${r.date}</td>
@@ -404,12 +346,12 @@ function renderReservations(){
   });
 }
 function delReservation(id){
-  appState.reservations = (appState.reservations||[]).filter(x=>x.id!==id);
-  putBin(BINS.reservations, appState.reservations).then(()=>{renderReservations();showToast("Foglalás törölve")});
+  appState.reservations=(appState.reservations||[]).filter(x=>x.id!==id);
+  putBin(BINS.reservations,appState.reservations).then(()=>{renderReservations();showToast("Törölve")});
 }
 
 function renderNews(){
-  const tb = document.querySelector("#newsTable tbody"); tb.innerHTML="";
+  const tb=document.querySelector("#newsTable tbody"); tb.innerHTML="";
   appState.news.sort((a,b)=>new Date(b.date)-new Date(a.date)).forEach(n=>{
     const tr=document.createElement("tr");
     tr.innerHTML=`
@@ -436,18 +378,18 @@ function editNews(n){
     <button class="button primary" id="saveBtn">Mentés</button>
   `);
   document.getElementById("saveBtn").addEventListener("click",async()=>{
-    const obj = {id:n?.id||crypto.randomUUID(), title:val("title"), image:val("image")||null, content:val("content"), date:val("date")||new Date().toISOString().slice(0,10)};
-    const list = [...(appState.news||[])]; const idx = list.findIndex(x=>x.id===obj.id); if(idx>=0) list[idx]=obj; else list.push(obj);
-    appState.news = list; await putBin(BINS.news, appState.news); closeModal(); renderNews(); showToast("Hír mentve");
+    const obj={id:n?.id||crypto.randomUUID(),title:val("title"),image:val("image")||null,content:val("content"),date:val("date")||new Date().toISOString().slice(0,10)};
+    const list=[...(appState.news||[])]; const idx=list.findIndex(x=>x.id===obj.id); if(idx>=0) list[idx]=obj; else list.push(obj);
+    appState.news=list; await putBin(BINS.news,appState.news); closeModal(); renderNews(); showToast("Mentve");
   });
 }
 function delNews(id){
-  appState.news = (appState.news||[]).filter(x=>x.id!==id);
-  putBin(BINS.news, appState.news).then(()=>{renderNews();showToast("Hír törölve")});
+  appState.news=(appState.news||[]).filter(x=>x.id!==id);
+  putBin(BINS.news,appState.news).then(()=>{renderNews();showToast("Törölve")});
 }
 
 function renderAnnouncements(){
-  const tb = document.querySelector("#annTable tbody"); tb.innerHTML="";
+  const tb=document.querySelector("#annTable tbody"); tb.innerHTML="";
   appState.announcements.forEach(a=>{
     const tr=document.createElement("tr");
     tr.innerHTML=`
@@ -484,14 +426,14 @@ function editAnn(a){
     <button class="button primary" id="saveBtn">Mentés</button>
   `);
   document.getElementById("saveBtn").addEventListener("click",async()=>{
-    const obj = {id:a?.id||crypto.randomUUID(), title:val("title"), type:val("type"), content:val("content"), expiresAt:val("expiresAt")||null, active:val("active")==="true"};
+    const obj={id:a?.id||crypto.randomUUID(),title:val("title"),type:val("type"),content:val("content"),expiresAt:val("expiresAt")||null,active:val("active")==="true"};
     const list=[...(appState.announcements||[])]; const idx=list.findIndex(x=>x.id===obj.id); if(idx>=0) list[idx]=obj; else list.push(obj);
-    appState.announcements=list; await putBin(BINS.announcements,appState.announcements); closeModal(); renderAnnouncements(); showToast("Kiemelés mentve");
+    appState.announcements=list; await putBin(BINS.announcements,appState.announcements); closeModal(); renderAnnouncements(); showToast("Mentve");
   });
 }
 function delAnn(id){
-  appState.announcements = (appState.announcements||[]).filter(x=>x.id!==id);
-  putBin(BINS.announcements, appState.announcements).then(()=>{renderAnnouncements();showToast("Kiemelés törölve")});
+  appState.announcements=(appState.announcements||[]).filter(x=>x.id!==id);
+  putBin(BINS.announcements,appState.announcements).then(()=>{renderAnnouncements();showToast("Törölve")});
 }
 
 function openModal(title,html){document.getElementById("modalTitle").textContent=title; const b=document.getElementById("modalBody"); b.innerHTML=html; document.getElementById("modal").classList.add("active")}
@@ -501,20 +443,10 @@ document.getElementById("closeModal").addEventListener("click",closeModal);
 ["addRecurringBtn","addRecurringBtn2"].forEach(id=>document.getElementById(id).addEventListener("click",()=>editRecurring(null)));
 ["addNewsBtn","addNewsBtn2"].forEach(id=>document.getElementById(id).addEventListener("click",()=>editNews(null)));
 ["addAnnBtn","addAnnBtn2"].forEach(id=>document.getElementById(id).addEventListener("click",()=>editAnn(null)));
-
 function val(id){return document.getElementById(id).value.trim()}
 function num(id){const v=val(id); return v===""?null:Number(v)}
 
-document.getElementById("loginBtn").addEventListener("click",async()=>{
-  const p = document.getElementById("pass").value;
-  try{
-    const ok = await bcryptCompare(p, MASTER_HASH);
-    if(ok){appState.authed=true; document.getElementById("authWrap").style.display="none"; document.getElementById("app").style.display="block"; await loadAll(); showToast("Bejelentkezve")}
-    else showToast("Helytelen jelszó");
-  }catch(e){showToast("Hitelesítési hiba")}
-});
-document.getElementById("logoutBtn").addEventListener("click",()=>{location.reload()});
-
+loadAll();
 </script>
 </body>
 </html>
